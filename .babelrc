@@ -1,0 +1,22 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false
+    }],
+    "react",
+    "stage-2",
+    "flow"
+  ],
+  "plugins": [
+    "transform-regenerator",
+    "transform-async-to-generator"
+  ],
+  "env": {
+    "production": {
+      "presets": [
+        "react-optimize"
+      ],
+      "comments": false
+    }
+  }
+}

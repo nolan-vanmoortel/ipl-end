@@ -1,0 +1,37 @@
+{
+  "brand":      "IPL - END",
+  "leftLinks":  [
+    {
+      "label":      "Home",
+      "link":       "/",
+      "view":       "home",
+      "isRouteBtn": true
+    }
+  ],
+  "rightLinks": [
+    {
+      "label":      "Home",
+      "link":       "/",
+      "view":       "home",
+      "isRouteBtn": true
+    },
+    {
+      "label":      "Protected",
+      "link":       "/protected",
+      "view":       "protected",
+      "isRouteBtn": true
+    },
+    {
+      "label":      "About",
+      "link":       "/about",
+      "view":       "about",
+      "isRouteBtn": true
+    },
+    {
+      "label":      "Disconnect",
+      "link":       "/login",
+      "view":       "login",
+      "isRouteBtn": true
+    }
+  ]
+}
