@@ -3,7 +3,6 @@
     <properties maven-id="com.sparkjava:spark-kotlin:1.0.0-alpha" />
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/spark-kotlin-1.0.0-alpha.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/kotlin-stdlib-1.1.2-2.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/annotations-13.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/spark-core-2.6.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.13.jar!/" />
@@ -22,6 +21,7 @@
       <root url="jar://$PROJECT_DIR$/lib/jetty-client-9.4.4.v20170414.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/websocket-servlet-9.4.4.v20170414.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/websocket-api-9.4.4.v20170414.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/kotlin-stdlib.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$PROJECT_DIR$/lib/spark-kotlin-1.0.0-alpha-javadoc.jar!/" />
