@@ -36,7 +36,7 @@ private fun setEnvironment(args: Array<String>): PluginProperties {
 }
 
 private fun handler(userUcc: UserUcc) {
-  get("/getUser") {
+  get("/getUserById/:id") {
     try {
       val user = userUcc.getUserById(Integer.parseInt(request.params("id")))
       status(200)
