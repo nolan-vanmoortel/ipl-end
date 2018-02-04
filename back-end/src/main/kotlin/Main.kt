@@ -1,11 +1,11 @@
+import business.factory.UserFactory
 import business.factory.impl.UserFactoryImpl
 import controllers.UserController
 import exceptions.FatalException
 import persistence.DalServicesNoSql
+import persistence.dao.UserDao
 import persistence.dao.impl.UserDaoImpl
 import spark.kotlin.port
-import ucc.impl.UserUccImpl
-import ucc.UserUcc
 import util.PluginProperties
 
 
@@ -16,9 +16,8 @@ fun main(args: Array<String>) {
         val dalServices = DalServicesNoSql(properties)
         val userFactory = UserFactoryImpl()
         val userDao = UserDaoImpl(dalServices, userFactory)
-        val userUcc = UserUccImpl(userDao)
         port(8080)
-        handler(userUcc)
+        handler(userDao, userFactory)
     } catch (e: FatalException) {
         println("Ceci n'est jamais censé se produire")
     }
@@ -34,6 +33,6 @@ private fun setEnvironment(args: Array<String>): PluginProperties {
         PluginProperties(ClassLoader.getSystemResource("${args[0]}.properties").path)
 }
 
-private fun handler(userUcc: UserUcc) {
-    UserController(userUcc)
+private fun handler(userDao: UserDao, userFactory: UserFactory) {
+    UserController(userDao, userFactory)
 }

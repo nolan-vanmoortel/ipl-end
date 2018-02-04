@@ -1,5 +1,6 @@
 package persistence
 
+import business.entities.impl.UserImpl
 import com.mongodb.*
 import util.PluginProperties
 import org.bson.Document

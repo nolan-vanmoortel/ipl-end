@@ -17,7 +17,7 @@ object UserImplTest {
 
     @Test
     fun testFirstName() {
-        assertEquals(user1.firstName, "")
-        assertEquals(user2.firstName, "John")
+        assertEquals(user1.firstname, "")
+        assertEquals(user2.firstname, "John")
     }
 }

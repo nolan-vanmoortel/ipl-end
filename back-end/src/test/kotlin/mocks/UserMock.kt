@@ -8,7 +8,7 @@ class UserMock() : UserReal, SetValidator() {
 
     override val name: String
         get() = "Doe"
-    override val firstName: String
+    override val firstname: String
         get() = "John"
 
     override fun complexMethod() {

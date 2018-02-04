@@ -15,7 +15,7 @@ const val USERS_COLLECTION = "Utilisateurs"
 class DalServicesNoSql(private val properties: PluginProperties) : DalServices {
 
     private val connections = ThreadLocal<MongoDatabase>()
-    private val mongo = MongoClient(MongoClientURI("mongodb://${properties.getProperty("dbUser")}:${properties.getProperty("dbPassword")}" +
+    private val mongo= MongoClient(MongoClientURI("mongodb://${properties.getProperty("dbUser")}:${properties.getProperty("dbPassword")}" +
             "@${properties.getProperty("dbUrl")}:${properties.getProperty("dbPort")}/${properties.getProperty("dbName")}"))
     /**
      * Create a connection to the database for the current poll if not already done.
