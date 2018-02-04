@@ -11,7 +11,3 @@ fun getSalt(): String{
 fun hashPassword(salt: String, password: String): String{
     return BCrypt.hashpw(password, salt)
 }
-
-fun isPasswordCorrect(password: String, salt: String, passwordHashed: String): Boolean {
-    return BCrypt.hashpw(password,salt) == passwordHashed
-}
