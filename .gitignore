@@ -1,9 +1,6 @@
-node_modules/
-.idea/
-*.log
+/front-end/node_modules
+/front-end/docs/public/assets/
 
-build/
-dist/
-public/assets/
-/coverage
-/.nyc_output
+/back-end/out/
+/back-end/.gradle
+/back-end/build
