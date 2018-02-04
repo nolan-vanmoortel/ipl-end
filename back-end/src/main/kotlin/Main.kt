@@ -1,5 +1,6 @@
 import business.factory.UserFactory
 import business.factory.impl.UserFactoryImpl
+import controllers.AuthController
 import controllers.UserController
 import exceptions.FatalException
 import persistence.DalServicesNoSql
@@ -35,4 +36,5 @@ private fun setEnvironment(args: Array<String>): PluginProperties {
 
 private fun handler(userDao: UserDao, userFactory: UserFactory) {
     UserController(userDao, userFactory)
+    AuthController(userDao, userFactory)
 }
