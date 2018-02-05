@@ -38,6 +38,7 @@ class App extends Component {
 
   goToReader = () =>{
     const { history } = this.props;
+    this.onCollapse();
     history.push("/");
   }
 
