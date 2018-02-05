@@ -4,7 +4,7 @@ import React, {
   PureComponent
 }                     from 'react';
 import PropTypes      from 'prop-types';
-import {Button}       from 'react-bootstrap';
+import {Button}       from 'antd';
 
 class scanQrButton extends PureComponent {
 // eslint-disable-next-line no-undef

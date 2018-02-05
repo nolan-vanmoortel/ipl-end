@@ -8,8 +8,7 @@ import smoothScrollPolyfill from 'smoothscroll-polyfill';
 import 'animate.css';
 import 'jquery';
 import 'font-awesome/css/font-awesome.min.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
+import 'antd/dist/antd.css';
 import './style/index.scss';
 import Root from './Root';
 

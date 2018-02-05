@@ -4,12 +4,9 @@ import React, {
   PureComponent
 }                     from 'react';
 import PropTypes      from 'prop-types';
-import {
-  Row,
-  Col,
-  Button
-}                     from 'react-bootstrap';
 import auth           from '../../services/auth';
+import { Form, Icon, Input, Button } from 'antd';
+
 
 type Props = {
   match: any,
@@ -87,105 +84,37 @@ class Login extends PureComponent<Props, State> {
     } = this.props;
 
     return (
-      <div className="content">
-        <Row>
-          <Col
-            md={4}
-            mdOffset={4}
-            xs={10}
-            xsOffset={1}
+      <Form layout="inline" onSubmit={this.handleSubmit}>
+        <FormItem
+          validateStatus={userNameError ? 'error' : ''}
+          help={userNameError || ''}
+        >
+          {getFieldDecorator('userName', {
+            rules: [{ required: true, message: 'Please input your username!' }],
+          })(
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
+          )}
+        </FormItem>
+        <FormItem
+          validateStatus={passwordError ? 'error' : ''}
+          help={passwordError || ''}
+        >
+          {getFieldDecorator('password', {
+            rules: [{ required: true, message: 'Please input your Password!' }],
+          })(
+            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+          )}
+        </FormItem>
+        <FormItem>
+          <Button
+            type="primary"
+            htmlType="submit"
+            disabled={hasErrors(getFieldsError())}
           >
-            <form
-              className="form-horizontal"
-              noValidate>
-              <fieldset>
-                <legend>
-                  Login
-                </legend>
-
-                <div className="form-group">
-                  <label
-                    htmlFor="inputEmail"
-                    className="col-lg-2 control-label">
-                    Email
-                  </label>
-                  <div className="col-lg-10">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="inputEmail"
-                      placeholder="Email"
-                      value={email}
-                      onChange={this.handlesOnEmailChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label
-                    htmlFor="inputPassword"
-                    className="col-lg-2 control-label">
-                    Password
-                  </label>
-                  <div className="col-lg-10">
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="inputPassword"
-                      placeholder="Password"
-                      value={password}
-                      onChange={this.handlesOnPasswordChange}
-                    />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <Col
-                    lg={10}
-                    lgOffset={2}
-                  >
-                    <Button
-                      className="login-button btn-block"
-                      bsStyle="primary"
-                      disabled={isLogging}
-                      onClick={this.handlesOnLogin}>
-                      {
-                        isLogging
-                          ?
-                          <span>
-                            login in...
-                            &nbsp;
-                            <i
-                              className="fa fa-spinner fa-pulse fa-fw"
-                            />
-                          </span>
-                          :
-                          <span>
-                            Login
-                          </span>
-                      }
-                    </Button>
-                  </Col>
-                </div>
-              </fieldset>
-            </form>
-          </Col>
-        </Row>
-        <Row>
-          <Col
-            md={4}
-            mdOffset={4}
-            xs={10}
-            xsOffset={1}
-          >
-            <Button
-              bsStyle="primary"
-              onClick={this.goHome}
-            >
-              back to home
-            </Button>
-          </Col>
-        </Row>
-      </div>
+            Log in
+          </Button>
+        </FormItem>
+      </Form>
     );
   }
 

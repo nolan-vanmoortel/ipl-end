@@ -10,6 +10,10 @@ import {
 }                             from '../../components';
 import navigationModel        from '../../config/navigation.json';
 import MainRoutes             from '../../routes/MainRoutes';
+import {Layout} from "antd";
+const { Content } = Layout;
+import Footer from "../../components/footer/Footer";
+import styles                 from './app.scss';
 
 
 class App extends Component {
@@ -31,19 +35,19 @@ class App extends Component {
 
     return (
       <div id="appContainer">
-        <NavigationBar
-          brand={navModel.brand}
-          navModel={navModel}
-          handleLeftNavItemClick={this.handleLeftNavItemClick}
-          handleRightNavItemClick={this.handleRightNavItemClick}
-        />
-        <div className="container-fluid">
-          <MainRoutes />
-        </div>
-        <BackToTop
-          minScrollY={40}
-          scrollTo={'appContainer'}
-        />
+        <Layout style={{ minHeight: '100vh' }}>
+          <NavigationBar/>
+          <Layout>
+            <Content className={styles.backgroundApp}>
+              <MainRoutes />
+            </Content>
+            <Footer/>
+          </Layout>
+          <BackToTop
+            minScrollY={40}
+            scrollTo={'appContainer'}
+          />
+        </Layout>
       </div>
     );
   }
