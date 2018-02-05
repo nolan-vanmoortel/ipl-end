@@ -28,7 +28,7 @@ class QrReaderMachine extends PureComponent {
     } = this.props;
     return (
       <div>
-        <Button onClick={this.handleClick}/>
+        <Button onClick={this.handleClick}>Scanner QR code</Button>
           {
             showQr?
               <QrReader
