@@ -10,6 +10,7 @@ import AnimatedView   from '../../components/animatedView/AnimatedView';
 import styles         from './home.scss';
 import banane         from './img/banane.jpg';
 import {Image} from 'react-bootstrap';
+import MachineImport from '../../components/machineImport/MachineImport'
 
 class Home extends PureComponent {
   static propTypes= {
@@ -59,6 +60,7 @@ class Home extends PureComponent {
             </p>
           </div>
         </Jumbotron>
+        <MachineImport/>
       </AnimatedView>
     );
   }
