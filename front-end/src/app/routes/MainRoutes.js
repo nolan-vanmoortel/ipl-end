@@ -17,7 +17,7 @@ const MainRoutes = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route path="/report" component={ReportForm} />
+      <Route path="/report/:machineName" component={ReportForm} />
       <Route path="/about" component={About} />
       <Route exact path="/login" component={Login} />
       <PrivateRoute path="/protected" component={Protected} />
