@@ -16,6 +16,8 @@ const ENTER_PROTECTED_VIEW  = 'ENTER_PROTECTED_VIEW';
 const LEAVE_PROTECTED_VIEW  = 'LEAVE_PROTECTED_VIEW';
 const ENTER_PAGENOTFOUND_VIEW  = 'ENTER_PAGENOTFOUND_VIEW';
 const LEAVE_PAGENOTFOUND_VIEW  = 'LEAVE_PAGENOTFOUND_VIEW';
+const ENTER_REPORTFORM_VIEW = 'ENTER_REPORTFORM_VIEW';
+const LEAVE_REPORTFORM_VIEW = 'LEAVE_REPORTFORM_VIEW';
 
 
 // /////////////////////
@@ -35,6 +37,7 @@ export default function (state = initialState, action) {
   case ENTER_ABOUT_VIEW:
   case ENTER_PAGENOTFOUND_VIEW:
   case ENTER_LOGIN_VIEW:
+  case ENTER_REPORTFORM_VIEW:
   case ENTER_PROTECTED_VIEW:
     // on peux pas entrer sur une page où l on est déjà
     if (state.currentView !== action.currentView) {
@@ -52,6 +55,7 @@ export default function (state = initialState, action) {
   case LEAVE_ABOUT_VIEW:
   case LEAVE_PAGENOTFOUND_VIEW:
   case LEAVE_LOGIN_VIEW:
+  case LEAVE_REPORTFORM_VIEW:
   case LEAVE_PROTECTED_VIEW:
     // on peut pas quitter une page où l on est pas déjà
     if (state.currentView === action.currentView) {
@@ -181,3 +185,22 @@ export function leaveProtected(time = moment().format()) {
     leaveTime:    time
   };
 }
+
+export function enterReportForm(time = moment().format()) {
+  return {
+    type:         ENTER_REPORTFORM_VIEW,
+    currentView:  'ReportForm',
+    enterTime:    time,
+    leaveTime:    null
+  };
+}
+
+export function leaveReportForm(time = moment().format()) {
+  return {
+    type:         LEAVE_REPORTFORM_VIEW,
+    currentView:  'ReportForm',
+    enterTime:    null,
+    leaveTime:    time
+  };
+}
+
