@@ -25,7 +25,7 @@ fun UserController(userDao: UserDao, userFactory: UserFactory){
         post("/create"){
             val salt = getSalt()
             try {
-                val user = userFactory.getUser(name = request.qp("name"), firstname = request.qp("firstname"), email = request.qp("email"), password = hashPassword(salt, request.qp("password")), salt = salt)
+                val user = userFactory.getUser(email = request.qp("email"), password = hashPassword(salt, request.qp("password")), salt = salt)
                 ObjectMapper().writeValueAsString(Message(userDao.save(user).id))
             }catch (e: Exception){
                 ObjectMapper().writeValueAsString(Message(""+e.message))

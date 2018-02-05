@@ -10,11 +10,13 @@ import About            from '../views/about';
 import PrivateRoute     from '../components/privateRoute/PrivateRoute';
 import Protected        from '../views/protected';
 import PageNotFound     from '../views/pageNotFound';
+import ReportForm       from '../views/reportForm';
 
 const MainRoutes = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
+      <Route path="/report" component={ReportForm} />
       <Route path="/about" component={About} />
       <PrivateRoute path="/protected" component={Protected} />
       <Route component={PageNotFound} />

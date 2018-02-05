@@ -6,10 +6,13 @@ import React, {
 import PropTypes              from 'prop-types';
 import {
   NavigationBar,
-  BackToTop
+  Footer
 }                             from '../../components';
 import navigationModel        from '../../config/navigation.json';
 import MainRoutes             from '../../routes/MainRoutes';
+import {Affix, BackTop, Button, Layout} from "antd";
+const { Content } = Layout;
+import styles                 from './app.scss';
 
 
 class App extends Component {
@@ -23,27 +26,34 @@ class App extends Component {
   };
 
   state = {
-    navModel : navigationModel
+    collapsed: true
   };
 
+  onCollapse = () => {
+    const { collapsed } = this.state;
+    const collapsedNew = !collapsed;
+
+    this.setState({ collapsed:collapsedNew });
+  }
+
   render() {
-    const { navModel } = this.state;
+    const { collapsed } = this.state;
 
     return (
       <div id="appContainer">
-        <NavigationBar
-          brand={navModel.brand}
-          navModel={navModel}
-          handleLeftNavItemClick={this.handleLeftNavItemClick}
-          handleRightNavItemClick={this.handleRightNavItemClick}
-        />
-        <div className="container-fluid">
-          <MainRoutes />
-        </div>
-        <BackToTop
-          minScrollY={40}
-          scrollTo={'appContainer'}
-        />
+        <Layout style={{ minHeight: '100vh' }}>
+          <NavigationBar collapsedNav={collapsed}/>
+          <Layout>
+            <Content className={styles.backgroundApp}>
+              <MainRoutes />
+            </Content>
+            <Footer/>
+            <Affix offsetBottom={0} onChange={affixed => console.log(affixed)}>
+              <Button className={styles.darkButton} onClick={this.onCollapse} >{collapsed?"Afficher Menu":"Cacher Menu"}</Button>
+            </Affix>
+          </Layout>
+          <BackTop />
+        </Layout>
       </div>
     );
   }

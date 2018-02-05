@@ -9,7 +9,7 @@ import {Jumbotron}    from '../../components';
 import AnimatedView   from '../../components/animatedView/AnimatedView';
 import styles         from './home.scss';
 import banane         from './img/banane.jpg';
-import {Image} from 'react-bootstrap';
+import {Button} from "antd";
 
 class Home extends PureComponent {
   static propTypes= {
@@ -35,30 +35,7 @@ class Home extends PureComponent {
   render() {
     return(
       <AnimatedView>
-        <Jumbotron>
-          <div
-            className={styles.homeInfo}
-          >
-            <h1
-              className={styles.mainTitle}
-            >
-              IPL - END
-            </h1>
-            <h2>
-              REACT + REDUX + WEBPACK + REACT-ROUTER + ...  (<i>beaucoup trop de techno</i>)!!!
-            </h2>
-            <Image src={banane} thumbnail />
-            <p>
-              <Link
-                className="btn btn-success btn-lg"
-                to={'/about'}>
-                <i className="fa fa-info" />
-                &nbsp;
-                 Aller vers about
-              </Link>
-            </p>
-          </div>
-        </Jumbotron>
+
       </AnimatedView>
     );
   }

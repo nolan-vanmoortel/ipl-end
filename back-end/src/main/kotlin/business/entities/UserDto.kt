@@ -8,10 +8,6 @@ interface UserDto {
 
     val id: String
 
-    val name: String
-
-    val firstname: String
-
     val email: String
 
     val salt: String
