@@ -30,7 +30,9 @@ class ReportForm extends PureComponent<Props, State> {
     currentView: PropTypes.string.isRequired,
     enterReportForm: PropTypes.func.isRequired,
     leaveReportForm: PropTypes.func.isRequired,
-    form: PropTypes.object.isRequired
+    form: PropTypes.object.isRequired,
+
+    createReport: PropTypes.func.isRequired
   };
 
   constructor(props, context) {
@@ -73,14 +75,20 @@ class ReportForm extends PureComponent<Props, State> {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        const report = {
+          machine: this.state.machine,
+          email: values.email,
+          modele: this.state.model
+        };
+        const { createReport } = this.props;
+        createReport(report);
       }
     });
   }
 
 
   render() {
-    const { email, model } = this.state;
+    const { model } = this.state;
     const { getFieldDecorator } = this.props.form;
     const config = {
       heightMin: 330,
