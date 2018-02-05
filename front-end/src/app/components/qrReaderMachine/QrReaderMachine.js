@@ -34,7 +34,7 @@ class QrReaderMachine extends PureComponent {
                 delay={delay}
                 onError={handleError}
                 onScan={handleScan}
-                style={{ width: '50%' }}/>
+                style={{ minWidth: '250px', maxWidth:'500px', marginLeft:"auto", marginRight:"auto" }}/>
               :''
           }
       </div>

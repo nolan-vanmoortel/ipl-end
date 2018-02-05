@@ -8,6 +8,7 @@ import {Jumbotron}    from '../../components';
 import AnimatedView   from '../../components/animatedView/AnimatedView';
 import { QrPrintMachine, QrReaderMachine } from '../../components';
 import {Redirect} from "react-router-dom";
+import {Col, Layout, Row} from "antd";
 
 class Home extends PureComponent {
   static propTypes= {
@@ -53,12 +54,13 @@ class Home extends PureComponent {
     } = this.props;
     return(
       <AnimatedView>
-        <h1>Printer</h1>
-        <QrPrintMachine urlMachine="not a valid url"/>
-        <h1>Scanner</h1>
-        <QrReaderMachine delay={delay} handleError={handleError} handleScan={handleScan} scanClick={scanClick} showQr={showQr}/>
-        <h4>{message}</h4>
-
+        <Row type="flew" justify="center" align="center">
+          <Col offset={6} span={12} style={{textAlign:"center"}}>
+            <h1>Scanner</h1>
+            <QrReaderMachine delay={delay} handleError={handleError} handleScan={handleScan} scanClick={scanClick} showQr={showQr}/>
+            <h4>{message}</h4>
+          </Col>
+        </Row>
         {scanSuccess?<Redirect to={"report/"+url.split('/')[url.split('/').length-1]}/>:''}
       </AnimatedView>
     );
