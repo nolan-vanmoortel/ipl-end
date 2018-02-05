@@ -3,7 +3,7 @@
 import React,
   { PureComponent }       from 'react';
 import PropTypes          from 'prop-types';
-import {Layout, Menu, Icon} from 'antd';
+import {Layout, Menu, Icon, Button} from 'antd';
 import styles from './NavigationBar.scss';
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -12,8 +12,15 @@ const SubMenu = Menu.SubMenu;
 class NavigationBar extends PureComponent {
   // eslint-disable-next-line no-undef
   static propTypes = {
-    collapsedNav: PropTypes.bool.isRequired
+    collapsedNav: PropTypes.bool.isRequired,
+    handleReturn: PropTypes.func.isRequired
   };
+
+  // eslint-disable-next-line no-undef
+  handleClick = () => {
+    const { handleReturn } = this.props;
+    handleReturn();
+  }
 
   render() {
     const { collapsedNav } = this.props;
@@ -21,7 +28,9 @@ class NavigationBar extends PureComponent {
     return (
       <Sider style={{display:collapsedNav?"none":"block"}} >
         <div className={styles.logo}>
-          <Icon type="qrcode" style={{fontSize:48}} />
+          <Button size="large" type="primary" style={{width:"100%"}} onClick={this.handleClick}>
+            <Icon type="left" />Scanner QR code
+          </Button>
         </div>
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
           <Menu.Item key="1">

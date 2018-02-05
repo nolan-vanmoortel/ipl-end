@@ -36,13 +36,18 @@ class App extends Component {
     this.setState({ collapsed:collapsedNew });
   }
 
+  goToReader = () =>{
+    const { history } = this.props;
+    history.push("/");
+  }
+
   render() {
     const { collapsed } = this.state;
 
     return (
       <div id="appContainer">
         <Layout style={{ minHeight: '100vh' }}>
-          <NavigationBar collapsedNav={collapsed}/>
+          <NavigationBar collapsedNav={collapsed} handleReturn={this.goToReader}/>
           <Layout>
             <Content className={styles.backgroundApp}>
               <MainRoutes />
