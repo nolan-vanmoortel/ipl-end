@@ -17,8 +17,11 @@ const mapStateToProps = (state) => {
     lastname:    state.userAuth.lastname,
     value:       state.counter.value,
 
-    delay:      state.scanQr.delay,
-    showQr:     state.scanQr.showQr
+    delay:        state.scanQr.delay,
+    showQr:       state.scanQr.showQr,
+    url:          state.scanQr.url,
+    scanSuccess:  state.scanQr.scanSuccess,
+    message:      state.scanQr.message,
   };
 };
 

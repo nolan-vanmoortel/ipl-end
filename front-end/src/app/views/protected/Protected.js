@@ -6,7 +6,8 @@ import React, {
 import PropTypes      from 'prop-types';
 import AnimatedView   from '../../components/animatedView/AnimatedView';
 import Counter        from '../../components/counter/Counter';
-import scanQrButton   from '../../components/qrHandler/scanQr/scanQrButton';
+import PrintQrButton  from '../../components/qrHandler/printQr/qrPrintMachine';
+import ScanQrButton   from '../../components/qrHandler/scanQr/scanQrButton';
 import QrReader       from 'react-qr-reader';
 
 type Props ={
@@ -18,7 +19,10 @@ type Props ={
   checkUserIsConnected: () => any,
   firstname: string,
   lastname: string,
-  showQr: boolean
+  showQr: boolean,
+  scanSuccess: boolean,
+  url: string,
+  message: string
 }
 type State = {
 }
@@ -42,18 +46,14 @@ class Protected extends PureComponent<Props, State> {
     decrement:          PropTypes.func.isRequired,
     doubleAsync:        PropTypes.func.isRequired,
 
+    url:                PropTypes.string.isRequired,
+    message:            PropTypes.string.isRequired,
     delay:              PropTypes.number.isRequired,
     handleError:        PropTypes.func.isRequired,
     handleScan:         PropTypes.func.isRequired,
     scanClick:          PropTypes.func.isRequired,
+    scanSuccess:        PropTypes.boolean,
     showQr:             PropTypes.boolean
-  };
-
-
-// eslint-disable-next-line no-undef
-  static defaultProps = {
-    firstname:      'NULL',
-    lastname:      'NULL'
   };
 
   componentWillMount() {
@@ -86,7 +86,10 @@ class Protected extends PureComponent<Props, State> {
       handleError,
       handleScan,
       scanClick,
-      showQr
+      showQr,
+      scanSuccess,
+      url,
+      message
 
     } = this.props;
 
@@ -95,16 +98,38 @@ class Protected extends PureComponent<Props, State> {
         <h1>
           Vous êtes connecté {firstname+' '+lastname} !
         </h1>
+        <h1>Counter</h1>
         <Counter value={value} handleIncrement={increment} handleDecrement={decrement} handleDoubleAsync={doubleAsync}/>
-        <scanQrButton onClick={scanClick}/>
-        showQr?<QrReader
+        <h1>Printer</h1>
+        <PrintQrButton urlMachine="not a valid url"/>
+        <h1>Scanner</h1>
+        <h4>{message}</h4>
+        <ScanQrButton onClick={scanClick}/>
+        {showQr?<QrReader
         delay={delay}
         onError={handleError}
         onScan={handleScan}
-        style={{ width: '100%' }}
-      />:
+        style={{ width: '50%' }}
+      />:''}
+        {scanSuccess?this.goToHell(url):''}
+
       </AnimatedView>
     );
+  }
+
+  goToHell = (urlQr: string,
+    event: SyntheticEvent<>
+  ) => {
+    console.log('IN GO HOME');
+    if (event) {
+      event.preventDefault();
+    }
+
+    const {
+      history
+    } = this.props;
+    const shortenedUrl = urlQr.split('/');
+    history.push({ pathname: 'report/'+shortenedUrl[shortenedUrl.length-1] });
   }
 }
 

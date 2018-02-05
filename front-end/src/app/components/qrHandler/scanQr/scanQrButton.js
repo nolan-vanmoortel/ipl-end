@@ -14,7 +14,7 @@ class scanQrButton extends PureComponent {
 
   render() {
     return (
-      <Button bsStyle={color} onClick={this.handleClick}>Scan</Button>
+      <Button onClick={this.handleClick}>Scan</Button>
     );
   }
 

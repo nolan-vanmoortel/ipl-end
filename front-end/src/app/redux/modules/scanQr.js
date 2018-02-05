@@ -11,10 +11,11 @@ const SCAN_CLICK:               string = 'SCAN_CLICK';
 // REDUCER
 // --------------------------------
 const initialState = {
-  url: 'localhost:3001',
+  url: 'Not an url',
   message: 'Scan a QR code !',
-  delay: 300,
-  showQr: false
+  delay: 500,
+  showQr: false,
+  scanSuccess: false
 };
 
 export default function (
@@ -25,7 +26,8 @@ export default function (
     case HANDLE_RESULT:
       return {
         ...state,
-        url:     action.url
+        url:     action.data,
+        scanSuccess: action.data!==null,
       };
     case HANDLE_ERROR:
       return {
@@ -35,7 +37,7 @@ export default function (
     case SCAN_CLICK:
       return {
         ...state,
-        showQr: true
+        showQr: !state.showQr
       };
     default:
       return state;
@@ -46,23 +48,24 @@ export default function (
 // ACTIONS CREATORS
 // --------------------------------
 
-export function handleScan(url: string) {
+export function handleScan(data: string) {
+  console.log(data);
+  console.log(initialState.url);
   return {
     type : HANDLE_RESULT,
-    url
+    data
   };
 }
 
 export function handleError() {
   return {
-    type : HANDLE_ERROR,
+    type : HANDLE_ERROR
   };
 }
 
-export function scanClick(clicked: boolean) {
+export function scanClick() {
   return {
-    type : SCAN_CLICK,
-    clicked
+    type : SCAN_CLICK
   };
 }
 
