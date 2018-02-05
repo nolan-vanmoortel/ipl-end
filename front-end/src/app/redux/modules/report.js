@@ -53,8 +53,8 @@ export default function (
 
 export function createReport(report) {
   return dispatch => {
-    const FETCH_TYPE = appConfig.DEV_MODE ? 'FETCH_MOCK' : 'FETCH';
-    const url = `${getLocationOrigin()}/${appConfig.API.reports}/${report.machine}`;
+    const FETCH_TYPE = 'FETCH';
+    const url = `${getLocationOrigin()}/${appConfig.API.reports}/create`;
     const method = 'post';
     const headers = {};
     const options = {

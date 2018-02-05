@@ -15,11 +15,6 @@ class UserMock() : UserReal, SetValidator() {
     override val password: String
         get() = TODO("not implemented") //To change initializer of created properties use File | Settings | File Templates.
 
-    override val name: String
-        get() = "Doe"
-    override val firstname: String
-        get() = "John"
-
     override fun complexMethod() {
         addCurrentMethodToSet()
     }
