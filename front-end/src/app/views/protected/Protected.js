@@ -6,6 +6,7 @@ import React, {
 import PropTypes      from 'prop-types';
 import AnimatedView   from '../../components/animatedView/AnimatedView';
 import { QrPrintMachine, QrReaderMachine } from '../../components';
+import {Redirect} from "react-router-dom";
 
 
 type Props ={
@@ -98,25 +99,10 @@ class Protected extends PureComponent<Props, State> {
         <QrReaderMachine delay={delay} handleError={handleError} handleScan={handleScan} scanClick={scanClick} showQr={showQr}/>
         <h4>{message}</h4>
 
-        {scanSuccess?this.goToHell(url):''}
+        {scanSuccess?<Redirect to={"report/"+url.split('/')[url.split('/').length-1]}/>:''}
 
       </AnimatedView>
     );
-  }
-
-  goToHell = (urlQr: string,
-    event: SyntheticEvent<>
-  ) => {
-    console.log('IN GO HOME');
-    if (event) {
-      event.preventDefault();
-    }
-
-    const {
-      history
-    } = this.props;
-    const shortenedUrl = urlQr.split('/');
-    history.push({ pathname: 'report/'+shortenedUrl[shortenedUrl.length-1] });
   }
 }
 

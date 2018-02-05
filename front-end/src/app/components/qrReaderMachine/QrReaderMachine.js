@@ -14,7 +14,6 @@ class QrReaderMachine extends PureComponent {
     handleError:        PropTypes.func.isRequired,
     handleScan:         PropTypes.func.isRequired,
     scanClick:          PropTypes.func.isRequired,
-    scanSuccess:        PropTypes.bool.isRequired,
     showQr:             PropTypes.bool.isRequired
   };
 

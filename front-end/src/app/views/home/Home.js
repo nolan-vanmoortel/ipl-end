@@ -4,12 +4,10 @@ import React, {
   PureComponent
 }                     from 'react';
 import PropTypes      from 'prop-types';
-import { Link }       from 'react-router-dom';
 import {Jumbotron}    from '../../components';
 import AnimatedView   from '../../components/animatedView/AnimatedView';
-import styles         from './home.scss';
-import banane         from './img/banane.jpg';
-import {Button} from "antd";
+import { QrPrintMachine, QrReaderMachine } from '../../components';
+import {Redirect} from "react-router-dom";
 
 class Home extends PureComponent {
   static propTypes= {
@@ -19,7 +17,16 @@ class Home extends PureComponent {
 
     currentView:  PropTypes.string.isRequired,
     enterHome:    PropTypes.func.isRequired,
-    leaveHome:    PropTypes.func.isRequired
+    leaveHome:    PropTypes.func.isRequired,
+
+    url:                PropTypes.string.isRequired,
+    message:            PropTypes.string.isRequired,
+    delay:              PropTypes.number.isRequired,
+    handleError:        PropTypes.func.isRequired,
+    handleScan:         PropTypes.func.isRequired,
+    scanClick:          PropTypes.func.isRequired,
+    scanSuccess:        PropTypes.bool.isRequired,
+    showQr:             PropTypes.bool.isRequired
   };
 
   componentDidMount() {
@@ -33,9 +40,26 @@ class Home extends PureComponent {
   }
 
   render() {
+    const {
+      delay,
+      handleError,
+      handleScan,
+      scanClick,
+      showQr,
+      scanSuccess,
+      url,
+      message
+
+    } = this.props;
     return(
       <AnimatedView>
+        <h1>Printer</h1>
+        <QrPrintMachine urlMachine="not a valid url"/>
+        <h1>Scanner</h1>
+        <QrReaderMachine delay={delay} handleError={handleError} handleScan={handleScan} scanClick={scanClick} showQr={showQr}/>
+        <h4>{message}</h4>
 
+        {scanSuccess?<Redirect to={"report/"+url.split('/')[url.split('/').length-1]}/>:''}
       </AnimatedView>
     );
   }

@@ -21,7 +21,7 @@ const mapStateToProps = (state) => {
     showQr:       state.scanQr.showQr,
     url:          state.scanQr.url,
     scanSuccess:  state.scanQr.scanSuccess,
-    message:      state.scanQr.message,
+    message:      state.scanQr.message
   };
 };
 
