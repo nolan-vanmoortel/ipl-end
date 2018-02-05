@@ -27,8 +27,8 @@ class UserDaoImpl(private val dal: DalServices,
                 ?: throw NoFatalException("getUserById failed !")
         return userFactory.getUser(user) as UserReal
     }
-    override fun getUserByEMail(eMail: String): UserReal {
-        val user = dal.getCollection(USERS_COLLECTION).find(Document("email", eMail)).first()
+    override fun getUserByEMail(email: String): UserReal {
+        val user = dal.getCollection(USERS_COLLECTION).find(Document("email", email)).first()
                 ?: throw NoFatalException("getUserByEMail failed !")
         return userFactory.getUser(user) as UserReal
     }

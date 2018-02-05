@@ -11,6 +11,8 @@ import org.bson.Document
 import java.util.*
 
 const val USERS_COLLECTION = "Utilisateurs"
+const val MACHINES_COLLECTION = "Machines"
+const val REPORTS_COLLECTION = "Rapports"
 
 class DalServicesNoSql(private val properties: PluginProperties) : DalServices {
 
