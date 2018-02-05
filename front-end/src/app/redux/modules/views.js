@@ -53,7 +53,7 @@ export default function (state = initialState, action) {
   case LEAVE_PAGENOTFOUND_VIEW:
   case LEAVE_LOGIN_VIEW:
   case LEAVE_PROTECTED_VIEW:
-    // on peux pas quitter une page où l on est pas déjà
+    // on peut pas quitter une page où l on est pas déjà
     if (state.currentView === action.currentView) {
       return {
         ...state,

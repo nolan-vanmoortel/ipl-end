@@ -6,6 +6,8 @@ import React, {
 import PropTypes      from 'prop-types';
 import AnimatedView   from '../../components/animatedView/AnimatedView';
 import Counter        from '../../components/counter/Counter';
+import scanQrButton   from '../../components/qrHandler/scanQr/scanQrButton';
+import QrReader       from 'react-qr-reader';
 
 type Props ={
   match: any,
@@ -15,7 +17,8 @@ type Props ={
   currentView: string,
   checkUserIsConnected: () => any,
   firstname: string,
-  lastname: string
+  lastname: string,
+  showQr: boolean
 }
 type State = {
 }
@@ -37,7 +40,13 @@ class Protected extends PureComponent<Props, State> {
     value:              PropTypes.number.isRequired,
     increment:          PropTypes.func.isRequired,
     decrement:          PropTypes.func.isRequired,
-    doubleAsync:        PropTypes.func.isRequired
+    doubleAsync:        PropTypes.func.isRequired,
+
+    delay:              PropTypes.number.isRequired,
+    handleError:        PropTypes.func.isRequired,
+    handleScan:         PropTypes.func.isRequired,
+    scanClick:          PropTypes.func.isRequired,
+    showQr:             PropTypes.boolean
   };
 
 
@@ -45,7 +54,7 @@ class Protected extends PureComponent<Props, State> {
   static defaultProps = {
     firstname:      'NULL',
     lastname:      'NULL'
-  }
+  };
 
   componentWillMount() {
     const {
@@ -72,7 +81,13 @@ class Protected extends PureComponent<Props, State> {
       value,
       increment,
       decrement,
-      doubleAsync
+      doubleAsync,
+      delay,
+      handleError,
+      handleScan,
+      scanClick,
+      showQr
+
     } = this.props;
 
     return(
@@ -81,6 +96,13 @@ class Protected extends PureComponent<Props, State> {
           Vous êtes connecté {firstname+' '+lastname} !
         </h1>
         <Counter value={value} handleIncrement={increment} handleDecrement={decrement} handleDoubleAsync={doubleAsync}/>
+        <scanQrButton onClick={scanClick}/>
+        showQr?<QrReader
+        delay={delay}
+        onError={handleError}
+        onScan={handleScan}
+        style={{ width: '100%' }}
+      />:
       </AnimatedView>
     );
   }

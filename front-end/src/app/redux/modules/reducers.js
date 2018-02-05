@@ -4,12 +4,14 @@ import { routerReducer }    from 'react-router-redux';
 import { combineReducers }  from 'redux';
 import views                from './views';
 import userAuth             from './userAuth';
-import counter             from './counter';
+import counter              from './counter';
+import scanQr               from './scanQr';
 
 export const reducers = {
   views,
   userAuth,
-  counter
+  counter,
+  scanQr
 };
 
 export default combineReducers({
