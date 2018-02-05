@@ -10,7 +10,7 @@ import {
 }                             from '../../components';
 import navigationModel        from '../../config/navigation.json';
 import MainRoutes             from '../../routes/MainRoutes';
-import Reboot                 from 'material-ui/Reboot';
+
 
 class App extends Component {
   static propTypes = {
@@ -27,15 +27,15 @@ class App extends Component {
   };
 
   render() {
-    const { history } = this.props;
+    const { navModel } = this.state;
 
     return (
       <div id="appContainer">
-        <Reboot/>
         <NavigationBar
-          logged={false}
-          loginRoute="/login"
-          history={history}
+          brand={navModel.brand}
+          navModel={navModel}
+          handleLeftNavItemClick={this.handleLeftNavItemClick}
+          handleRightNavItemClick={this.handleRightNavItemClick}
         />
         <div className="container-fluid">
           <MainRoutes />
