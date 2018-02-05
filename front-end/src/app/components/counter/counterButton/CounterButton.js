@@ -4,7 +4,8 @@ import React, {
   PureComponent
 }                     from 'react';
 import PropTypes      from 'prop-types';
-import {Button} from 'react-bootstrap';
+import {RaisedButton} from "material-ui";
+
 
 class CounterButton extends PureComponent {
 // eslint-disable-next-line no-undef
@@ -17,7 +18,7 @@ class CounterButton extends PureComponent {
   render() {
     const { name, color} = this.props;
     return (
-      <Button bsStyle={color} onClick={this.handleClick}>{name}</Button>
+      <RaisedButton primary={true} onClick={this.handleClick} label={name}/>
     );
   }
 
