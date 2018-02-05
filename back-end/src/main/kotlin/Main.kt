@@ -16,6 +16,8 @@ import persistence.dao.UserDao
 import persistence.dao.impl.MachineDaoImpl
 import persistence.dao.impl.ReportDaoImpl
 import persistence.dao.impl.UserDaoImpl
+import spark.kotlin.before
+import spark.kotlin.options
 import spark.kotlin.port
 import util.PluginProperties
 
@@ -48,7 +50,33 @@ private fun setEnvironment(args: Array<String>): PluginProperties {
         PluginProperties(ClassLoader.getSystemResource("${args[0]}.properties").path)
 }
 
+private fun enableCORS(origin: String) {
+
+    options("/*") {
+
+        val accessControlRequestHeaders = request.headers("Access-Control-Request-Headers")
+        if (accessControlRequestHeaders != null) {
+            response.header("Access-Control-Allow-Headers", accessControlRequestHeaders)
+        }
+
+        val accessControlRequestMethod = request.headers("Access-Control-Request-Method")
+        if (accessControlRequestMethod != null) {
+            response.header("Access-Control-Allow-Methods", accessControlRequestMethod)
+        }
+
+        "OK"
+    }
+
+    before {
+        response.header("Access-Control-Allow-Origin", origin)
+        response.header("Access-Control-Allow-Credentials", "true")
+        // Note: this may or may not be necessary in your particular application
+        response.type("application/json")
+    }
+}
+
 private fun handler(userDao: UserDao, userFactory: UserFactory, machineDao : MachineDao, machineFactory: MachineFactory, reportDao: ReportDao, reportFactory: ReportFactory) {
+    enableCORS("http://localhost:3001")
     UserController(userDao, userFactory)
     AuthController(userDao, userFactory)
     MachineController(machineDao, machineFactory)

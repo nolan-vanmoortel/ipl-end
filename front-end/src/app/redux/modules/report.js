@@ -58,6 +58,7 @@ export function createReport(report) {
     const method = 'post';
     const headers = {};
     const options = {
+      credentials: 'same-origin',
       data: {
         report
       }
