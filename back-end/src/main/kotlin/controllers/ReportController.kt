@@ -13,5 +13,9 @@ import spark.Request
 import util.*
 
 fun ReportController(reportDao: ReportDao, reportFactory: ReportFactory){
-
+    path("/reports") {
+        post("/create"){
+            println("Hello From Serv")
+        }
+    }
 }
