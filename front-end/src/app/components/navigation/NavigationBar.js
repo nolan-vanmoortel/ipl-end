@@ -3,30 +3,26 @@
 import React,
   { PureComponent }       from 'react';
 import PropTypes          from 'prop-types';
-import { Layout, Menu, Icon } from 'antd';
+import {Layout, Menu, Icon} from 'antd';
 import styles from './NavigationBar.scss';
 const { Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
 
 class NavigationBar extends PureComponent {
-
-  state = {
-    collapsed: true
+  // eslint-disable-next-line no-undef
+  static propTypes = {
+    collapsedNav: PropTypes.bool.isRequired
   };
-  onCollapse = (collapsed) => {
-    console.log(collapsed);
-    this.setState({ collapsed });
-  }
 
   render() {
+    const { collapsedNav } = this.props;
+    console.log(collapsedNav);
     return (
-      <Sider
-        collapsible
-        collapsed={this.state.collapsed}
-        onCollapse={this.onCollapse}
-      >
-        <div className={styles.logo} />
+      <Sider style={{display:collapsedNav?"none":"block"}} >
+        <div className={styles.logo}>
+          <Icon type="qrcode" style={{fontSize:48}} />
+        </div>
         <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
           <Menu.Item key="1">
             <Icon type="home" />

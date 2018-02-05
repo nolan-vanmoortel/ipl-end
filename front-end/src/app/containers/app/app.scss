@@ -5,3 +5,9 @@
   minHeight: 360px;
   margin: 0px 16px;
 }
+.darkButton, .darkButton:focus{
+  background-color: #001529;
+  color: #ffffff;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+}

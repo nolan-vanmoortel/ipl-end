@@ -6,13 +6,12 @@ import React, {
 import PropTypes              from 'prop-types';
 import {
   NavigationBar,
-  BackToTop
+  Footer
 }                             from '../../components';
 import navigationModel        from '../../config/navigation.json';
 import MainRoutes             from '../../routes/MainRoutes';
-import {Layout} from "antd";
+import {Affix, BackTop, Button, Layout} from "antd";
 const { Content } = Layout;
-import Footer from "../../components/footer/Footer";
 import styles                 from './app.scss';
 
 
@@ -27,26 +26,33 @@ class App extends Component {
   };
 
   state = {
-    navModel : navigationModel
+    collapsed: true
   };
 
+  onCollapse = () => {
+    const { collapsed } = this.state;
+    const collapsedNew = !collapsed;
+
+    this.setState({ collapsed:collapsedNew });
+  }
+
   render() {
-    const { navModel } = this.state;
+    const { collapsed } = this.state;
 
     return (
       <div id="appContainer">
         <Layout style={{ minHeight: '100vh' }}>
-          <NavigationBar/>
+          <NavigationBar collapsedNav={collapsed}/>
           <Layout>
             <Content className={styles.backgroundApp}>
               <MainRoutes />
             </Content>
             <Footer/>
+            <Affix offsetBottom={0} onChange={affixed => console.log(affixed)}>
+              <Button className={styles.darkButton} onClick={this.onCollapse} >{collapsed?"Afficher Menu":"Cacher Menu"}</Button>
+            </Affix>
           </Layout>
-          <BackToTop
-            minScrollY={40}
-            scrollTo={'appContainer'}
-          />
+          <BackTop />
         </Layout>
       </div>
     );

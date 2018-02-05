@@ -5,10 +5,11 @@ import React, {
 }                   from 'react';
 import PropTypes    from 'prop-types';
 import AnimatedView from '../../components/animatedView/AnimatedView';
-import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import 'froala-editor/js/froala_editor.pkgd.min';
 import 'froala-editor/css/froala_style.min.css';
 import 'froala-editor/css/froala_editor.pkgd.min.css';
+import { Form, Input, Button, Icon } from 'antd';
+const FormItem = Form.Item;
 
 import 'font-awesome/css/font-awesome.css';
 
@@ -35,7 +36,8 @@ class ReportForm extends PureComponent<Props, State> {
 
     currentView: PropTypes.string.isRequired,
     enterReportForm: PropTypes.func.isRequired,
-    leaveReportForm: PropTypes.func.isRequired
+    leaveReportForm: PropTypes.func.isRequired,
+    getFieldDecorator: PropTypes.func
   };
 
   constructor(props, context) {
@@ -72,32 +74,48 @@ class ReportForm extends PureComponent<Props, State> {
     });
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        console.log('Received values of form: ', values);
+      }
+    });
+  }
+
+
   render() {
     const { email, model } = this.state;
+    const { getFieldDecorator } = this.props.form;
     const config = {
       toolbarButtonsXS: ['bold', 'italic', 'fontSize', 'fontStyle', 'insertImage', 'undo', 'redo']
     };
     return(
       <AnimatedView>
-        <form>
-          <FormGroup controlId="report_form">
-            <ControlLabel>Email : </ControlLabel>
-            <FormControl
-              type="email"
-              value={email}
-              placeholder="example@email.com"
-              onChange={this.handleEmailChange}/>
-            <HelpBlock>Simplement votre magnifique adresse mail</HelpBlock>
-          </FormGroup>
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <FormItem>
+            {getFieldDecorator('email', {
+              rules: [{
+                type: 'email', message: 'E-mail non-valide!',
+              }, {
+                required: true, message: 'Veuillez entrer votre e-mail !',
+              }]
+            })(
+              <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="E-Mail" />
+            )}
+          </FormItem>
         <FroalaEditor
           tag="textarea"
           model={model}
           onModelChange={this.handleModelChange}
           config={config}/>
+          <Button type="primary" htmlType="submit" className="login-form-button" style={{marginTop:10}}>
+            Envoyer
+          </Button>
+        </Form>
       </AnimatedView>
     );
   }
 }
 
-export default ReportForm;
+export default Form.create()(ReportForm);
