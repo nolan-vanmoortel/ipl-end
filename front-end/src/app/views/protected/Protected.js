@@ -5,10 +5,8 @@ import React, {
 }                     from 'react';
 import PropTypes      from 'prop-types';
 import AnimatedView   from '../../components/animatedView/AnimatedView';
-import Counter        from '../../components/counter/Counter';
-import PrintQrButton  from '../../components/qrHandler/printQr/qrPrintMachine';
-import ScanQrButton   from '../../components/qrHandler/scanQr/scanQrButton';
-import QrReader       from 'react-qr-reader';
+import { QrPrintMachine, QrReaderMachine } from '../../components';
+
 
 type Props ={
   match: any,
@@ -52,8 +50,8 @@ class Protected extends PureComponent<Props, State> {
     handleError:        PropTypes.func.isRequired,
     handleScan:         PropTypes.func.isRequired,
     scanClick:          PropTypes.func.isRequired,
-    scanSuccess:        PropTypes.boolean,
-    showQr:             PropTypes.boolean
+    scanSuccess:        PropTypes.bool.isRequired,
+    showQr:             PropTypes.bool.isRequired
   };
 
   componentWillMount() {
@@ -78,10 +76,6 @@ class Protected extends PureComponent<Props, State> {
     const {
       firstname,
       lastname,
-      value,
-      increment,
-      decrement,
-      doubleAsync,
       delay,
       handleError,
       handleScan,
@@ -98,19 +92,12 @@ class Protected extends PureComponent<Props, State> {
         <h1>
           Vous êtes connecté {firstname+' '+lastname} !
         </h1>
-        <h1>Counter</h1>
-        <Counter value={value} handleIncrement={increment} handleDecrement={decrement} handleDoubleAsync={doubleAsync}/>
         <h1>Printer</h1>
-        <PrintQrButton urlMachine="not a valid url"/>
+        <QrPrintMachine urlMachine="not a valid url"/>
         <h1>Scanner</h1>
+        <QrReaderMachine delay={delay} handleError={handleError} handleScan={handleScan} scanClick={scanClick} showQr={showQr}/>
         <h4>{message}</h4>
-        <ScanQrButton onClick={scanClick}/>
-        {showQr?<QrReader
-        delay={delay}
-        onError={handleError}
-        onScan={handleScan}
-        style={{ width: '50%' }}
-      />:''}
+
         {scanSuccess?this.goToHell(url):''}
 
       </AnimatedView>

@@ -29,7 +29,6 @@ class Root extends Component<Props, State> {
           <ConnectedRouter history={history}>
             <ScrollTop>
               <Switch>
-                <Route exact path="/login" component={Login} />
                 <App />
                 {/* logout: just redirects to login (App will take care of removing the token) */}
                 <LogoutRoute path="/logout" />

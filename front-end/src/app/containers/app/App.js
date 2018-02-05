@@ -57,14 +57,6 @@ class App extends Component {
       </div>
     );
   }
-
-  handleLeftNavItemClick = (event, viewName) => {
-    // ?
-  }
-
-  handleRightNavItemClick = (event, viewName) => {
-    // ?
-  }
 }
 
 export default App;
