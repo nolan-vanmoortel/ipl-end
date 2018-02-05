@@ -4,7 +4,7 @@ import React, {
   PureComponent
 }                     from 'react';
 import PropTypes      from 'prop-types';
-import {RaisedButton} from "material-ui";
+import {Button} from "material-ui";
 
 
 class CounterButton extends PureComponent {
@@ -18,7 +18,7 @@ class CounterButton extends PureComponent {
   render() {
     const { name, color} = this.props;
     return (
-      <RaisedButton primary={true} onClick={this.handleClick} label={name}/>
+      <Button color={color} onClick={this.handleClick}>{name}</Button>
     );
   }
 

@@ -1,52 +1,49 @@
 // @flow weak
 
-import React              from 'react';
+import React, {
+  PureComponent
+}                         from 'react';
 import PropTypes          from 'prop-types';
-import Humburger          from './humburger/Humburger';
-import LeftNav            from './leftNav/LeftNav';
-import RightNav           from './rightNav/RightNav';
+import {AppBar, Button, IconButton, Toolbar, Typography} from 'material-ui';
+import MenuIcon from 'material-ui-icons/Menu';
 
-const NavigationBar = ({
-  brand,
-  navModel,
-  handleLeftNavItemClick,
-  handleRightNavItemClick
-}) => {
-  return (
-    <nav className="navbar navbar-default">
-      <div className="containersCustom">
-        <div className="navbar-header">
-          {
-            <Humburger />
-          }
-          <a className="navbar-brand">
-            {brand}
-          </a>
-        </div>
-        <div
-          className="collapse navbar-collapse"
-          id="bs-example-navbar-collapse-1">
-          <ul className="nav navbar-nav">
-            {
-              <LeftNav
-                leftLinks={navModel.leftLinks}
-                onLeftNavButtonClick={handleLeftNavItemClick}
-              />
-            }
-          </ul>
-          <ul className="nav navbar-nav navbar-right">
-            {
-              <RightNav
-                rightLinks={navModel.rightLinks}
-                onRightNavButtonClick={handleRightNavItemClick}
-              />
-            }
-          </ul>
-        </div>
-      </div>
-    </nav>
-  );
-};
+class NavigationBar extends PureComponent {
+
+  // eslint-disable-next-line no-undef
+  static propTypes = {
+      logged: PropTypes.boolean,
+      loginRoute: PropTypes.string.isRequired,
+      history: PropTypes.object.isRequired
+  };
+// eslint-disable-next-line no-undef
+  static defaultProps = {
+    logged : false
+  }
+
+  render(){
+    const { logged, loginRoute, history } = this.props;
+    return (
+      <AppBar
+        position="static"
+        title="Internal Problem Logger"
+        iconElementRight={logged ? <Button label="dashboard"/>:<Button onClick={()=>this.goLogin(loginRoute, history)} label="zone admin"/>}
+      >
+        <Toolbar>
+          <IconButton color="inherit" aria-label="Menu">
+            <MenuIcon/>
+          </IconButton>
+          <Typography variant="title" color="inherit">
+            Internal Problem Logger
+          </Typography>
+          <Button color="inherit">zone admin</Button>
+        </Toolbar>
+      </AppBar>
+    );
+  }
+  goLogin = (path: string, history: any) =>{
+    history.push({ pathname: path});
+  }
+}
 
 NavigationBar.propTypes = {
   brand:                    PropTypes.string,

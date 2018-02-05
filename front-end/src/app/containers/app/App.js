@@ -10,8 +10,7 @@ import {
 }                             from '../../components';
 import navigationModel        from '../../config/navigation.json';
 import MainRoutes             from '../../routes/MainRoutes';
-import {MuiThemeProvider} from "material-ui/styles/index";
-
+import Reboot                 from 'material-ui/Reboot';
 
 class App extends Component {
   static propTypes = {
@@ -28,25 +27,23 @@ class App extends Component {
   };
 
   render() {
-    const { navModel } = this.state;
+    const { history } = this.props;
 
     return (
       <div id="appContainer">
-        <MuiThemeProvider>
-          <NavigationBar
-            brand={navModel.brand}
-            navModel={navModel}
-            handleLeftNavItemClick={this.handleLeftNavItemClick}
-            handleRightNavItemClick={this.handleRightNavItemClick}
-          />
-          <div className="container-fluid">
-            <MainRoutes />
-          </div>
-          <BackToTop
-            minScrollY={40}
-            scrollTo={'appContainer'}
-          />
-        </MuiThemeProvider>
+        <Reboot/>
+        <NavigationBar
+          logged={false}
+          loginRoute="/login"
+          history={history}
+        />
+        <div className="container-fluid">
+          <MainRoutes />
+        </div>
+        <BackToTop
+          minScrollY={40}
+          scrollTo={'appContainer'}
+        />
       </div>
     );
   }
