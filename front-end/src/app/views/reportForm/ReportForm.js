@@ -74,6 +74,9 @@ class ReportForm extends PureComponent<Props, State> {
 
   render() {
     const { email, model } = this.state;
+    const config = {
+      toolbarButtonsXS: ['bold', 'italic', 'fontSize', 'fontStyle', 'insertImage', 'undo', 'redo']
+    };
     return(
       <AnimatedView>
         <form>
@@ -91,7 +94,7 @@ class ReportForm extends PureComponent<Props, State> {
           tag="textarea"
           model={model}
           onModelChange={this.handleModelChange}
-        />
+          config={config}/>
       </AnimatedView>
     );
   }
