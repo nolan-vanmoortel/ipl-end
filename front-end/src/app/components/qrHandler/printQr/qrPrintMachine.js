@@ -12,6 +12,7 @@ class qrPrintMachine extends PureComponent {
     urlMachine: PropTypes.string.isRequired
   };
 
+
   render() {
     const { urlMachine } = this.props;
     return (
@@ -23,5 +24,6 @@ class qrPrintMachine extends PureComponent {
     );
   }
 }
+
 
 export default qrPrintMachine;
