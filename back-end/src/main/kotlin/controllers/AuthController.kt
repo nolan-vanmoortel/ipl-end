@@ -24,8 +24,8 @@ fun AuthController(userDao: UserDao, userFactory: UserFactory){
                         object: TypeReference<Map<String, String>>() {})
                 if(map["email"] == null || map["password"] == null)
                     throw NoFatalException("Requête Incorrecte");
-                val user = userDao.getUserByEMail(policy.sanitize(map["email"]))
-                val hash = hashPassword(user.salt,policy.sanitize(map["password"]))
+                val user = userDao.getUserByEMail(map["email"]!!)
+                val hash = hashPassword(user.salt,map["password"]!!)
                 if(hash == user.password) {
                     response.cookie("email", user.email, 3600)
                     response.cookie("token", hash, 3600)
