@@ -17,7 +17,9 @@ fun main(args: Array<String>) {
     val database = mongo.getDatabase(properties.getProperty("dbName"))
     database.drop()
     database.createCollection(MACHINES_COLLECTION)
-    val collection = database.getCollection(MACHINES_COLLECTION)
+    database.createCollection(USERS_COLLECTION)
+    val machines = database.getCollection(MACHINES_COLLECTION)
+    val users = database.getCollection(USERS_COLLECTION)
     val machine1 = Document("ip", "165.17.54.21")
             .append("mac", "yolo:fd01")
             .append("name", "machine1")
@@ -25,5 +27,6 @@ fun main(args: Array<String>) {
             .append("location", "017")
             .append("reports", ArrayList<Any>())
             .append("state", false)
-    collection.insertOne(machine1)
+    machines.insertOne(machine1)
+
 }

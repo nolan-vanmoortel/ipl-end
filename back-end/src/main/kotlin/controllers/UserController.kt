@@ -9,6 +9,8 @@ import spark.kotlin.get
 import spark.kotlin.post
 import util.Message
 import business.factory.UserFactory
+import com.fasterxml.jackson.core.type.TypeReference
+import policy
 import spark.Request
 import util.*
 
@@ -25,7 +27,13 @@ fun UserController(userDao: UserDao, userFactory: UserFactory){
         post("/create"){
             val salt = getSalt()
             try {
-                val user = userFactory.getUser(email = request.qp("email"), password = hashPassword(salt, request.qp("password")), salt = salt)
+                val map = ObjectMapper().readValue<Map<String, String>>(request.body(),object: TypeReference<Map<String, String>>() {})
+                if(map["email"] == null || map["password"] == null)
+                    throw NoFatalException("Requête Incorrecte")
+                val user = userFactory.getUser(
+                        email = policy.sanitize(map["email"]),
+                        password = hashPassword(salt, policy.sanitize(map["password"])),
+                        salt = salt)
                 ObjectMapper().writeValueAsString(Message(userDao.save(user).id))
             }catch (e: Exception){
                 ObjectMapper().writeValueAsString(Message(""+e.message))

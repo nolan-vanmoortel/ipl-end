@@ -15,6 +15,6 @@ class UserFactoryImpl: UserFactory {
     }
 
     override fun getUser(id: String, email: String, salt: String, password: String): UserDto {
-        return UserImpl(id, email,salt,password)
+        return UserImpl(id, email, salt, password)
     }
 }
