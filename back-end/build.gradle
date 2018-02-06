@@ -40,6 +40,7 @@ dependencies {
     compile 'org.mongodb:mongo-java-driver:3.6.2'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.9.4'
     compile 'org.junit.jupiter:junit-jupiter-api:5.0.0'
+    compile group: 'com.googlecode.owasp-java-html-sanitizer', name: 'owasp-java-html-sanitizer', version: 'r136'
     compile group: 'org.mindrot', name: 'jbcrypt', version: '0.3m'
 }
 

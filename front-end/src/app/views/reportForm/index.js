@@ -8,7 +8,8 @@ import ReportForm from './ReportForm';
 
 const mapStateToProps = (state) => {
   return {
-    currentView: state.views.currentView
+    currentView: state.views.currentView,
+    requestError: state.report.requestError
   };
 };
 
@@ -18,6 +19,7 @@ const mapDispatchToProps = (dispatch) => {
       enterReportForm: viewsActions.enterReportForm,
       leaveReportForm: viewsActions.leaveReportForm,
       createReport: reportActions.createReport,
+      toggleRequestError: reportActions.toggleRequestError
     },
     dispatch
   );

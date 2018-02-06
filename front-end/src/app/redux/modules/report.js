@@ -1,7 +1,8 @@
 // @flow weak
 
-import getLocationOrigin from '../../services/utils/getLocationOrigin';
-import { appConfig } from '../../config';
+import getLocationOrigin  from '../../services/utils/getLocationOrigin';
+import { appConfig }      from '../../config';
+import moment             from 'moment';
 // -----------------------------
 // CONSTANTS
 // -----------------------------
@@ -10,11 +11,14 @@ const REQUEST_CREATE_REPORT:  string = 'REQUEST_CREATE_REPORT';
 const RECEIVED_CREATE_REPORT: string = 'RECEIVED_CREATE_REPORT';
 const ERROR_CREATE_REPORT:    string = 'ERROR_CREATE_REPORT';
 
+const TOGGLE_REQUEST_ERROR:   string = 'TOGGLE_REQUEST_ERROR';
+
 // -----------------------------
 // REDUCER
 // -----------------------------
 const initialState = {
-  isCreating: false
+  isCreating: false,
+  requestError: false
 };
 
 export default function (
@@ -28,19 +32,27 @@ export default function (
     return {
       ...state,
       actionTime: currentTime,
-      isCreating: true
+      isCreating: true,
+      requestError: false
     };
   case RECEIVED_CREATE_REPORT:
     return {
       ...state,
       actionTime: currentTime,
-      isCreating: false
+      isCreating: false,
+      requestError: false
     };
   case ERROR_CREATE_REPORT:
     return {
       ...state,
       actionTime: currentTime,
-      isCreating: false
+      isCreating: false,
+      requestError: true
+    };
+  case TOGGLE_REQUEST_ERROR:
+    return {
+      ...state,
+      requestError: !state.requestError
     };
   default:
     return state;
@@ -52,7 +64,6 @@ export default function (
 // -------------------------------
 
 export function createReport(report) {
-  console.log(report);
   return dispatch => {
     const FETCH_TYPE = 'FETCH';
     const url = `${getLocationOrigin()}/${appConfig.API.reports}/create`;
@@ -82,6 +93,14 @@ export function createReport(report) {
         headers,
         options
       }
+    }).then((status) => {
+      console.log(status);
     });
+  };
+}
+
+export function toggleRequestError() {
+  return {
+    type: TOGGLE_REQUEST_ERROR
   };
 }
