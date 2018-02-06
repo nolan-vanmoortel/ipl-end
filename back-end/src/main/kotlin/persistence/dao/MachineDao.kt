@@ -14,5 +14,10 @@ interface MachineDao {
      */
     fun getMachineById(id: String): MachineReal
     fun getMachineByMac(mac: String): MachineReal
+    fun getAllMachines(): ArrayList<MachineDto>
+    fun getLocationMachines(location:String): ArrayList<MachineDto>
+    fun getLocationMac(location: String): MutableMap<String,Boolean>
+    fun enableMachine(mac: String)
+    fun disableMachine(mac: String)
     fun save(machine: MachineDto): MachineReal
 }
