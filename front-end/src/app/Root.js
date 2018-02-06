@@ -13,7 +13,6 @@ import configureStore           from './redux/store/configureStore';
 import { history }              from './redux/store/configureStore';
 import App                      from './containers/app';
 import ScrollTop                from './components/scrollToTop/ScrollToTop';
-import Login                    from './views/login';
 import LogoutRoute              from './components/logoutRoute/LogoutRoute';
 
 type Props = any;
