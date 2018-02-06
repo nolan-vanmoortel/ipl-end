@@ -31,8 +31,8 @@ fun UserController(userDao: UserDao, userFactory: UserFactory){
                 if(map["email"] == null || map["password"] == null)
                     throw NoFatalException("Requête Incorrecte")
                 val user = userFactory.getUser(
-                        email = policy.sanitize(map["email"]),
-                        password = hashPassword(salt, policy.sanitize(map["password"])),
+                        email = map["email"]!!,
+                        password = hashPassword(salt, map["password"]!!),
                         salt = salt)
                 ObjectMapper().writeValueAsString(Message(userDao.save(user).id))
             }catch (e: Exception){

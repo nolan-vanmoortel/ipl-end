@@ -29,12 +29,12 @@ fun ReportController(reportDao: ReportDao, reportFactory: ReportFactory){
                     throw NoFatalException("Requête Incorrecte")
                 val report: ReportDto = reportFactory.getReport(
                         date= LocalDateTime.now(),
-                        email= policy.sanitize(map["email"]),
-                        comment= policy.sanitize(map["modele"]),
-                        severity = Integer.parseInt(policy.sanitize(map["severity"])),
-                        type = Integer.parseInt(policy.sanitize(map["type"])))
+                        email= map["email"]!!,
+                        comment= map["modele"]!!,
+                        severity = Integer.parseInt(map["severity"]!!),
+                        type = Integer.parseInt(map["type"]!!))
                 status(200)
-                reportDao.save(policy.sanitize(map["machine"]), report)
+                reportDao.save(map["machine"]!!, report)
                 ObjectMapper().writeValueAsString(
                         Message("Report correctement enregistré"))
             } catch(e: Exception) {
