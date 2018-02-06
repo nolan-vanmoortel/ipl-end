@@ -31,7 +31,7 @@ class Home extends PureComponent {
     scanSuccess:        PropTypes.bool.isRequired,
     showQr:             PropTypes.bool.isRequired,
 
-    UploadFile:         PropTypes.func.isRequired
+    uploadFile:         PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -59,7 +59,7 @@ class Home extends PureComponent {
       url,
       message,
 
-      UploadFile
+      uploadFile
 
     } = this.props;
     return(
@@ -69,7 +69,7 @@ class Home extends PureComponent {
             <h1>Scanner</h1>
             <QrReaderMachine delay={delay} handleError={handleError} handleScan={handleScan} scanClick={scanClick} showQr={showQr}/>
             <h4>{message}</h4>
-            <MachineImport UploadFile={UploadFile}/>
+            <MachineImport uploadFile={uploadFile}/>
           </Col>
         </Row>
         {scanSuccess?<Redirect to={"report/"+url.split('/')[url.split('/').length-1]}/>:''}

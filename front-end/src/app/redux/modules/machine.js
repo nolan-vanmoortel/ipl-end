@@ -52,7 +52,7 @@ export default function (
 // ACTIONS CREATORS
 // --------------------------------
 
-export function UploadFile(file){
+export function uploadFile(file){
   return dispatch => {
     const FETCH_TYPE  = 'FETCH';
     const url         = `${getLocationOrigin()}/${appConfig.API.machines}/import`;

@@ -4,21 +4,15 @@ import PropTypes      from 'prop-types';
 
 
 class MachineImport extends PureComponent {
-  constructor(props, context) {
-    super(props, context);
 
-    this.handleChange = this.handleChange.bind(this);
+  state = {file: null};
 
-    this.state = {
-      file: ''
-    };
-  }
 // eslint-disable-next-line no-undef
   static propTypes = {
-    UploadFile:  PropTypes.func
+    uploadFile:  PropTypes.func
   };
 
-  handleChange(e) {
+  handleChange = (e) => {
     this.setState({ file: e.target.value });
   }
 
@@ -26,7 +20,7 @@ class MachineImport extends PureComponent {
   render() {
     const file = this.state.file;
     return (
-      <form onSubmit={() => this.props.UploadFile({file})}>
+      <form onSubmit={() => this.props.uploadFile({file})}>
         <div>
           <label>Machine File</label>
           <input type="file" onChange={this.handleChange}/>
