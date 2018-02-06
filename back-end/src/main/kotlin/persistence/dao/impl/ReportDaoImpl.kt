@@ -4,6 +4,7 @@ import business.entities.ReportDto
 import business.entities.ReportReal
 import business.factory.ReportFactory
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.mongodb.BasicDBObject
 import com.mongodb.client.model.Filters.eq
 import exceptions.NoFatalException
 import persistence.DalServices
@@ -20,16 +21,10 @@ class ReportDaoImpl(private val dal: DalServices,
                     private val reportFactory: ReportFactory): ReportDao {
 
     override fun save(name: String, report: ReportDto) {
-        // Unclean
-        val machine = dal.getCollection(MACHINES_COLLECTION).find(Document("name", name)).first()
-        val reports= machine.get("reports", ArrayList<Any>())
-        reports.add(report)
-        machine.replace("reports", reports)
-        machine.remove("_id")
-        // Unclean
         dal.getCollection(MACHINES_COLLECTION)
                 .updateOne(eq("name", name),
-                                Document.parse(ObjectMapper().writeValueAsString(machine)))
+                        Document("\$push", Document("reports",
+                                Document.parse(ObjectMapper().writeValueAsString(report)))))
     }
 
     override fun getReportById(id: String): ReportReal {
