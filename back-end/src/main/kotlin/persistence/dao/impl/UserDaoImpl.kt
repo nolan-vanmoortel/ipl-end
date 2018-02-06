@@ -18,7 +18,8 @@ class UserDaoImpl(private val dal: DalServices,
                   private val userFactory: UserFactory): UserDao {
 
     override fun save(user: UserDto): UserReal {
-        dal.getCollection(USERS_COLLECTION).insertOne(Document.parse(ObjectMapper().writeValueAsString(user)))
+        dal.getCollection(USERS_COLLECTION)
+                .insertOne(Document.parse(ObjectMapper().writeValueAsString(user)))
         return getUserByEMail(user.email)
     }
 

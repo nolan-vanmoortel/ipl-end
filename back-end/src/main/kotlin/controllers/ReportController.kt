@@ -11,6 +11,7 @@ import spark.kotlin.get
 import spark.kotlin.post
 import util.Message
 import business.factory.ReportFactory
+import com.fasterxml.jackson.core.type.TypeReference
 import spark.Request
 import util.*
 import java.time.LocalDateTime
@@ -19,12 +20,15 @@ fun ReportController(reportDao: ReportDao, reportFactory: ReportFactory){
     path("/reports") {
         post("/create"){
             try {
+                val map = ObjectMapper().readValue<Map<String, String>>(request.body(),object: TypeReference<Map<String, String>>() {})
                 val report: ReportDto = reportFactory.getReport(date= LocalDateTime.now(),
-                        email=request.qp("email"), comment=request.qp("modele"),
-                        severity = Integer.parseInt(request.qp("severity")),
-                        type = Integer.parseInt(request.qp("type")))
+                        email= map["email"]!!, comment= map["modele"]!!,
+                        severity = Integer.parseInt(map["severity"]),
+                        type = Integer.parseInt(map["type"]))
                 status(200)
-                ObjectMapper().writeValueAsString(Message(reportDao.save(request.qp("machine"), report).id))
+                reportDao.save(map["machine"]!!, report)
+                ObjectMapper().writeValueAsString(
+                        Message("Report correctement enregistré"))
             } catch(e: Exception) {
                 e.printStackTrace()
                 status(400)

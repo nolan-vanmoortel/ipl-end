@@ -19,15 +19,17 @@ import java.time.LocalDateTime
 class ReportDaoImpl(private val dal: DalServices,
                     private val reportFactory: ReportFactory): ReportDao {
 
-    override fun save(name: String, report: ReportDto): ReportReal {
+    override fun save(name: String, report: ReportDto) {
         // Unclean
         val machine = dal.getCollection(MACHINES_COLLECTION).find(Document("name", name)).first()
-        val reports = machine.get("reports", ArrayList<Any>())
+        val reports= machine.get("reports", ArrayList<Any>())
         reports.add(report)
         machine.replace("reports", reports)
+        machine.remove("_id")
         // Unclean
-        //dal.getCollection(MACHINES_COLLECTION).updateOne(eq("_id", ))
-        return getReportByDate(report.date)
+        dal.getCollection(MACHINES_COLLECTION)
+                .updateOne(eq("name", name),
+                                Document.parse(ObjectMapper().writeValueAsString(machine)))
     }
 
     override fun getReportById(id: String): ReportReal {
