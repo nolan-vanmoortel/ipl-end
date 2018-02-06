@@ -160,17 +160,14 @@ function logUser(
   password: string
 ) {
   return async (dispatch) => {
-    const FETCH_TYPE  = appConfig.DEV_MODE ? 'FETCH_MOCK' : 'FETCH';
-    const __SOME_LOGIN_API__ = 'login';
-
-    const mockResult  = userInfosMockData; // Mock par default sinon vient du serveur
-    const url         = `${getLocationOrigin()}/${__SOME_LOGIN_API__}`;
+    const FETCH_TYPE  = 'FETCH';
+    const url         = `${getLocationOrigin()}/${appConfig.API.auth}/login`;
     const method      = 'post';
     const headers     = {};
     const options     = {
       credentials: 'same-origin',
       data: {
-        login,
+        email: login,
         password
       }
     };
@@ -185,14 +182,14 @@ function logUser(
           success:  RECEIVED_LOG_USER,
           fail:     ERROR_LOG_USER
         },
-        // mock !
-        mockResult,
         // real
         url,
         method,
         headers,
         options
       }
+    }).then((res) => {
+      console.log(res.headers);
     });
   };
 }
