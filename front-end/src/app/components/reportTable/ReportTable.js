@@ -96,6 +96,11 @@ class ReportTable extends PureComponent {
     });
   }
 
+  onHandlePrintSelected = () => {
+    const { selectedRowKeys } = this.state;
+    console.log('selectedRowKeys to print: ', selectedRowKeys);
+  }
+
   onSelectChange = (selectedRowKeys) => {
     console.log('selectedRowKeys changed: ', selectedRowKeys);
     this.setState({ selectedRowKeys });
@@ -103,10 +108,20 @@ class ReportTable extends PureComponent {
 
   render() {
     const { sortedInfo, filteredInfo, data, selectedRowKeys } = this.state;
+    const hasSelected = selectedRowKeys.length > 0;
     const columns = [ {
       title: 'Local',
       dataIndex: 'local',
       key: 'local',
+      filters: [
+        { text: '017', value: '017' },
+        { text: '019', value: '019' },
+        { text: '020', value: '020' },
+        { text: '025', value: '025' },
+        { text: '026', value: '026' }
+      ],
+      filteredValue: filteredInfo.local || null,
+      onFilter: (value, record) => record.local.includes(value),
       sorter: (a, b) => a.local.localeCompare(b.local),
       sortOrder: sortedInfo.columnKey === 'local' && sortedInfo.order,
       width: 100
@@ -172,7 +187,7 @@ class ReportTable extends PureComponent {
             onChange={this.onInputChange}
             onPressEnter={this.onSearch}
           />
-          <Button type="primary" onClick={this.onSearch}>Recherche</Button>
+          <Button type="primary" onClick={this.onSearch} >Recherche</Button>
         </div>
       ),
       filterIcon: <Icon type="search" style={{ color: this.state.filtered ? '#108ee9' : '#aaa' }} />,
@@ -207,7 +222,7 @@ class ReportTable extends PureComponent {
     }];
     return (
       <div>
-        <Table rowSelection={{selectedRowKeys, onChange: this.onSelectChange}} columns={columns} dataSource={data} expandedRowRender={record => <p style={{ margin: 0 }}>{record.commentaire}</p>} onChange={this.handleChange}/>
+        <Table footer={()=><Button type="primary" onClick={this.onHandlePrintSelected} disabled={!hasSelected}>Imprimer séléctionnée(s)</Button>} scroll={{ x: 1300 }} rowSelection={{selectedRowKeys, onChange: this.onSelectChange}} columns={columns} dataSource={data} expandedRowRender={record => <p style={{ margin: 0 }}>{record.commentaire}</p>} onChange={this.handleChange}/>
       </div>
     );
   }
