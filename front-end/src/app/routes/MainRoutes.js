@@ -6,7 +6,7 @@ import {
   Switch
  }                      from 'react-router';
 import Home             from '../views/home';
-import About            from '../views/about';
+import AdminDashboard   from '../views/adminDashboard';
 import PrivateRoute     from '../components/privateRoute/PrivateRoute';
 import Protected        from '../views/protected';
 import PageNotFound     from '../views/pageNotFound';
@@ -18,7 +18,7 @@ const MainRoutes = () => {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/report/:machineName" component={ReportForm} />
-      <Route path="/about" component={About} />
+      <Route path="/adminDashboard" component={AdminDashboard} />
       <Route exact path="/login" component={Login} />
       <Route path="/qr/:machineName" component={PrintQr} />
       <PrivateRoute path="/protected" component={Protected} />

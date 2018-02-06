@@ -25,7 +25,7 @@ class MachineImport extends PureComponent {
     return (
       <Upload name="file" action={getLocationOrigin()+'/'+appConfig.API.machines+'/import'} >
         <Button>
-          <Icon type="upload" /> Click to Upload
+          <Icon type="upload" /> Envoyer les machines
         </Button>
       </Upload>
 

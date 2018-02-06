@@ -4,12 +4,9 @@ import React, {
   PureComponent
 }                     from 'react';
 import PropTypes      from 'prop-types';
-import {Jumbotron}    from '../../components';
-import AnimatedView   from '../../components/animatedView/AnimatedView';
-import { QrPrintMachine, QrReaderMachine } from '../../components';
+import { QrReaderMachine } from '../../components';
 import {Redirect} from "react-router-dom";
-import {Col, Layout, Row} from "antd";
-import MachineImport        from '../../components/machineImport/MachineImport';
+import {Col, Row} from "antd";
 
 class Home extends PureComponent {
   static propTypes= {
