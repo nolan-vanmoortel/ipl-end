@@ -19,6 +19,7 @@ class Home extends PureComponent {
     currentView:  PropTypes.string.isRequired,
     enterHome:    PropTypes.func.isRequired,
     leaveHome:    PropTypes.func.isRequired,
+    redirected:    PropTypes.func.isRequired,
 
     url:                PropTypes.string.isRequired,
     message:            PropTypes.string.isRequired,
@@ -37,7 +38,10 @@ class Home extends PureComponent {
 
   componentWillUnmount() {
     const { leaveHome } = this.props;
+    const { redirected } = this.props;
+    redirected();
     leaveHome();
+
   }
 
   render() {

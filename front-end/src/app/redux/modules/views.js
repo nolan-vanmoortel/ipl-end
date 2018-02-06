@@ -1,4 +1,5 @@
 import moment from 'moment';
+import leaveScanHome from './scanQr'
 const dateFormat = 'DD/MM/YYYY HH:mm';
 
 // /////////////////////
@@ -91,7 +92,7 @@ export function leaveHome(time = moment().format(dateFormat)) {
     type:         LEAVE_HOME_VIEW,
     currentView:  'home',
     enterTime:    null,
-    leaveTime:    time
+    leaveTime:    time,
   };
 }
 

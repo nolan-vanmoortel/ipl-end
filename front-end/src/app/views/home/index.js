@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch) => {
       // views
       enterHome: viewsActions.enterHome,
       leaveHome: viewsActions.leaveHome,
+      redirected: scanActions.redirected,
 
       ...scanActions
     },

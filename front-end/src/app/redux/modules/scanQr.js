@@ -6,6 +6,7 @@
 const HANDLE_RESULT:            string = 'HANDLE_RESULT';
 const HANDLE_ERROR:             string = 'HANDLE_ERROR';
 const SCAN_CLICK:               string = 'SCAN_CLICK';
+const REDIRECTED:               string = 'REDIRECTED';
 
 // --------------------------------
 // REDUCER
@@ -23,6 +24,12 @@ export default function (
   action
 ) {
   switch (action.type){
+    case REDIRECTED:
+      return {
+        ...state,
+        scanSuccess: false,
+        showQr: false
+      };
     case HANDLE_RESULT:
       return {
         ...state,
@@ -66,6 +73,12 @@ export function handleError() {
 export function scanClick() {
   return {
     type : SCAN_CLICK
+  };
+}
+
+export function redirected() {
+  return {
+    type : REDIRECTED
   };
 }
 

@@ -8,7 +8,7 @@ import exceptions.NoFatalException
 import persistence.DalServices
 import org.bson.Document
 import org.bson.types.ObjectId
-import persistence.REPORTS_COLLECTION
+import persistence.MACHINES_COLLECTION
 import persistence.dao.ReportDao
 import java.time.LocalDateTime
 
@@ -18,18 +18,24 @@ import java.time.LocalDateTime
 class ReportDaoImpl(private val dal: DalServices,
                     private val reportFactory: ReportFactory): ReportDao {
 
-    override fun save(report: ReportDto): ReportReal {
-        dal.getCollection(REPORTS_COLLECTION).insertOne(Document.parse(ObjectMapper().writeValueAsString(report)))
+    override fun save(idMachine: String, report: ReportDto): ReportReal {
+        // Unclean
+        val machine = dal.getCollection(MACHINES_COLLECTION).find(Document("_id", ObjectId(idMachine))).first()
+        val reports = machine.get("reports", ArrayList<ReportDto>())
+        reports.add(report)
+        machine.replace("reports", reports)
+        // Unclean
+        dal.getCollection(MACHINES_COLLECTION).updateOne(Document("_id", ObjectId(idMachine)), Document.parse(ObjectMapper().writeValueAsString(machine)))
         return getReportByDate(report.date)
     }
 
     override fun getReportById(id: String): ReportReal {
-        val report = dal.getCollection(REPORTS_COLLECTION).find(Document("_id", ObjectId(id))).first()
+        val report = dal.getCollection(MACHINES_COLLECTION).find(Document("_id", ObjectId(id))).first()
                 ?: throw NoFatalException("getReportById failed !")
         return reportFactory.getReport(report) as ReportReal
     }
     override fun getReportByDate(date: LocalDateTime): ReportReal {
-        val report = dal.getCollection(REPORTS_COLLECTION).find(Document("date", date)).first()
+        val report = dal.getCollection(MACHINES_COLLECTION).find(Document("date", date)).first()
                 ?: throw NoFatalException("getReportByEMail failed !")
         return reportFactory.getReport(report) as ReportReal
     }
