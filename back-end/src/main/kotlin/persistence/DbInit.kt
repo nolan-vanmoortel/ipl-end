@@ -5,6 +5,7 @@ import com.mongodb.*
 import util.PluginProperties
 import org.bson.Document
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Used to initialize the data base
@@ -15,12 +16,14 @@ fun main(args: Array<String>) {
             "@${properties.getProperty("dbUrl")}:${properties.getProperty("dbPort")}/${properties.getProperty("dbName")}"))
     val database = mongo.getDatabase(properties.getProperty("dbName"))
     database.drop()
-    database.createCollection("Utilisateurs")
-    val collection = database.getCollection("Utilisateurs")
-    val document = Document("title", "MongoDb")
-            .append("id", 1)
-            .append("name", "Doe")
-            .append("first_name", "John")
-    collection.insertOne(document)
-    // MINEUR = 0 MEDIUM = 1 SEVERE = 2
+    database.createCollection(MACHINES_COLLECTION)
+    val collection = database.getCollection(MACHINES_COLLECTION)
+    val machine1 = Document("ip", "165.17.54.21")
+            .append("mac", "yolo:fd01")
+            .append("name", "machine1")
+            .append("comment", "a machine to yolo")
+            .append("location", "017")
+            .append("reports", ArrayList<Any>())
+            .append("state", false)
+    collection.insertOne(machine1)
 }
