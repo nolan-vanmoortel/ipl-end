@@ -7,6 +7,7 @@ import PropTypes    from 'prop-types';
 import AnimatedView from '../../components/animatedView/AnimatedView';
 import Report from '../../components/report/Report';
 import { Form } from 'antd';
+import {appConfig} from "../../config";
 
 type Props = {
   match: any,
@@ -76,10 +77,25 @@ class ReportForm extends PureComponent<Props, State> {
       if(!model) {
         this.setState({ formError: true });
       } else if (!err) {
+        let type;
+        let severity;
+        if(!values.type) {
+          type = appConfig.MACHINE_TYPES.default;
+        } else {
+          type = values.type;
+        }
+        console.log(values);
+        if(!values.severity || values.severity === false) {
+          severity = appConfig.MACHINE_SEVERITIES.minor;
+        } else {
+          severity = appConfig.MACHINE_SEVERITIES.major;
+        }
         const report = {
           machine: this.state.machine,
           email: values.email,
-          modele: model
+          modele: model,
+          type : type,
+          severity: severity
         };
         const { createReport } = this.props;
         createReport(report);

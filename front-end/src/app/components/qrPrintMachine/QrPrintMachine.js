@@ -17,9 +17,7 @@ class QrPrintMachine extends PureComponent {
     const { urlMachine } = this.props;
     return (
       <div>
-        <h1>{urlMachine}</h1>
-        <QRCode value={urlMachine} />
-        <p>Scan me !</p>
+        <QRCode value={urlMachine}/>
       </div>
     );
   }

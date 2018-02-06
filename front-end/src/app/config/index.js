@@ -5,5 +5,14 @@ export const appConfig = {
   API: {
     reports: 'reports',
     machines: 'machines'
+  },
+  MACHINE_TYPES: {
+    default:0,
+    software: 1,
+    hardware: 2
+  },
+  MACHINE_SEVERITIES: {
+    minor: 0,
+    major: 1
   }
 };

@@ -15,7 +15,7 @@ class ReportFactoryImpl : ReportFactory {
         return getReport((document.get("_id") as ObjectId).toHexString(), document.get("date") as LocalDateTime, document.getString("email"), document.getString("comment"), document.getString("emailAdmin"), document.getString("state"))
     }
 
-    override fun getReport(id:String, date:LocalDateTime, email:String, comment:String, emailAdmin: String, state: String): ReportDto {
-        return ReportImpl(id, date, email, comment, emailAdmin, state)
+    override fun getReport(id:String, date:LocalDateTime, email:String, comment:String, emailAdmin: String, state: String, severity: Int, type: Int): ReportDto {
+        return ReportImpl(id, date, email, comment, emailAdmin, state, severity, type)
     }
 }

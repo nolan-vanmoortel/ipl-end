@@ -11,8 +11,8 @@ import PrivateRoute     from '../components/privateRoute/PrivateRoute';
 import Protected        from '../views/protected';
 import PageNotFound     from '../views/pageNotFound';
 import ReportForm       from '../views/reportForm';
-import Login from "../views/login";
-
+import Login            from '../views/login';
+import PrintQr          from '../views/printQr';
 const MainRoutes = () => {
   return (
     <Switch>
@@ -20,6 +20,7 @@ const MainRoutes = () => {
       <Route path="/report/:machineName" component={ReportForm} />
       <Route path="/about" component={About} />
       <Route exact path="/login" component={Login} />
+      <Route path="/qr/:machineName" component={PrintQr} />
       <PrivateRoute path="/protected" component={Protected} />
       <Route component={PageNotFound} />
     </Switch>

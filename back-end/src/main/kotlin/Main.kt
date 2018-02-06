@@ -36,7 +36,7 @@ fun main(args: Array<String>) {
         port(8080)
         handler(userDao, userFactory, machineDao, machineFactory, reportDao, reportFactory)
     } catch (e: FatalException) {
-        println("Ceci n'est jamais censé se produire")
+        println(e)
     }
 }
 
@@ -70,6 +70,9 @@ private fun enableCORS(origin: String) {
     before {
         response.header("Access-Control-Allow-Origin", origin)
         response.header("Access-Control-Allow-Credentials", "true")
+        response.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS")
+        response.header("Access-Control-Allow-Headers", "Content-Type,Authorization,X-Requested-With,Content-Length,Accept,Origin,")
+
         // Note: this may or may not be necessary in your particular application
         response.type("application/json")
     }

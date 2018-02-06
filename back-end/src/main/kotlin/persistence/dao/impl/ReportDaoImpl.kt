@@ -4,6 +4,7 @@ import business.entities.ReportDto
 import business.entities.ReportReal
 import business.factory.ReportFactory
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.mongodb.client.model.Filters.eq
 import exceptions.NoFatalException
 import persistence.DalServices
 import org.bson.Document
@@ -18,14 +19,14 @@ import java.time.LocalDateTime
 class ReportDaoImpl(private val dal: DalServices,
                     private val reportFactory: ReportFactory): ReportDao {
 
-    override fun save(idMachine: String, report: ReportDto): ReportReal {
+    override fun save(name: String, report: ReportDto): ReportReal {
         // Unclean
-        val machine = dal.getCollection(MACHINES_COLLECTION).find(Document("_id", ObjectId(idMachine))).first()
-        val reports = machine.get("reports", ArrayList<ReportDto>())
+        val machine = dal.getCollection(MACHINES_COLLECTION).find(Document("name", name)).first()
+        val reports = machine.get("reports", ArrayList<Any>())
         reports.add(report)
         machine.replace("reports", reports)
         // Unclean
-        dal.getCollection(MACHINES_COLLECTION).updateOne(Document("_id", ObjectId(idMachine)), Document.parse(ObjectMapper().writeValueAsString(machine)))
+        //dal.getCollection(MACHINES_COLLECTION).updateOne(eq("_id", ))
         return getReportByDate(report.date)
     }
 

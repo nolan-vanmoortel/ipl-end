@@ -52,6 +52,7 @@ export default function (
 // -------------------------------
 
 export function createReport(report) {
+  console.log(report);
   return dispatch => {
     const FETCH_TYPE = 'FETCH';
     const url = `${getLocationOrigin()}/${appConfig.API.reports}/create`;
@@ -60,7 +61,11 @@ export function createReport(report) {
     const options = {
       credentials: 'same-origin',
       data: {
-        report
+        email: report.email,
+        machine: report.machine,
+        modele: report.modele,
+        severity: report.severity,
+        type: report.type
       }
     };
     return dispatch({

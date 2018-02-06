@@ -17,6 +17,7 @@ const RadioButton = Radio.Button;
 import 'font-awesome/css/font-awesome.css';
 
 import FroalaEditor from 'react-froala-wysiwyg';
+import {appConfig} from "../../config";
 
 const PopoverContent = (
   <div>
@@ -51,15 +52,15 @@ const Report = ({
         </Col>
       </Row>
       <FormItem>
-        {getFieldDecorator('switch', { valuePropName: 'severity' })(
-          <Switch checkedChildren="Majeur" unCheckedChildren="Mineur" />
+        {getFieldDecorator('severity', { valuePropName: 'severity' })(
+          <Switch defaultChecked={false} checkedChildren="Majeur" unCheckedChildren="Mineur" />
         )}
       </FormItem>
       <FormItem>
-        {getFieldDecorator('radio-group')(
+        {getFieldDecorator('type')(
           <RadioGroup style={{borderColor: '#1990ff'}} >
-            <RadioButton style={{borderColor: '#1990ff'}} value="1">Hardware</RadioButton>
-            <RadioButton style={{borderColor: '#1990ff'}} value="2">Software</RadioButton>
+            <RadioButton style={{borderColor: '#1990ff'}} value={appConfig.MACHINE_TYPES.hardware}>Hardware</RadioButton>
+            <RadioButton style={{borderColor: '#1990ff'}} value={appConfig.MACHINE_TYPES.software}>Software</RadioButton>
           </RadioGroup>
         )}
       </FormItem>
