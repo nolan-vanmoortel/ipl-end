@@ -72,8 +72,8 @@ fun MachineController(machineDao: MachineDao, machineFactory: MachineFactory){
                 }
 
             }*/
-            println(request.qp("file").toString())
             try {
+                request.attribute("org.eclipse.jetty.multipartConfig", MultipartConfigElement("/temp"))
                 request.raw().getPart("file").inputStream.bufferedReader().use {
                     println(it.readText())
                 }
