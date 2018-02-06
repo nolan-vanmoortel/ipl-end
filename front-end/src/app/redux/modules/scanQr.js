@@ -13,7 +13,7 @@ const REDIRECTED:               string = 'REDIRECTED';
 // --------------------------------
 const initialState = {
   url: 'Not an url',
-  message: 'Scan a QR code !',
+  message: ' ',
   delay: 500,
   showQr: false,
   scanSuccess: false

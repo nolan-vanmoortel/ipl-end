@@ -5,7 +5,8 @@ import React, {
 }                     from 'react';
 import PropTypes      from 'prop-types';
 import QrReader       from 'react-qr-reader';
-import {Button} from "antd";
+import {Button}       from "antd";
+import {Icon}         from "antd";
 
 class QrReaderMachine extends PureComponent {
 // eslint-disable-next-line no-undef
@@ -27,19 +28,24 @@ class QrReaderMachine extends PureComponent {
     } = this.props;
     return (
       <div>
-        <Button onClick={this.handleClick}>Scanner QR code</Button>
-          {
-            showQr?
-              <QrReader
-                delay={delay}
-                onError={handleError}
-                onScan={handleScan}
-                style={{ minWidth: '250px', maxWidth:'500px', marginLeft:"auto", marginRight:"auto" }}/>
-              :''
-          }
+        <p>{
+          showQr?
+            <QrReader
+              delay={delay}
+              onError={handleError}
+              onScan={handleScan}
+              style={{ minWidth: '250px', maxWidth:'500px', marginLeft:"auto", marginRight:"auto" }}/>
+            :'Scannez un QR code'
+        }</p>
+
+
+        {showQr?<Button type='default' size='large' onClick={this.handleClick}>STOP SCANNING</Button>:
+          <Button style={{height:400}} onClick={this.handleClick}>  <img src="img/CurrentLogo.png" /></Button>
+        }
       </div>
     );
   }
+
   // eslint-disable-next-line no-undef
   handleClick = () => {
     const { scanClick } = this.props;
