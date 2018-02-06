@@ -41,11 +41,12 @@ class ReportTable extends PureComponent {
       admin : 'Jean Dupont',
       commentaire: 'blabla'
     });
-
+    this.state.dataReadOnly = this.state.data.slice(0);
   }
 
   state={
     data:[],
+    dataReadOnly:[],
     sortedInfo:{},
     filteredInfo:{},
     searchText:'',
@@ -66,12 +67,12 @@ class ReportTable extends PureComponent {
   }
 
   onSearch = () => {
-    const { searchText, data } = this.state;
+    const { searchText, data, dataReadOnly } = this.state;
     const reg = new RegExp(searchText, 'gi');
     this.setState({
       filterDropdownVisible: false,
       filtered: !!searchText,
-      data: data.map((record) => {
+      data: dataReadOnly.map((record) => {
         const match = record.nom.match(reg);
         if (!match) {
           return null;
