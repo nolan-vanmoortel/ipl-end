@@ -20,7 +20,7 @@ class MachineImport extends PureComponent {
   render() {
     const file = this.state.file;
     return (
-      <form onSubmit={() => this.props.uploadFile({file})}>
+      <form onSubmit={() => this.props.uploadFile({file})} encType="multipart/form-data">
         <div>
           <label>Machine File</label>
           <input type="file" onChange={this.handleChange}/>
