@@ -5,8 +5,8 @@ import React, {
 }                   from 'react';
 import PropTypes    from 'prop-types';
 import AnimatedView from '../../components/animatedView/AnimatedView';
-import Report from '../../components/report/Report';
-import { Form } from 'antd';
+import Report       from '../../components/report/Report';
+import { Form }     from 'antd';
 
 type Props = {
   match: any,
@@ -37,12 +37,10 @@ class ReportForm extends PureComponent<Props, State> {
 
   constructor(props, context) {
     super(props, context);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleModelChange = this.handleModelChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
       model: '',
-      machine: ''
+      machine: '',
+      formError: false
     };
   }
 
@@ -61,43 +59,48 @@ class ReportForm extends PureComponent<Props, State> {
     leaveReportForm();
   }
 
-  handleEmailChange(event) {
+  handleEmailChange = (event) => {
     this.setState({ email: event.target.value });
-  }
+  };
 
-  handleModelChange(model) {
+  handleModelChange = (model) => {
     this.setState({
       model
     });
-  }
+  };
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      if (!err) {
+      const { model } = this.state;
+      if(!model) {
+        this.setState({ formError: true });
+      } else if (!err) {
         const report = {
           machine: this.state.machine,
           email: values.email,
-          modele: this.state.model
+          modele: model
         };
         const { createReport } = this.props;
         createReport(report);
       }
     });
-  }
+  };
 
 
   render() {
-    const { model } = this.state;
+    const { model, formError } = this.state;
     const { getFieldDecorator } = this.props.form;
     const config = {
-      heightMin: 330,
+      heightMin: 200,
       toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript',
         'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle',
         '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertImage',
         'insertTable', '-', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting',
         '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo'],
-      toolbarButtonsXS: ['bold', 'italic', 'fontSize', 'fontStyle', 'insertImage', 'undo', 'redo']
+      toolbarButtonsXS: ['bold', 'italic', 'fontSize', 'fontStyle', 'insertImage', 'undo', 'redo'],
+      quickInsertTags: [''],
+      placeholderText: 'Veuilliez entrer une description du problème *'
     };
     return(
       <AnimatedView>
@@ -106,7 +109,8 @@ class ReportForm extends PureComponent<Props, State> {
           handleSubmit={this.handleSubmit}
           handleModelChange={this.handleModelChange}
           model={model}
-          config={config}/>
+          config={config}
+          formError={formError}/>
       </AnimatedView>
     );
   }

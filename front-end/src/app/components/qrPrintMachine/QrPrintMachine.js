@@ -9,7 +9,7 @@ import QRCode         from 'qrcode-react';
 class QrPrintMachine extends PureComponent {
 // eslint-disable-next-line no-undef
   static propTypes = {
-    urlMachine: PropTypes.string.isRequired
+    urlMachine: PropTypes.string
   };
 
 
