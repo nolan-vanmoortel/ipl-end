@@ -11,6 +11,10 @@ import spark.kotlin.get
 import spark.kotlin.post
 import util.Message
 import business.factory.ReportFactory
+import com.fasterxml.jackson.core.type.TypeReference
+import org.owasp.html.PolicyFactory
+import org.owasp.html.Sanitizers
+import policy
 import spark.Request
 import util.*
 import java.time.LocalDateTime
@@ -19,12 +23,20 @@ fun ReportController(reportDao: ReportDao, reportFactory: ReportFactory){
     path("/reports") {
         post("/create"){
             try {
-                val report: ReportDto = reportFactory.getReport(date= LocalDateTime.now(),
-                        email=request.qp("email"), comment=request.qp("modele"),
-                        severity = Integer.parseInt(request.qp("severity")),
-                        type = Integer.parseInt(request.qp("type")))
+                val map = ObjectMapper().readValue<Map<String, String>>(request.body(),object: TypeReference<Map<String, String>>() {})
+                if(map["email"] == null || map["modele"] == null || map["severity"] == null
+                        || map["type"] == null || map["machine"] == null)
+                    throw NoFatalException("Requête Incorrecte")
+                val report: ReportDto = reportFactory.getReport(
+                        date= LocalDateTime.now(),
+                        email= policy.sanitize(map["email"]),
+                        comment= policy.sanitize(map["modele"]),
+                        severity = Integer.parseInt(policy.sanitize(map["severity"])),
+                        type = Integer.parseInt(policy.sanitize(map["type"])))
                 status(200)
-                ObjectMapper().writeValueAsString(Message(reportDao.save(request.qp("machine"), report).id))
+                reportDao.save(policy.sanitize(map["machine"]), report)
+                ObjectMapper().writeValueAsString(
+                        Message("Report correctement enregistré"))
             } catch(e: Exception) {
                 e.printStackTrace()
                 status(400)

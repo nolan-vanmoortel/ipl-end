@@ -5,7 +5,7 @@ import React, {
 }                     from 'react';
 import PropTypes      from 'prop-types';
 import QrReader       from 'react-qr-reader';
-import {Button}       from 'antd';
+import {Button, Col, Row} from 'antd';
 import scanQr         from './img/scanQr.png';
 import styles         from './QrReaderMachine.scss';
 
@@ -28,8 +28,7 @@ class QrReaderMachine extends PureComponent {
       showQr
     } = this.props;
     return (
-      <div>
-        <div style={{ width: '100%', mawWidth:'500px'}}>
+      <Row type="flew" justify="space-around" align="middle">
           {
             showQr?
               <QrReader
@@ -39,15 +38,13 @@ class QrReaderMachine extends PureComponent {
                 showViewFinder={false}/>
               :''
           }
-        </div>
-
-        {showQr?<Button type="primary" size="large" style={{width:'100%', marginTop:10}} onClick={this.handleClick}>STOP SCANNING</Button>:
+        {showQr?<Button type="primary" size="large" style={{width:'100%', marginTop:10, maxWidth:300}} onClick={this.handleClick}>STOP SCANNING</Button>:
           <div style={{textAlign:'center'}}>
             <Button className={styles.removeBorders} style={{height:'auto'}} onClick={this.handleClick}>  <img className={styles.imgQr} src={scanQr} /></Button>
-            <Button style={{width:'100%', marginTop:10}} type="primary" size="large" onClick={this.handleClick}>SCANNING</Button>
+            <Button style={{width:'100%', marginTop:10, maxWidth:300}} type="primary" size="large" onClick={this.handleClick}>SCANNING</Button>
           </div>
         }
-      </div>
+      </Row>
     );
   }
 

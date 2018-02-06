@@ -15,5 +15,5 @@ interface ReportDao {
      */
     fun getReportById(id: String): ReportReal
     fun getReportByDate(date: LocalDateTime): ReportReal
-    fun save(name: String, report: ReportDto): ReportReal
+    fun save(name: String, report: ReportDto)
 }

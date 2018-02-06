@@ -4,10 +4,12 @@ import React, {
   PureComponent
 }                   from 'react';
 import PropTypes    from 'prop-types';
+
 import AnimatedView from '../../components/animatedView/AnimatedView';
 import Report from '../../components/report/Report';
-import { Form } from 'antd';
-import {appConfig} from "../../config";
+
+import { Form, notification } from 'antd';
+import {appConfig} from '../../config';
 
 type Props = {
   match: any,
@@ -33,15 +35,19 @@ class ReportForm extends PureComponent<Props, State> {
     leaveReportForm: PropTypes.func.isRequired,
     form: PropTypes.object.isRequired,
 
-    createReport: PropTypes.func.isRequired
+    createReport: PropTypes.func.isRequired,
+
+    toggleRequestError: PropTypes.func.isRequired,
+    requestError: PropTypes.bool.isRequired,
+    toggleRequestSuccess: PropTypes.func.isRequired,
+    requestSuccess: PropTypes.bool.isRequired
   };
 
   constructor(props, context) {
     super(props, context);
     this.state = {
       model: '',
-      machine: '',
-      formError: false
+      machine: ''
     };
   }
 
@@ -60,6 +66,32 @@ class ReportForm extends PureComponent<Props, State> {
     leaveReportForm();
   }
 
+  componentDidUpdate() {
+    const { requestError, toggleRequestError,
+    requestSuccess, toggleRequestSuccess, history } = this.props;
+    if(requestError) {
+      this.openErrorNotification('Une erreur est survenue');
+      toggleRequestError();
+    }
+    if(requestSuccess) {
+      this.openSuccessNotification('Nous avons bien reçu votre problème');
+      toggleRequestSuccess();
+      history.push('/');
+    }
+  }
+
+  openErrorNotification = (comment) => {
+    notification.error({
+      message: comment
+    });
+  };
+
+  openSuccessNotification = (comment) => {
+    notification.success({
+      message: comment
+    });
+  };
+
   handleEmailChange = (event) => {
     this.setState({ email: event.target.value });
   };
@@ -75,7 +107,7 @@ class ReportForm extends PureComponent<Props, State> {
     this.props.form.validateFields((err, values) => {
       const { model } = this.state;
       if(!model) {
-        this.setState({ formError: true });
+        this.openErrorNotification('La description est un peu vide');
       } else if (!err) {
         let type;
         let severity;
@@ -84,7 +116,6 @@ class ReportForm extends PureComponent<Props, State> {
         } else {
           type = values.type;
         }
-        console.log(values);
         if(!values.severity || values.severity === false) {
           severity = appConfig.MACHINE_SEVERITIES.minor;
         } else {
@@ -105,7 +136,7 @@ class ReportForm extends PureComponent<Props, State> {
 
 
   render() {
-    const { model, formError } = this.state;
+    const { model } = this.state;
     const { getFieldDecorator } = this.props.form;
     const config = {
       heightMin: 200,
@@ -125,8 +156,7 @@ class ReportForm extends PureComponent<Props, State> {
           handleSubmit={this.handleSubmit}
           handleModelChange={this.handleModelChange}
           model={model}
-          config={config}
-          formError={formError}/>
+          config={config}/>
       </AnimatedView>
     );
   }

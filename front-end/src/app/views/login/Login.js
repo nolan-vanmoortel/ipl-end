@@ -52,7 +52,7 @@ class Login extends PureComponent<Props, State> {
   static defaultProps = {
     isFetching:      false,
     isLogging:       false
-  }
+  };
 
   componentDidMount() {
     const {

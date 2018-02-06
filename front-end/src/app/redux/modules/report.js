@@ -1,7 +1,8 @@
 // @flow weak
 
-import getLocationOrigin from '../../services/utils/getLocationOrigin';
-import { appConfig } from '../../config';
+import getLocationOrigin  from '../../services/utils/getLocationOrigin';
+import { appConfig }      from '../../config';
+import moment             from 'moment';
 // -----------------------------
 // CONSTANTS
 // -----------------------------
@@ -10,11 +11,16 @@ const REQUEST_CREATE_REPORT:  string = 'REQUEST_CREATE_REPORT';
 const RECEIVED_CREATE_REPORT: string = 'RECEIVED_CREATE_REPORT';
 const ERROR_CREATE_REPORT:    string = 'ERROR_CREATE_REPORT';
 
+const TOGGLE_REQUEST_ERROR:   string = 'TOGGLE_REQUEST_ERROR';
+const TOGGLE_REQUEST_SUCCESS: string = 'TOGGLE_REQUEST_SUCCESS';
+
 // -----------------------------
 // REDUCER
 // -----------------------------
 const initialState = {
-  isCreating: false
+  isCreating: false,
+  requestError: false,
+  requestSuccess: false
 };
 
 export default function (
@@ -28,19 +34,35 @@ export default function (
     return {
       ...state,
       actionTime: currentTime,
-      isCreating: true
+      isCreating: true,
+      requestError: false,
+      requestSuccess: false
     };
   case RECEIVED_CREATE_REPORT:
     return {
       ...state,
       actionTime: currentTime,
-      isCreating: false
+      isCreating: false,
+      requestError: false,
+      requestSuccess: true
     };
   case ERROR_CREATE_REPORT:
     return {
       ...state,
       actionTime: currentTime,
-      isCreating: false
+      isCreating: false,
+      requestError: true,
+      requestSuccess: false
+    };
+  case TOGGLE_REQUEST_ERROR:
+    return {
+      ...state,
+      requestError: !state.requestError
+    };
+  case TOGGLE_REQUEST_SUCCESS:
+    return {
+      ...state,
+      requestSuccess: !state.requestSuccess
     };
   default:
     return state;
@@ -52,7 +74,6 @@ export default function (
 // -------------------------------
 
 export function createReport(report) {
-  console.log(report);
   return dispatch => {
     const FETCH_TYPE = 'FETCH';
     const url = `${getLocationOrigin()}/${appConfig.API.reports}/create`;
@@ -83,5 +104,17 @@ export function createReport(report) {
         options
       }
     });
+  };
+}
+
+export function toggleRequestError() {
+  return {
+    type: TOGGLE_REQUEST_ERROR
+  };
+}
+
+export function toggleRequestSuccess() {
+  return {
+    type: TOGGLE_REQUEST_SUCCESS
   };
 }
