@@ -31,7 +31,7 @@ class PrintQr extends PureComponent {
 
   componentDidMount() {
     const { enterPrintQr } = this.props;
-    this.setState({ urlMachine: window.location.hostname+'report/'+this.props.match.params.machineName });
+    this.setState({ urlMachine: window.location.hostname+':'+window.location.port+'/report/'+this.props.match.params.machineName });
     enterPrintQr();
   }
 
