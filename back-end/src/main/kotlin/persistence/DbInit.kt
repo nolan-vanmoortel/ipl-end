@@ -22,4 +22,5 @@ fun main(args: Array<String>) {
             .append("name", "Doe")
             .append("first_name", "John")
     collection.insertOne(document)
+    // MINEUR = 0 MEDIUM = 1 SEVERE = 2
 }

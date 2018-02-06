@@ -5,7 +5,9 @@ import React, {
 }                     from 'react';
 import PropTypes      from 'prop-types';
 import QrReader       from 'react-qr-reader';
-import {Button} from "antd";
+import {Button}       from 'antd';
+import scanQr         from './img/scanQr.png';
+import styles         from './QrReaderMachine.scss';
 
 class QrReaderMachine extends PureComponent {
 // eslint-disable-next-line no-undef
@@ -27,19 +29,28 @@ class QrReaderMachine extends PureComponent {
     } = this.props;
     return (
       <div>
-        <Button onClick={this.handleClick}>Scanner QR code</Button>
-          {
-            showQr?
-              <QrReader
-                delay={delay}
-                onError={handleError}
-                onScan={handleScan}
-                style={{ minWidth: '250px', maxWidth:'500px', marginLeft:"auto", marginRight:"auto" }}/>
-              :''
+        <div style={{ width: '100%', mawWidth:'500px'}}>
+        {
+          showQr?
+            <QrReader
+              delay={delay}
+              onError={handleError}
+              onScan={handleScan}
+              showViewFinder={false}/>
+            :''
+        }
+        </div>
+
+        {showQr?<Button type="primary" size="large" style={{width:'100%', marginTop:10}} onClick={this.handleClick}>STOP SCANNING</Button>:
+          <div style={{textAlign:'center'}}>
+            <Button className={styles.removeBorders} style={{height:'auto'}} onClick={this.handleClick}>  <img className={styles.imgQr} src={scanQr} /></Button>
+            <Button style={{width:'100%', marginTop:10}} type="primary" size="large" onClick={this.handleClick}>SCANNING</Button>
+          </div>
           }
       </div>
     );
   }
+
   // eslint-disable-next-line no-undef
   handleClick = () => {
     const { scanClick } = this.props;
