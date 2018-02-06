@@ -19,19 +19,19 @@ class PrintQr extends PureComponent {
     leavePrintQr:   PropTypes.func.isRequired,
 
     // url machine
-    urlMachine: PropTypes.string
+    machineName: PropTypes.string
   };
 
   constructor(props, context) {
     super(props, context);
     this.state = {
-      urlMachine: ' '
+      machineUrl: '',
     };
   }
 
   componentDidMount() {
     const { enterPrintQr } = this.props;
-    this.setState({ urlMachine: window.location.hostname+':'+window.location.port+'/report/'+this.props.match.params.machineName });
+    this.setState({ machineUrl: window.location.hostname+':'+window.location.port+'/report/'+this.props.match.params.machineName });
     enterPrintQr();
   }
 
@@ -42,10 +42,14 @@ class PrintQr extends PureComponent {
 
   render() {
     const {
-      urlMachine
+      machineName
     } = this.props;
     return(
-      <QrPrint urlMachine = {urlMachine} />
+      <div>
+        <h3>Scannez-moi<br/>en cas de problème</h3>
+        <h5>Machine name : {machineName}</h5>
+        <QrPrint urlMachine = {this.state.machineUrl} />
+      </div>
     );
   }
 }
