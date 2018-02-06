@@ -19,19 +19,12 @@ import 'font-awesome/css/font-awesome.css';
 import FroalaEditor from 'react-froala-wysiwyg';
 import {appConfig} from "../../config";
 
-const PopoverContent = (
-  <div>
-    <p>La description est obligatoire</p>
-  </div>
-);
-
 const Report = ({
                   getFieldDecorator,
                   model,
                   config,
                   handleSubmit,
-                  handleModelChange,
-  formError
+                  handleModelChange
 })=>{
   return (
     <Form onSubmit={handleSubmit}>
@@ -64,18 +57,15 @@ const Report = ({
           </RadioGroup>
         )}
       </FormItem>
-
       <FroalaEditor
         tag="textarea"
         model={model}
         onModelChange={handleModelChange}
         config={config}
       />
-      <Popover placement="right" content={PopoverContent} visible={formError}>
-        <Button type="primary" htmlType="submit" className="login-form-button" style={{marginTop: 10}}>
-          Envoyer
-        </Button>
-      </Popover>
+      <Button type="primary" htmlType="submit" className="login-form-button" style={{marginTop: 10}}>
+        Envoyer
+      </Button>
     </Form>
   );
 };
@@ -85,8 +75,7 @@ Report.propTypes = {
   handleSubmit:       PropTypes.func.isRequired,
   handleModelChange:  PropTypes.func.isRequired,
   model:              PropTypes.string.isRequired,
-  config:             PropTypes.object.isRequired,
-  formError:          PropTypes.bool.isRequired
+  config:             PropTypes.object.isRequired
 };
 
 export default Report;

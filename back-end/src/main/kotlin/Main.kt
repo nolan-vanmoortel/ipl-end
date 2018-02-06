@@ -9,6 +9,8 @@ import controllers.MachineController
 import controllers.ReportController
 import controllers.UserController
 import exceptions.FatalException
+import org.owasp.html.PolicyFactory
+import org.owasp.html.Sanitizers
 import persistence.DalServicesNoSql
 import persistence.dao.MachineDao
 import persistence.dao.ReportDao
@@ -21,6 +23,9 @@ import spark.kotlin.options
 import spark.kotlin.port
 import util.PluginProperties
 
+val policy: PolicyFactory = Sanitizers.FORMATTING
+        .and(Sanitizers.LINKS).and(Sanitizers.BLOCKS).and(Sanitizers.IMAGES)
+        .and(Sanitizers.STYLES)
 
 fun main(args: Array<String>) {
 
