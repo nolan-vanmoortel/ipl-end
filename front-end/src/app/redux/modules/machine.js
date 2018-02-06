@@ -1,6 +1,5 @@
 // @flow weak
 
-import userInfosMockData  from '../../mock/userInfosMock.json';
 import getLocationOrigin  from '../../services/utils/getLocationOrigin';
 import { appConfig }      from '../../config';
 
@@ -52,15 +51,11 @@ export default function (
 // --------------------------------
 // ACTIONS CREATORS
 // --------------------------------
-//
 
 export function UploadFile(file){
   return dispatch => {
-    const FETCH_TYPE  = appConfig.DEV_MODE ? 'FETCH_MOCK' : 'FETCH';
-    const __SOME_LOGIN_API__ = 'machines';
-
-    const mockResult  = userInfosMockData;
-    const url         = `${getLocationOrigin()}/${__SOME_LOGIN_API__}`;
+    const FETCH_TYPE  = 'FETCH';
+    const url         = `${getLocationOrigin()}/${appConfig.API.machines}/import`;
     const method      = 'post';
     const headers     = {};
     const options     = {
@@ -79,9 +74,6 @@ export function UploadFile(file){
           success:  UPLOAD_RECEIVED,
           fail:     UPLOAD_ERROR
         },
-        // mock !
-        mockResult,
-        // real
         url,
         method,
         headers,

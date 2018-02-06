@@ -9,6 +9,7 @@ import AnimatedView   from '../../components/animatedView/AnimatedView';
 import { QrPrintMachine, QrReaderMachine } from '../../components';
 import {Redirect} from "react-router-dom";
 import {Col, Layout, Row} from "antd";
+import MachineImport        from '../../components/machineImport/MachineImport';
 
 class Home extends PureComponent {
   static propTypes= {
@@ -28,7 +29,9 @@ class Home extends PureComponent {
     handleScan:         PropTypes.func.isRequired,
     scanClick:          PropTypes.func.isRequired,
     scanSuccess:        PropTypes.bool.isRequired,
-    showQr:             PropTypes.bool.isRequired
+    showQr:             PropTypes.bool.isRequired,
+
+    UploadFile:         PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -44,6 +47,7 @@ class Home extends PureComponent {
 
   }
 
+
   render() {
     const {
       delay,
@@ -53,7 +57,9 @@ class Home extends PureComponent {
       showQr,
       scanSuccess,
       url,
-      message
+      message,
+
+      UploadFile
 
     } = this.props;
     return(
@@ -63,6 +69,7 @@ class Home extends PureComponent {
             <h1>Scanner</h1>
             <QrReaderMachine delay={delay} handleError={handleError} handleScan={handleScan} scanClick={scanClick} showQr={showQr}/>
             <h4>{message}</h4>
+            <MachineImport UploadFile={UploadFile}/>
           </Col>
         </Row>
         {scanSuccess?<Redirect to={"report/"+url.split('/')[url.split('/').length-1]}/>:''}
