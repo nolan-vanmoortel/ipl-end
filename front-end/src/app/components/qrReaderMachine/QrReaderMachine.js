@@ -29,20 +29,24 @@ class QrReaderMachine extends PureComponent {
     } = this.props;
     return (
       <div>
-        <p>{
+        <div style={{ width: '100%', mawWidth:'500px'}}>
+        {
           showQr?
             <QrReader
               delay={delay}
               onError={handleError}
               onScan={handleScan}
-              style={{ minWidth: '250px', maxWidth:'500px', marginLeft:"auto", marginRight:"auto" }}/>
+              showViewFinder={false}/>
             :'Scannez un QR code'
-        }</p>
-
-
-        {showQr?<Button type='default' size='large' onClick={this.handleClick}>STOP SCANNING</Button>:
-          <Button className={styles.removeBorders} style={{height:'auto'}} onClick={this.handleClick}>  <img className={styles.imgQr} src={scanQr} /></Button>
         }
+        </div>
+
+        {showQr?<Button type="primary" size="large" onClick={this.handleClick}>STOP SCANNING</Button>:
+          <div style={{textAlign:'center'}}>
+            <Button className={styles.removeBorders} style={{height:'auto'}} onClick={this.handleClick}>  <img className={styles.imgQr} src={scanQr} /></Button>
+            <Button style={{width:'100%'}} type="primary" size="large" onClick={this.handleClick}>SCANNING</Button>
+          </div>
+          }
       </div>
     );
   }
