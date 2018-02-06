@@ -16,6 +16,7 @@ import spark.Spark.staticFiles
 import jdk.nashorn.internal.runtime.ScriptingFunctions.readLine
 import java.io.*
 import java.util.ArrayList
+import java.util.stream.Stream
 
 
 private var COMMA_DELIMITER = ","
@@ -71,6 +72,15 @@ fun MachineController(machineDao: MachineDao, machineFactory: MachineFactory){
                 }
 
             }*/
+            println(request.qp("file").toString())
+            try {
+                request.raw().getPart("file").inputStream.bufferedReader().use {
+                    println(it.readText())
+                }
+            }catch (e:Exception){
+                println(e.message)
+            }
+
 
         }
     }

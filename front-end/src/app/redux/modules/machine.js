@@ -61,7 +61,7 @@ export function uploadFile(file){
     const options     = {
       credentials: 'same-origin',
       data: {
-        file
+        file:file
       }
     };
 
