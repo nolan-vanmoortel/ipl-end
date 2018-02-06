@@ -5,8 +5,9 @@ import React, {
 }                     from 'react';
 import PropTypes      from 'prop-types';
 import QrReader       from 'react-qr-reader';
-import {Button}       from "antd";
-import {Icon}         from "antd";
+import {Button}       from 'antd';
+import scanQr         from './img/scanQr.png';
+import styles         from './QrReaderMachine.scss';
 
 class QrReaderMachine extends PureComponent {
 // eslint-disable-next-line no-undef
@@ -40,7 +41,7 @@ class QrReaderMachine extends PureComponent {
 
 
         {showQr?<Button type='default' size='large' onClick={this.handleClick}>STOP SCANNING</Button>:
-          <Button style={{height:400}} onClick={this.handleClick}>  <img src="img/CurrentLogo.png" /></Button>
+          <Button className={styles.removeBorders} style={{height:'auto'}} onClick={this.handleClick}>  <img className={styles.imgQr} src={scanQr} /></Button>
         }
       </div>
     );
