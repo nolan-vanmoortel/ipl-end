@@ -62,21 +62,19 @@ class Home extends PureComponent {
 
     } = this.props;
     return(
-      <AnimatedView>
-        <Row type="flew" justify="space-around" align="middle">
-          <Col offset={6} xs={12} sm={0}>
-            <div style={{marginBottom:"150%"}}></div>
-          </Col>
-          <Col offset={6} span={12} style={{textAlign:"center"}}>
+      <Row>
+        <Col span={6} ></Col>
+          <Col xs={{span:12}} md={{span:6, offset:3}} style={{textAlign:"center"}}>
             <h1>Scannez le QR code</h1>
-            <QrReaderMachine delay={delay} handleError={handleError} handleScan={handleScan} scanClick={scanClick} showQr={showQr}/>
+              <div style={{maxHeight:300}}>
+              <QrReaderMachine delay={delay} handleError={handleError} handleScan={handleScan} scanClick={scanClick} showQr={showQr}/>
+            </div>
             <h4>{message}</h4>
-            <MachineImport uploadFile={uploadFile}/>
           </Col>
-        </Row>
         {scanSuccess?<Redirect to={"report/"+url.split('/')[url.split('/').length-1]}/>:''}
-      </AnimatedView>
+      </Row>
     );
+
   }
 }
 
