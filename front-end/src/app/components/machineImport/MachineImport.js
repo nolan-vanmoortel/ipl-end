@@ -1,6 +1,9 @@
 // @flow weak
 import React, {PureComponent} from 'react';
 import PropTypes      from 'prop-types';
+import {Button, Icon, Upload} from "antd";
+import getLocationOrigin from "../../services/utils/getLocationOrigin";
+import {appConfig} from "../../config";
 
 
 class MachineImport extends PureComponent {
@@ -20,13 +23,11 @@ class MachineImport extends PureComponent {
   render() {
     const file = this.state.file;
     return (
-      <form onSubmit={() => this.props.uploadFile({file})} encType="multipart/form-data">
-        <div>
-          <label>Machine File</label>
-          <input type="file" onChange={this.handleChange}/>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <Upload name="file" action={getLocationOrigin()+'/'+appConfig.API.machines+'/import'} >
+        <Button>
+          <Icon type="upload" /> Click to Upload
+        </Button>
+      </Upload>
 
     );
 

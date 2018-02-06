@@ -71,6 +71,7 @@ class Home extends PureComponent {
             <h1>Scannez le QR code</h1>
             <QrReaderMachine delay={delay} handleError={handleError} handleScan={handleScan} scanClick={scanClick} showQr={showQr}/>
             <h4>{message}</h4>
+            <MachineImport uploadFile={uploadFile}/>
           </Col>
         </Row>
         {scanSuccess?<Redirect to={"report/"+url.split('/')[url.split('/').length-1]}/>:''}
