@@ -36,8 +36,11 @@ class ReportForm extends PureComponent<Props, State> {
     form: PropTypes.object.isRequired,
 
     createReport: PropTypes.func.isRequired,
+
     toggleRequestError: PropTypes.func.isRequired,
-    requestError: PropTypes.bool.isRequired
+    requestError: PropTypes.bool.isRequired,
+    toggleRequestSuccess: PropTypes.func.isRequired,
+    requestSuccess: PropTypes.bool.isRequired
   };
 
   constructor(props, context) {
@@ -64,15 +67,27 @@ class ReportForm extends PureComponent<Props, State> {
   }
 
   componentDidUpdate() {
-    const { requestError, toggleRequestError } = this.props;
+    const { requestError, toggleRequestError,
+    requestSuccess, toggleRequestSuccess, history } = this.props;
     if(requestError) {
-      this.openNotification('Une erreur est survenue');
+      this.openErrorNotification('Une erreur est survenue');
       toggleRequestError();
+    }
+    if(requestSuccess) {
+      this.openSuccessNotification('Nous avons bien reçu votre problème');
+      toggleRequestSuccess();
+      history.push('/');
     }
   }
 
-  openNotification = (comment) => {
+  openErrorNotification = (comment) => {
     notification.error({
+      message: comment
+    });
+  };
+
+  openSuccessNotification = (comment) => {
+    notification.success({
       message: comment
     });
   };
@@ -92,7 +107,7 @@ class ReportForm extends PureComponent<Props, State> {
     this.props.form.validateFields((err, values) => {
       const { model } = this.state;
       if(!model) {
-        this.openNotification('La description est un peu vide');
+        this.openErrorNotification('La description est un peu vide');
       } else if (!err) {
         let type;
         let severity;
