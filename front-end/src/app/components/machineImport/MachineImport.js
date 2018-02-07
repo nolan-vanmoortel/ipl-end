@@ -32,8 +32,7 @@ class MachineImport extends PureComponent {
     const inputLocation = location.length > 0
     return (
       <div>
-        <Input placeholder="Salle de la machine" onChange={this.onHandleInput}/>
-        <Upload name="file" disabled={!inputLocation} action={getLocationOrigin()+'/'+appConfig.API.machines+'/import'} data ={this.state.location}>
+        <Upload name="file"  action={getLocationOrigin()+'/'+appConfig.API.machines+'/import'} data ={this.state.location}>
           <Button>
             <Icon type="upload" /> Envoyer les machines
           </Button>

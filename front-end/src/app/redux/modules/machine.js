@@ -100,6 +100,42 @@ export function getMachines(){
   };
 }
 
+export function manual(machine){
+  return dispatch => {
+    const FETCH_TYPE  = 'FETCH';
+    const url         = `${getLocationOrigin()}/${appConfig.API.machines}/manual`;
+    const method      = 'post';
+    const headers     = {};
+    const options     = {
+      credentials: 'same-origin',
+      data: {
+        name: machine.name,
+        ip: machine.ip,
+        mac: machine.mac,
+        location: machine.location,
+        comment: machine.comment
+
+      }
+    };
+
+    return dispatch({
+      type: 'FETCH_MIDDLEWARE',
+      fetch: {
+        type: FETCH_TYPE,
+        actionTypes: {
+          request:  UPLOAD_REQUEST,
+          success:  UPLOAD_RECEIVED,
+          fail:     UPLOAD_ERROR
+        },
+        url,
+        method,
+        headers,
+        options
+      }
+    });
+  };
+}
+
 export function updateMachines(machines){
   return {
     type: UPDATE_MACHINES,
