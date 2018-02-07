@@ -114,10 +114,7 @@ class ReportTable extends PureComponent {
     });
   }
 
-  onHandlePrintSelected = () => {
-    const { selectedRowKeys } = this.state;
-    console.log('selectedRowKeys to print: ', selectedRowKeys);
-  }
+
 
   onSelectChange = (selectedRowKeys) => {
     console.log('selectedRowKeys changed: ', selectedRowKeys);
@@ -259,7 +256,6 @@ class ReportTable extends PureComponent {
             <Select.Option value="1">DOING</Select.Option>
             <Select.Option value="2">DONE</Select.Option>
           </Select>
-          <Button><Icon type="printer"/></Button>
     </span>
       )
     }];
