@@ -41,7 +41,7 @@ MachineImport.propTypes = {
   onRemove: PropTypes.func.isRequired,
   beforeUpload: PropTypes.func.isRequired,
   handleUpload: PropTypes.func.isRequired,
-  fileList: PropTypes.object.isRequired,
+  fileList: PropTypes.array.isRequired,
   uploading: PropTypes.bool.isRequired
 };
 

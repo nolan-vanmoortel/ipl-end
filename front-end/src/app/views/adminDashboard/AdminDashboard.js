@@ -32,7 +32,7 @@ class AdminDashboard extends PureComponent {
     uploadFile:         PropTypes.func.isRequired,
     machines:           PropTypes.array.isRequired,
     form:               PropTypes.object.isRequired,
-    manual:             PropTypes.object.isRequired
+    manual:             PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -71,6 +71,7 @@ class AdminDashboard extends PureComponent {
   };
 
   beforeUpload = (file) => {
+    console.log(file);
     this.setState(({ fileList }) => ({
       fileList: [...fileList, file]
     }));
@@ -81,7 +82,7 @@ class AdminDashboard extends PureComponent {
     const { fileList } = this.state;
     const formData = new FormData();
     fileList.forEach((file) => {
-      formData.append('files[]', file)
+      formData.append(file.uid, file);
     });
     this.setState({ uploading:true });
     const { uploadFile } = this.props;

@@ -25,7 +25,6 @@ fun MachineController(machineDao: MachineDao, machineFactory: MachineFactory){
         }
         post("/import") {
             try {
-
                 request.attribute("org.eclipse.jetty.multipartConfig", MultipartConfigElement("/temp"))
                 request.raw().getPart("file").inputStream.bufferedReader().use {
                     //Skipping first line from the CSV file
