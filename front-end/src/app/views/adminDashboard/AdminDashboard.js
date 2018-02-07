@@ -79,8 +79,8 @@ class AdminDashboard extends PureComponent {
   };
 
   beforeUpload = (file) => {
-    var txt = /^ipscan....*txt$/;
-    var csv = /^ipscan....*csv$/;
+    const txt = /^ipscan....*txt$/;
+    const csv = /^ipscan....*csv$/;
     if(!txt.test(file.name) && !csv.test(file.name)){
       this.openErrorNotification('Fichier invalide');
       this.onRemove(file);
