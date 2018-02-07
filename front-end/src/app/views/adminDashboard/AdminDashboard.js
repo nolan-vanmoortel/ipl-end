@@ -82,7 +82,7 @@ class AdminDashboard extends PureComponent {
     const { fileList } = this.state;
     const formData = new FormData();
     fileList.forEach((file) => {
-      formData.append(file.uid, file);
+      formData.append('file', file);
     });
     this.setState({ uploading:true });
     const { uploadFile } = this.props;

@@ -29,8 +29,8 @@ fun MachineController(machineDao: MachineDao, machineFactory: MachineFactory){
                 request.raw().getPart("file").inputStream.bufferedReader().use {
                     //Skipping first line from the CSV file
                     it.readLine()
-                    println("data value: ")
-                    val location = request.raw().getPart("data").toString()
+                    println("data value: ${request.raw().getPart("file").submittedFileName}")
+                    var location = "017"
                             //request.params("data")
                     var line: String? = it.readLine()
 
