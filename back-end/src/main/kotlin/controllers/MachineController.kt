@@ -30,7 +30,9 @@ fun MachineController(machineDao: MachineDao, machineFactory: MachineFactory){
                 request.raw().getPart("file").inputStream.bufferedReader().use {
                     //Skipping first line from the CSV file
                     it.readLine()
-                    val location = "017"
+                    println("data value: ")
+                    val location = request.raw().getPart("data").toString()
+                            //request.params("data")
                     var line: String? = it.readLine()
 
                     //Map with mac as key and state as value. Represent all machines of a location
