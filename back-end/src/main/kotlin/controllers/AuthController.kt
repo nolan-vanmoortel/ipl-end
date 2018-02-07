@@ -62,12 +62,12 @@ fun AuthController(userDao: UserDao,
             checkCookie(request, userDao)
             ObjectMapper().writeValueAsString(Message("Welkome my bro !"))
         }
-        get("/update/state") {
+        get("/update/state/:machine/:date/:state") {
             checkCookie(request, userDao)
             try {
-                val report = reportFactory.getReport(date=request.qp("date"))
-                val state = Integer.parseInt(request.qp("state"))
-                val machine = request.qp("machine")
+                val report = reportFactory.getReport(date=request.params("date"))
+                val state = Integer.parseInt(request.params("state"))
+                val machine = request.params("machine")
                 if(state != 0 && state != 1 && state != 2)
                     throw NoFatalException("Incorrect State")
                 reportDao.updateState(machine, report, state)

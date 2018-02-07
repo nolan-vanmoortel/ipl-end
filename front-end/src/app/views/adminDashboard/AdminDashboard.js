@@ -4,12 +4,22 @@ import React, {
   PureComponent
 }                     from 'react';
 import PropTypes      from 'prop-types';
-import {Col, Divider, Row, Table, Icon, Switch, Radio, Form} from "antd";
-import {MachineImport} from "../../components";
-import ReportTable from "../../components/reportTable/ReportTable";
-import MachineManual from "../../components/machineImport/MachineManual";
+import {Col, Divider, Row, Table, Icon, Switch, Radio, Form} from 'antd';
+import {MachineImport} from '../../components';
+import ReportTable from '../../components/reportTable/ReportTable';
+import MachineManual from '../../components/machineImport/MachineManual';
 
-class AdminDashboard extends PureComponent{
+class AdminDashboard extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: null,
+      location: '',
+      fileList: [],
+      uploading: false
+    };
+  }
+
   static propTypes = {
     match:    PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
@@ -23,7 +33,7 @@ class AdminDashboard extends PureComponent{
     machines:           PropTypes.array.isRequired,
     form:               PropTypes.object.isRequired,
     manual:             PropTypes.object.isRequired
-};
+  };
 
   componentDidMount() {
     const { enterAdminDashboard } = this.props;
@@ -33,41 +43,71 @@ class AdminDashboard extends PureComponent{
   componentWillUnmount() {
     const { leaveAdminDashboard } = this.props;
     leaveAdminDashboard();
-
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.form.validateFields((err,values) => {
-      if(!err){
+    this.props.form.validateFields((err, values) => {
+      if(!err) {
         const machine = {
           name: values.name,
           ip: values.ip,
           mac: values.mac,
           location: values.location,
           comment: values.comment
-        }
+        };
         const {manual} = this.props;
         manual(machine);
       }
     });
-  }
+  };
 
+  onRemove = (file) => {
+    const { fileList } = this.state;
+    const index = fileList.indexOf(file);
+    const newFileList = fileList.slice();
+    newFileList.splice(index, 1);
+    this.setState({ fileList: newFileList });
+  };
 
-  render(){
+  beforeUpload = (file) => {
+    this.setState(({ fileList }) => ({
+      fileList: [...fileList, file]
+    }));
+    return false;
+  };
+
+  handleUpload = () => {
+    const { fileList } = this.state;
+    const formData = new FormData();
+    fileList.forEach((file) => {
+      formData.append('files[]', file)
+    });
+    this.setState({ uploading:true });
+    const { uploadFile } = this.props;
+    uploadFile(formData);
+  };
+
+  render() {
     const {
-      uploadFile,
       machines
     } = this.props;
 
     const { getFieldDecorator } = this.props.form;
 
+    const { fileList, uploading } = this.state;
+
     return(
       <div>
         <Row>
-          <Col span={6} ></Col>
-          <Col xs={{span:12}} md={{span:6, offset:3}} style={{textAlign:"center"}}>
-            <MachineImport uploadFile={uploadFile}/>
+          <Col span={6}  />
+          <Col xs={{span:12}} md={{span:6, offset:3}} style={{textAlign:'center'}}>
+            <MachineImport
+              onRemove={this.onRemove}
+              beforeUpload={this.beforeUpload}
+              handleUpload={this.handleUpload}
+              fileList={fileList}
+              uploading={uploading}/>
           </Col>
         </Row>
         <Divider />
