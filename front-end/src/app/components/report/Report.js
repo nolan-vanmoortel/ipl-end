@@ -17,14 +17,15 @@ const RadioButton = Radio.Button;
 import 'font-awesome/css/font-awesome.css';
 
 import FroalaEditor from 'react-froala-wysiwyg';
-import {appConfig} from "../../config";
+import { appConfig } from '../../config';
 
 const Report = ({
                   getFieldDecorator,
                   model,
                   config,
                   handleSubmit,
-                  handleModelChange
+                  handleModelChange,
+                  loading
 })=>{
   return (
     <Form onSubmit={handleSubmit}>
@@ -63,7 +64,7 @@ const Report = ({
         onModelChange={handleModelChange}
         config={config}
       />
-      <Button type="primary" htmlType="submit" className="login-form-button" style={{marginTop: 10}}>
+      <Button loading={loading} type="primary" htmlType="submit" className="login-form-button" style={{marginTop: 10}}>
         Envoyer
       </Button>
     </Form>
@@ -75,7 +76,8 @@ Report.propTypes = {
   handleSubmit:       PropTypes.func.isRequired,
   handleModelChange:  PropTypes.func.isRequired,
   model:              PropTypes.string.isRequired,
-  config:             PropTypes.object.isRequired
+  config:             PropTypes.object.isRequired,
+  loading:            PropTypes.bool.isRequired
 };
 
 export default Report;

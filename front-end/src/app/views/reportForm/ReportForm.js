@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // @flow weak
 
 import React, {
@@ -50,7 +51,8 @@ class ReportForm extends PureComponent<Props, State> {
     super(props, context);
     this.state = {
       model: '',
-      machine: ''
+      machine: '',
+      loading: false
     };
   }
 
@@ -81,6 +83,7 @@ class ReportForm extends PureComponent<Props, State> {
       toggleRequestSuccess();
       this.getMachines();
       history.push('/');
+      this.setState({ loading:false });
     }
   }
 
@@ -101,10 +104,6 @@ class ReportForm extends PureComponent<Props, State> {
     notification.success({
       message: comment
     });
-  };
-
-  handleEmailChange = (event) => {
-    this.setState({ email: event.target.value });
   };
 
   handleModelChange = (model) => {
@@ -141,13 +140,14 @@ class ReportForm extends PureComponent<Props, State> {
         };
         const { createReport } = this.props;
         createReport(report);
+        this.setState({ loading: true });
       }
     });
   };
 
 
   render() {
-    const { model } = this.state;
+    const { model, loading } = this.state;
     const { getFieldDecorator } = this.props.form;
     const config = {
       heightMin: 200,
@@ -167,7 +167,8 @@ class ReportForm extends PureComponent<Props, State> {
           handleSubmit={this.handleSubmit}
           handleModelChange={this.handleModelChange}
           model={model}
-          config={config}/>
+          config={config}
+          loading={loading} />
       </AnimatedView>
     );
   }
