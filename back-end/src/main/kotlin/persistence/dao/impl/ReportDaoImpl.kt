@@ -28,9 +28,16 @@ class ReportDaoImpl(private val dal: DalServices,
                     private val machineFactory: MachineFactory,
                     private val properties: PluginProperties): ReportDao {
 
-    override fun updateState(name: String, report: ReportDto, state: Int) {
+    override fun updateAdmin(name: String, date: String, email: String) {
+        val result = dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
+                .updateOne(Document().append("name", name).append("reports.date", date),
+                        Document().append("\$set", Document().append("reports.\$.emailAdmin", email)),
+                        UpdateOptions().upsert(true))
+    }
+
+    override fun updateState(name: String, date:String, state: Int) {
             val result = dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
-                    .updateOne(Document().append("name", name).append("reports.date", report.date),
+                    .updateOne(Document().append("name", name).append("reports.date", date),
                             Document().append("\$set", Document().append("reports.\$.state", state)),
                             UpdateOptions().upsert(true))
     }
