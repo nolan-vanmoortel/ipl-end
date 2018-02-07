@@ -65,7 +65,7 @@ fun AuthController(userDao: UserDao,
         get("/update/state/:machine/:date/:state") {
             checkCookie(request, userDao)
             try {
-                val report = reportFactory.getReport(date=request.params("date"))
+                val report = request.params("date")
                 val state = Integer.parseInt(request.params("state"))
                 val machine = request.params("machine")
                 if(state != 0 && state != 1 && state != 2)
@@ -78,6 +78,21 @@ fun AuthController(userDao: UserDao,
                 status(403)
                 ObjectMapper().writeValueAsString(Message("Wrong e-mail or password !"))
 
+            }
+        }
+        get("/update/admin/:machine/:date/:admin") {
+            checkCookie(request, userDao)
+            try {
+                val date = request.params("date")
+                val admin = request.params("admin")
+                val machine = request.params("machine")
+                reportDao.updateAdmin(machine, date, admin)
+                status(200)
+                ObjectMapper().writeValueAsString(Message("Report sucessfully updated"))
+            } catch (e: NoFatalException) {
+                e.printStackTrace()
+                status(403)
+                ObjectMapper().writeValueAsString(Message("Wrong e-mail or password !"))
             }
         }
     }

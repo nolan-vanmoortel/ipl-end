@@ -16,5 +16,6 @@ interface ReportDao {
     fun getReportById(id: String): ReportReal
     fun getReportByDate(date: String): ReportReal
     fun save(name: String, report: ReportDto)
-    fun updateState(name: String, report: ReportDto, state: Int)
+    fun updateState(name: String, date: String, state: Int)
+    fun updateAdmin(name: String, date:String, email: String)
 }
