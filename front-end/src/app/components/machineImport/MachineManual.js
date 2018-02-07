@@ -9,40 +9,41 @@ const MachineManual = ({
                          handleSubmit
 
  }) => {
-
   return (
     <Form onSubmit={handleSubmit}>
       <h1>Soumission d'une nouvelle machine</h1>
       <FormItem>
         {getFieldDecorator('name', {
-          rules: [{ required: true, message: 'Introduisez le nom de la machine' }]
+          rules: [{ required: true, message: 'Introduisez le nom de la machine'}]
         })(
           <Input prefix={<Icon type="edit" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Nom de la machine" />
         )}
       </FormItem>
       <FormItem>
         {getFieldDecorator('ip', {
-          rules: [{ required: true, message: 'Introduisez l\'IP de la machine!' }]
+          rules: [{ required: true, message: 'Introduisez l\'IP de la machine'}]
         })(
           <Input prefix={<Icon type="edit" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="IP de la machine" />
         )}
       </FormItem>
       <FormItem>
         {getFieldDecorator('mac', {
-          rules: [{ required: true, message: 'Introduisez la MAC de la machine!' }]
+          rules: [{ required: true, message: 'Introduisez la MAC de la machine'}]
         })(
           <Input prefix={<Icon type="edit" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="MAC de la machine" />
         )}
       </FormItem>
       <FormItem>
         {getFieldDecorator('location', {
-          rules: [{ required: true, message: 'Introduisez la salle ou se situe la machine!' }]
+          rules: [{ required: true, message: 'Introduisez la salle ou se situe la machine'}]
         })(
-          <Input prefix={<Icon type="edit" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="MAC de la machine" />
+          <Input prefix={<Icon type="edit" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Salle de la machine" />
         )}
       </FormItem>
       <FormItem>
-        {getFieldDecorator('comment')(
+        {getFieldDecorator('comment', {
+          rules: [{ required: true, message: 'Introduisez un commentaire pour la machine'}]
+        })(
           <Input prefix={<Icon type="edit" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Commentaire sur la machine" />
         )}
       </FormItem>
