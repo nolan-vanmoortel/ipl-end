@@ -18,14 +18,12 @@ class ReportTable extends PureComponent {
   componentDidUpdate(){
     const { machines }  = this.props;
     const { data }  = this.state;
-    console.log(machines.length+" / "+data.length);
     if(machines.length !== 0 && data.length === 0)
       this.fillTable(machines);
   }
   componentWillMount(){
     const { machines }  = this.props;
     const { data }  = this.state;
-    console.log("will "+machines.length+" / "+data.length);
     if(machines.length !== 0 && data.length === 0)
       this.fillTable(machines);
   }
@@ -52,8 +50,8 @@ class ReportTable extends PureComponent {
     });
   }
 
-  handleChangeSelect = (value) => {
-    console.log(`selected ${value}`);
+  handleChangeSelect = (record, value) => {
+    console.log(record, value);
   }
 
   onInputChange = (e) => {
@@ -223,9 +221,9 @@ class ReportTable extends PureComponent {
       title: 'Action',
       key: 'action',
       width: 200,
-      render: () => (
+      render: (text,record) => (
         <span>
-          <Select defaultValue="0" style={{ width: 120 }} onChange={this.handleChangeSelect}>
+          <Select defaultValue="0" style={{ width: 120 }} onChange={(value)=>{this.handleChangeSelect(record,value)}}>
             <Select.Option value="0">TODO</Select.Option>
             <Select.Option value="1">DOING</Select.Option>
             <Select.Option value="2">DONE</Select.Option>
