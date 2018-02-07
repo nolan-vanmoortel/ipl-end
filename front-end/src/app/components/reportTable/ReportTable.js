@@ -6,6 +6,7 @@ import React, {
 import PropTypes      from 'prop-types';
 import styles         from './reportTable.scss';
 import {Table, Icon, Switch, Radio, Form, Divider, Button, Input, Select} from 'antd';
+import ReportViewer from "./reportViewer/ReportViewer";
 const FormItem = Form.Item;
 
 const expandedRowRender = record => <p>{record.description}</p>;
@@ -124,7 +125,7 @@ class ReportTable extends PureComponent {
           local: machine.location,
           nom: machine.name,
           admin: report.emailAdmin.split('@')[0].replace('.', ' '),
-          commentaire: <div dangerouslySetInnerHTML={{ __html: report.comment }}/>
+        commentaire: <ReportViewer name={machine.name} mac={machine.mac} commentMachine={machine.comment} commentReport={report.comment} email={report.email} ip={machine.ip}/>
         });
       });
     });
