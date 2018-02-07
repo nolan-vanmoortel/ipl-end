@@ -51,6 +51,13 @@ class Login extends PureComponent<Props, State> {
 
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false
+    };
+  }
+
   static defaultProps = {
     isFetching:      false,
     isLogging:       false
@@ -90,7 +97,7 @@ class Login extends PureComponent<Props, State> {
 // eslint-disable-next-line react/prop-types
     const { getFieldDecorator, getFieldsError, isFieldTouched, getFieldError } = this.props.form;
     const passwordError = isFieldTouched('password') && getFieldError('password');
-
+    const { loading } = this.state;
     return (
       <div style={{width:'100%', textAlign:'center'}}>
         <div className={styles.login}>
@@ -122,6 +129,7 @@ class Login extends PureComponent<Props, State> {
                   type="primary"
                   htmlType="submit"
                   disabled={this.hasErrors(getFieldsError())}
+                  loading={loading}
                 >
                   Se connecter
                 </Button>
@@ -141,6 +149,7 @@ class Login extends PureComponent<Props, State> {
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
         try {
+          this.setState({ loading: true });
           const response = await logUserIfNeeded(values);
           const {
             data: {
@@ -148,12 +157,13 @@ class Login extends PureComponent<Props, State> {
               email
             }
           } = response.payload;
-
+          this.setState({ loading: false });
           auth.setToken(token);
           auth.setUserInfo(email);
           this.openSuccessNotification('Connexion réussie');
           history.push({pathname: '/adminDashboard'}); // back to Home
         } catch (error) {
+          this.setState({ loading: false });
           /* eslint-disable no-console */
           console.log('login wrong..., error: ', error);
           /* eslint-enable no-console */
