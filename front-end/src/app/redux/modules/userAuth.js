@@ -29,7 +29,7 @@ const initialState = {
   isLogging:       false,
   time:            '',
 
-  user:              '',
+  user:            '',
 
   token:           null,
   isAuthenticated: false
@@ -49,7 +49,7 @@ export default function (
       actionTime:      currentTime,
       isAuthenticated: action.isAuthenticated,
       token:           action.token,
-      user:              action.user
+      user:            action.user
     };
 
   case DISCONNECT_USER:
@@ -58,7 +58,7 @@ export default function (
       actionTime:      currentTime,
       isAuthenticated: false,
       token:           initialState.token,
-      user:              initialState.user
+      user:            initialState.user
     };
 
   case REQUEST_LOG_USER:

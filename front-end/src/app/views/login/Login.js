@@ -133,17 +133,14 @@ class Login extends PureComponent<Props, State> {
     } = this.props;
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         try {
           const response = await logUserIfNeeded(values);
-          console.log(response.payload);
           const {
             data: {
               token,
               email
           }
           } = response.payload;
-          console.log(email+""+token);
 
           auth.setToken(token);
           auth.setUserInfo(email);

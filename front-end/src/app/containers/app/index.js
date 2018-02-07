@@ -6,19 +6,22 @@ import {
   compose
 }                             from 'redux';
 import * as viewsActions      from '../../redux/modules/views';
+import * as machinesActions   from '../../redux/modules/machine';
 import App                    from './App';
 import { withRouter }         from 'react-router';
 
 
 const mapStateToProps = (state) => {
   return {
-    currentView:  state.views.currentView
+    currentView:  state.views.currentView,
+    machines: state.machine.machines
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
+      ...machinesActions,
       ...viewsActions
     },
     dispatch

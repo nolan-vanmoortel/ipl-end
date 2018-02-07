@@ -56,8 +56,6 @@ export default function (
 // --------------------------------
 
 export function handleScan(data: string) {
-  console.log(data);
-  console.log(initialState.url);
   return {
     type : HANDLE_RESULT,
     data

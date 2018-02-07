@@ -25,7 +25,7 @@ class PrintQr extends PureComponent {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      machineUrl: '',
+      machineUrl: ''
     };
   }
 

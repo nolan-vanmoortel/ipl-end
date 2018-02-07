@@ -11,9 +11,9 @@ const UPLOAD_REQUEST:                   string = 'UPLOAD_REQUEST';
 const UPLOAD_RECEIVED:                  string = 'UPLOAD_RECEIVED';
 const UPLOAD_ERROR:                     string = 'UPLOAD_ERROR';
 const GET_ALL_MACHINES:                  string = 'GET_ALL_MACHINES';
-const ALL_MACHINES_RECEIVED:             string = 'ALL_MACHINES_RECEIVED';
-const ALL_MACHINES_ERROR:                string = 'ALL_MACHINES_ERROR';
-
+const GET_ALL_MACHINES_RECEIVED:             string = 'GET_ALL_MACHINES_RECEIVED';
+const GET_ALL_MACHINES_ERROR:                string = 'GET_ALL_MACHINES_ERROR';
+const UPDATE_MACHINES:                string = 'UPDATE_MACHINES';
 
 // --------------------------------
 // REDUCER
@@ -21,7 +21,8 @@ const ALL_MACHINES_ERROR:                string = 'ALL_MACHINES_ERROR';
 
 const initialState = {
   file:           null,
-  upload:         false
+  upload:         false,
+  machines:       []
 };
 
 export default function (
@@ -45,15 +46,20 @@ export default function (
         file: null,
         upload: false
       };
+    case UPDATE_MACHINES:
+      return{
+        ...state,
+        machines: action.machines
+      };
     case GET_ALL_MACHINES:
       return{
         ...state
       };
-    case ALL_MACHINES_RECEIVED:
+    case GET_ALL_MACHINES_RECEIVED:
       return{
         ...state
       };
-    case ALL_MACHINES_ERROR:
+    case GET_ALL_MACHINES_ERROR:
       return{
         ...state
       };
@@ -82,8 +88,8 @@ export function getMachines(){
         type: FETCH_TYPE,
         actionTypes: {
           request:  GET_ALL_MACHINES,
-          success:  ALL_MACHINES_RECEIVED,
-          fail:     ALL_MACHINES_ERROR
+          success:  GET_ALL_MACHINES_RECEIVED,
+          fail:     GET_ALL_MACHINES_ERROR
         },
         url,
         method,
@@ -91,6 +97,13 @@ export function getMachines(){
         options
       }
     });
+  };
+}
+
+export function updateMachines(machines){
+  return {
+    type: UPDATE_MACHINES,
+    machines
   };
 }
 

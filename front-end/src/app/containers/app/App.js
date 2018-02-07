@@ -9,10 +9,9 @@ import {
   Footer
 }                             from '../../components';
 import MainRoutes             from '../../routes/MainRoutes';
-import {Affix, BackTop, Button, Layout} from "antd";
-const { Content } = Layout;
+import {Affix, BackTop, Button, Layout} from 'antd';
 import styles                 from './app.scss';
-
+const { Content } = Layout;
 
 class App extends Component {
   static propTypes = {
@@ -20,12 +19,30 @@ class App extends Component {
     location: PropTypes.object.isRequired,
     history:  PropTypes.object.isRequired,
 
-    currentView: PropTypes.string
-
+    currentView: PropTypes.string,
+    machines: PropTypes.array.isRequired,
+    getMachines: PropTypes.func.isRequired,
+    updateMachines: PropTypes.func.isRequired
   };
 
   state = {
-    collapsed: true
+    collapsed: true,
+  };
+
+  constructor() {
+    super();
+    this.getMachines();
+  }
+
+  getMachines = async () => {
+    const { updateMachines, getMachines } = this.props;
+    const response = await getMachines;
+    const {
+      data: {
+        allMachines
+      }
+    } = response.payload;
+    updateMachines(allMachines);
   };
 
   onCollapse = () => {
@@ -44,25 +61,26 @@ class App extends Component {
   goToForm = (machineName) =>{
     const { history } = this.props;
     this.onCollapse();
-    history.push('/report/'+machineName);
+    history.push('/report/'+machineName );
   };
 
 
+
   render() {
-    const { collapsed } = this.state;
-    const mockItems = ['HELLO', 'WORLD'];
+    const { collapsed, allMachines } = this.state;
+    console.log(allMachines);
 
     return (
       <div id="appContainer">
         <Layout style={{ minHeight: '100vh' }}>
-          <NavigationBar itemList={mockItems} collapsedNav={collapsed} handleToForm={this.goToForm} handleReturn={this.goToReader}/>
+          <NavigationBar itemList={allMachines} collapsedNav={collapsed} handleToForm={this.goToForm} handleReturn={this.goToReader}/>
           <Layout>
             <Content className={styles.backgroundApp}>
               <MainRoutes />
             </Content>
             <Footer/>
             <Affix offsetTop={0} offsetBottom={0} onChange={affixed => console.log(affixed)}>
-              <Button className={styles.darkButton} onClick={this.onCollapse} >{collapsed?"Afficher Menu":"Cacher Menu"}</Button>
+              <Button className={styles.darkButton} onClick={this.onCollapse} >{collapsed?'Afficher Menu':'Cacher Menu'}</Button>
             </Affix>
           </Layout>
           <BackTop />
