@@ -29,10 +29,7 @@ const initialState = {
   isLogging:       false,
   time:            '',
 
-  id:              '',
-  login:           '',
-  firstname:       '',
-  lastname:        '',
+  user:              '',
 
   token:           null,
   isAuthenticated: false
@@ -52,10 +49,7 @@ export default function (
       actionTime:      currentTime,
       isAuthenticated: action.isAuthenticated,
       token:           action.token,
-      id:              action.id,
-      login:           action.login,
-      firstname:       action.firstname,
-      lastname:        action.lastname
+      user:              action.user
     };
 
   case DISCONNECT_USER:
@@ -64,10 +58,7 @@ export default function (
       actionTime:      currentTime,
       isAuthenticated: false,
       token:           initialState.token,
-      id:              initialState.id,
-      login:           initialState.login,
-      firstname:       initialState.firstname,
-      lastname:        initialState.lastname
+      user:              initialState.user
     };
 
   case REQUEST_LOG_USER:
@@ -85,10 +76,7 @@ export default function (
       actionTime:      currentTime,
       isAuthenticated: true,
       token:           userLogged.token,
-      id:              userLogged.id,
-      login:           userLogged.login,
-      firstname:       userLogged.firstname,
-      lastname:        userLogged.lastname,
+      user:              userLogged.email,
       isLogging:       false
     };
 
@@ -114,10 +102,7 @@ export default function (
       ...state,
       actionTime: currentTime,
       isFetching: false,
-      id:         userInfos.id,
-      login:      userInfos.login,
-      firstname:  userInfos.firstname,
-      lastname:   userInfos.lastname
+      user:         userInfos.email,
     };
 
   case ERROR_USER_INFOS_DATA:
@@ -145,12 +130,12 @@ export function disconnectUser() {
 export function checkUserIsConnected() {
   const token           = auth.getToken();
   const user            = auth.getUserInfo();
-  const checkUserHasId  = obj => obj && obj._id;
+  const checkUserHasId  = obj => obj;
   const isAuthenticated = (token && checkUserHasId(user)) ? true : false;
   return {
     type: CHECK_IF_USER_IS_AUTHENTICATED,
     token,
-    ...user,
+    user,
     isAuthenticated
   };
 }
