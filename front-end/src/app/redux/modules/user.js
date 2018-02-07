@@ -13,6 +13,10 @@ const REQUEST_USER_INFOS_DATA:         string = 'REQUEST_USER_INFOS_DATA';
 const RECEIVED_USER_INFOS_DATA:        string = 'RECEIVED_USER_INFOS_DATA';
 const ERROR_USER_INFOS_DATA:           string = 'ERROR_USER_INFOS_DATA';
 
+const REQUEST_USERS:         string = 'REQUEST_USERS';
+const RECEIVED_USERS:        string = 'RECEIVED_USERS';
+const ERROR_USERS:           string = 'ERROR_USERS';
+
 const REQUEST_LOG_USER:                string = 'REQUEST_LOG_USER';
 const RECEIVED_LOG_USER:               string = 'RECEIVED_LOG_USER';
 const ERROR_LOG_USER:                  string = 'ERROR_LOG_USER';
@@ -32,7 +36,8 @@ const initialState = {
   user:            '',
 
   token:           null,
-  isAuthenticated: false
+  isAuthenticated: false,
+  users:[]
 };
 
 export default function (
@@ -112,6 +117,30 @@ export default function (
       isFetching:   false
     };
 
+    case REQUEST_USERS:
+      return {
+        ...state,
+        actionTime:   currentTime,
+        isFetching:   true
+      };
+
+    case RECEIVED_USERS:
+      const users = action.payload.data;
+
+      return {
+        ...state,
+        actionTime: currentTime,
+        isFetching: false,
+        users:         users
+      };
+
+    case ERROR_USERS:
+      return {
+        ...state,
+        actionTime:   currentTime,
+        isFetching:   false
+      };
+
   default:
     return state;
   }
@@ -121,6 +150,34 @@ export default function (
 // ACTIONS CREATORS
 // --------------------------------
 //
+
+export function getUsers() {
+  return dispatch => {
+    const FETCH_TYPE  = 'FETCH';
+    const url         = `${getLocationOrigin()}/${appConfig.API.users}`;
+    const method      = 'get';
+    const headers     = {};
+    const options     = {
+      credentials: 'same-origin'
+    };
+
+    return dispatch({
+      type: 'FETCH_MIDDLEWARE',
+      fetch: {
+        type: FETCH_TYPE,
+        actionTypes: {
+          request:  REQUEST_USERS,
+          success:  RECEIVED_USERS,
+          fail:     ERROR_USERS
+        },
+        url,
+        method,
+        headers,
+        options
+      }
+    });
+  };
+}
 
 export function disconnectUser() {
   auth.clearAllAppStorage();

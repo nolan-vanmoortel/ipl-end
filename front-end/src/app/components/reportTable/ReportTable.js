@@ -17,32 +17,17 @@ const footer = () => 'Here is footer';
 class ReportTable extends PureComponent {
 
   componentDidUpdate(){
-    const { machines }  = this.props;
-    const { data }  = this.state;
-    let haveReport = false;
-    machines.forEach((elem)=>{
-      if(elem.reports.length > 0) {
-        haveReport = true;
-        return true;
-      }
-      return false;
-    });
-    if((machines.length !== 0 && data.length === 0) && (haveReport))
-      this.fillTable(machines);
+    const { machines, users }  = this.props;
+    this.fillTable(machines);
+    console.log(users);
+    this.updateListAdmin(users);
+
   }
   componentWillMount(){
-    const { machines }  = this.props;
-    const { data }  = this.state;
-    let haveReport = false;
-    machines.forEach((elem)=>{
-      if(elem.reports.length > 0) {
-        haveReport = true;
-        return true;
-      }
-      return false;
-    });
-    if((machines.length !== 0 && data.length === 0) && (haveReport))
-      this.fillTable(machines);
+    const { machines, users }  = this.props;
+    this.fillTable(machines);
+    console.log(users);
+    this.updateListAdmin(users);
   }
 
   state={
@@ -56,7 +41,8 @@ class ReportTable extends PureComponent {
     searchText:'',
     filterDropdownVisible: false,
     filtered: false,
-    selectedRowKeys: []
+    selectedRowKeys: [],
+    listOptionUser: []
   }
 
   handleChange = (pagination, filters, sorter) => {
@@ -140,6 +126,17 @@ class ReportTable extends PureComponent {
   }
 
   fillTable = (machines) =>{
+    const { data }  = this.state;
+    let haveReport = false;
+    machines.forEach((elem)=>{
+      if(elem.reports.length > 0) {
+        haveReport = true;
+        return true;
+      }
+      return false;
+    });
+    if(!(machines.length !== 0 && data.length === 0 && haveReport))
+      return;
     const reportTable = [];
     const { intToSeverite, intToState, intToType } = this.state;
 
@@ -163,8 +160,19 @@ class ReportTable extends PureComponent {
     this.setState({data:reportTable.slice(0), dataReadOnly:reportTable.slice(0)});
   }
 
+  updateListAdmin = (users)=>{
+    const {listOptionUser} = this.state;
+    if(!(users.length !== 0 && listOptionUser.length === 0))
+      return;
+    const listUsers = [];
+    users.map((user)=>{
+      listUsers.push(<Select.Option value={user.email}>{user.email.split('@')[0].replace('.', ' ')}</Select.Option>);
+    });
+    this.setState({listOptionUser:listUsers});
+  }
+
   render() {
-    const { sortedInfo, filteredInfo, data, selectedRowKeys } = this.state;
+    const { sortedInfo, filteredInfo, data, selectedRowKeys, listOptionUser } = this.state;
 
     const hasSelected = selectedRowKeys.length > 0;
     const columns = [ {
@@ -281,9 +289,7 @@ class ReportTable extends PureComponent {
             optionFilterProp="children"
             onChange={(value)=>{this.handleChangeSelectAdmin(record,value)}}
             filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}>
-            <Option value="jack">Jack</Option>
-            <Option value="lucy">Lucy</Option>
-            <Option value="tom">Tom</Option>
+            {listOptionUser}
           </Select>
     </span>
       )

@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import * as viewsActions      from '../../redux/modules/views';
 import * as machineActions      from '../../redux/modules/machine';
 import * as reportActions      from '../../redux/modules/report';
+import * as userActions      from '../../redux/modules/user';
 
 import AdminDashboard from './AdminDashboard';
 
@@ -15,7 +16,8 @@ const mapStateToProps = (state) => {
 
     file:         state.machine.file,
 
-    machines:     state.machine.machines
+    machines:     state.machine.machines,
+    users:        state.user.users
   };
 };
 
@@ -26,7 +28,8 @@ const mapDispatchToProps = (dispatch) => {
       enterAdminDashboard: viewsActions.enterHome,
       leaveAdminDashboard: viewsActions.leaveHome,
       ...machineActions,
-      ...reportActions
+      ...reportActions,
+      ...userActions
     },
     dispatch
   );
