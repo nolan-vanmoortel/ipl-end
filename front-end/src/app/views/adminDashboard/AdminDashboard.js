@@ -20,9 +20,10 @@ class AdminDashboard extends PureComponent{
     leaveAdminDashboard:    PropTypes.func.isRequired,
 
     uploadFile:         PropTypes.func.isRequired,
+    machines:           PropTypes.array.isRequired,
     form:               PropTypes.object.isRequired,
     manual:             PropTypes.object.isRequired
-  };
+};
 
   componentDidMount() {
     const { enterAdminDashboard } = this.props;
@@ -55,7 +56,8 @@ class AdminDashboard extends PureComponent{
 
   render(){
     const {
-      uploadFile
+      uploadFile,
+      machines
     } = this.props;
 
     const { getFieldDecorator } = this.props.form;
@@ -77,7 +79,7 @@ class AdminDashboard extends PureComponent{
         <Divider />
         <Row>
         <Col span={24} >
-          <ReportTable/>
+          <ReportTable machines={machines}/>
         </Col>
         </Row>
       </div>

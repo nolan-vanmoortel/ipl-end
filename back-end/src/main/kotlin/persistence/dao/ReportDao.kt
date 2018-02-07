@@ -14,6 +14,7 @@ interface ReportDao {
      * @return a report if the id represent a report and null otherwise.
      */
     fun getReportById(id: String): ReportReal
-    fun getReportByDate(date: LocalDateTime): ReportReal
+    fun getReportByDate(date: String): ReportReal
     fun save(name: String, report: ReportDto)
+    fun updateState(name: String, report: ReportDto, state: Int)
 }

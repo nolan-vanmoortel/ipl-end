@@ -13,8 +13,8 @@ interface ReportFactory {
      * @return a new instance of Report as an ReportDto.
      * @params used to initiate the fields of the Report.
      */
-    fun getReport(id:String = "", date:LocalDateTime = LocalDateTime.now(), email: String = "",
-                  comment: String = "", emailAdmin: String = "", state: String = "TODO",
+    fun getReport(id:String = "", date:String = "", email: String = "",
+                  comment: String = "", emailAdmin: String = "", state: Int = 0,
                   severity:Int = 0, type: Int = 0): ReportDto
     fun getReport(document : Document): ReportDto
 }

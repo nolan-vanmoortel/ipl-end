@@ -10,6 +10,7 @@ import spark.Spark.path
 import spark.kotlin.post
 import util.Message
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 fun ReportController(reportDao: ReportDao, reportFactory: ReportFactory){
     path("/reports") {
@@ -20,7 +21,7 @@ fun ReportController(reportDao: ReportDao, reportFactory: ReportFactory){
                         || map["type"] == null || map["machine"] == null)
                     throw NoFatalException("Requête Incorrecte")
                 val report: ReportDto = reportFactory.getReport(
-                        date= LocalDateTime.now(),
+                        date= LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME),
                         email= map["email"]!!,
                         comment= map["modele"]!!,
                         severity = Integer.parseInt(map["severity"]!!),

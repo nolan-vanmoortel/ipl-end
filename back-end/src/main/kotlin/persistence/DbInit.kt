@@ -13,11 +13,11 @@ fun main(args: Array<String>) {
     val mongo = MongoClient(MongoClientURI("mongodb://${properties.getProperty("dbUser")}:${properties.getProperty("dbPassword")}" +
             "@${properties.getProperty("dbUrl")}:${properties.getProperty("dbPort")}/${properties.getProperty("dbName")}"))
     val database = mongo.getDatabase(properties.getProperty("dbName"))
-    database.drop()
+    /*database.drop()
     database.createCollection(properties.getProperty("MACHINES_COLLECTION"))
-    database.createCollection(properties.getProperty("USERS_COLLECTION"))
+    database.createCollection(properties.getProperty("USERS_COLLECTION"))*/
     val machines = database.getCollection(properties.getProperty("MACHINES_COLLECTION"))
-    val users = database.getCollection(properties.getProperty("USERS_COLLECTION"))
+    /*val users = database.getCollection(properties.getProperty("USERS_COLLECTION"))*/
     val machine1 = Document("ip", "165.17.54.21")
             .append("mac", "yolo:fd01")
             .append("name", "machine1")
@@ -26,10 +26,10 @@ fun main(args: Array<String>) {
             .append("reports", ArrayList<Any>())
             .append("state", false)
     machines.insertOne(machine1)
-    val user1 = Document("email", "jean.luc@vinci.be")
+    /*val user1 = Document("email", "jean.luc@vinci.be")
             .append("salt", "123")
             .append("id", "1")
             .append("password", "1234")
-    users.insertOne(user1)
+    users.insertOne(user1)*/
 
 }
