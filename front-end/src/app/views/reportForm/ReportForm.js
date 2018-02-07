@@ -40,7 +40,10 @@ class ReportForm extends PureComponent<Props, State> {
     toggleRequestError: PropTypes.func.isRequired,
     requestError: PropTypes.bool.isRequired,
     toggleRequestSuccess: PropTypes.func.isRequired,
-    requestSuccess: PropTypes.bool.isRequired
+    requestSuccess: PropTypes.bool.isRequired,
+
+    getMachines: PropTypes.func.isRequired,
+    updateMachines: PropTypes.func.isRequired
   };
 
   constructor(props, context) {
@@ -76,9 +79,17 @@ class ReportForm extends PureComponent<Props, State> {
     if(requestSuccess) {
       this.openSuccessNotification('Nous avons bien reçu votre problème');
       toggleRequestSuccess();
+      this.getMachines();
       history.push('/');
     }
   }
+
+  getMachines = async () => {
+    const { updateMachines, getMachines } = this.props;
+    const response = await getMachines();
+    const allMachines = response.payload.data;
+    updateMachines(allMachines);
+  };
 
   openErrorNotification = (comment) => {
     notification.error({
