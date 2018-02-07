@@ -29,7 +29,8 @@ fun AuthController(userDao: UserDao, userFactory: UserFactory){
                 if(hash == user.password) {
                     response.cookie("email", user.email, 3600)
                     response.cookie("token", hash, 3600)
-                    "{'email':${user.email},'token':$hash}"
+                    type("application/json")
+                    "{\"email\":\"${user.email}\",\"token\":\"$hash\"}"
                 }
                 else
                     throw NoFatalException("")

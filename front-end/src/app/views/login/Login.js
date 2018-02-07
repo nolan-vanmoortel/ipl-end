@@ -59,8 +59,6 @@ class Login extends PureComponent<Props, State> {
       enterLogin,
       disconnectUser
     } = this.props;
-
-    disconnectUser();
     enterLogin();
   }
 
@@ -126,18 +124,19 @@ class Login extends PureComponent<Props, State> {
         console.log('Received values of form: ', values);
         try {
           const response = await logUserIfNeeded(values);
+          console.log(response.payload);
           const {
             data: {
               token,
               email
           }
           } = response.payload;
-          console.log(response.payload);
+          console.log(email+""+token);
 
           auth.setToken(token);
           auth.setUserInfo(email);
 
-          history.push({pathname: '/'}); // back to Home
+          history.push({pathname: '/adminDashboard'}); // back to Home
         } catch (error) {
           /* eslint-disable no-console */
           console.log('login wrong..., error: ', error);
