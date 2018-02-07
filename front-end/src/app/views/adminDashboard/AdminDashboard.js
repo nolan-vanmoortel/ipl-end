@@ -7,6 +7,7 @@ import PropTypes      from 'prop-types';
 import {Col, Divider, Row, Table, Icon, Switch, Radio, Form} from "antd";
 import {MachineImport} from "../../components";
 import ReportTable from "../../components/reportTable/ReportTable";
+import MachineManual from "../../components/machineImport/MachineManual";
 
 class AdminDashboard extends PureComponent{
   static propTypes = {
@@ -18,8 +19,10 @@ class AdminDashboard extends PureComponent{
     enterAdminDashboard:    PropTypes.func.isRequired,
     leaveAdminDashboard:    PropTypes.func.isRequired,
 
-    uploadFile:         PropTypes.func.isRequired
-  }
+    uploadFile:         PropTypes.func.isRequired,
+    form:               PropTypes.object.isRequired,
+    manual:             PropTypes.object.isRequired
+  };
 
   componentDidMount() {
     const { enterAdminDashboard } = this.props;
@@ -32,10 +35,30 @@ class AdminDashboard extends PureComponent{
 
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err,values) => {
+      if(!err){
+        const machine = {
+          name: values.name,
+          ip: values.ip,
+          mac: values.mac,
+          location: values.location,
+          comment: values.comment
+        }
+        const {manual} = this.props;
+        manual(machine);
+      }
+    });
+  }
+
+
   render(){
     const {
       uploadFile
     } = this.props;
+
+    const { getFieldDecorator } = this.props.form;
 
     return(
       <div>
@@ -43,6 +66,12 @@ class AdminDashboard extends PureComponent{
           <Col span={6} ></Col>
           <Col xs={{span:12}} md={{span:6, offset:3}} style={{textAlign:"center"}}>
             <MachineImport uploadFile={uploadFile}/>
+          </Col>
+        </Row>
+        <Divider />
+        <Row>
+          <Col>
+            <MachineManual getFieldDecorator={getFieldDecorator} handleSubmit={this.handleSubmit}/>
           </Col>
         </Row>
         <Divider />
@@ -58,4 +87,4 @@ class AdminDashboard extends PureComponent{
 
 }
 
-export default AdminDashboard;
+export default Form.create()(AdminDashboard);

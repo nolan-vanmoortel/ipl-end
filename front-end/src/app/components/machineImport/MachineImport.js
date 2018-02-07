@@ -28,11 +28,9 @@ class MachineImport extends PureComponent {
 
   render() {
     //const file = this.state.file
-    const {location} = this.state
-    const inputLocation = location.length > 0
     return (
       <div>
-        <Upload name="file"  action={getLocationOrigin()+'/'+appConfig.API.machines+'/import'} data ={this.state.location}>
+        <Upload name="file"  action={getLocationOrigin()+'/'+appConfig.API.machines+'/import'}>
           <Button>
             <Icon type="upload" /> Envoyer les machines
           </Button>

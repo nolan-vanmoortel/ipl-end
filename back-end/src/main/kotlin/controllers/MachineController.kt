@@ -1,10 +1,13 @@
 package controllers
 
+import business.entities.MachineDto
 import persistence.dao.MachineDao
 import spark.kotlin.post
 import util.Message
 import business.factory.MachineFactory
+import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
+import exceptions.NoFatalException
 import spark.Spark.path
 import spark.kotlin.get
 import javax.servlet.MultipartConfigElement
@@ -74,9 +77,42 @@ fun MachineController(machineDao: MachineDao, machineFactory: MachineFactory){
                     }
                 }
             }catch (e:Exception){
-                println(e.message)
+                e.printStackTrace()
             }
         }
+
+        post("/manual") {
+            try {
+                println("IN MANUAL")
+                val map = ObjectMapper().readValue<Map<String, String>>(request.body(),object: TypeReference<Map<String, String>>() {})
+
+                    println(request.body().toString())
+
+
+                for (key in map.keys){
+                    println("key: "+ key + " Value: " + map.get(key))
+                }
+
+                if(map["name"] == null || map["ip"] == null || map["mac"] == null
+                            || map["location"] == null)
+                        throw NoFatalException("Requête Incorrecte")
+                val newMachine = machineFactory.getMachine(
+                        name = map["name"]!!,
+                        ip = map["ip"]!!,
+                        mac = map["mac"]!!,
+                        comment = map["comment"]!!,
+                        location = map["location"]!!,
+                        state = true)
+
+                machineDao.save(newMachine)
+                ObjectMapper().writeValueAsString(Message("Report correctement enregistré"))
+            } catch(e: Exception) {
+                e.printStackTrace()
+            }
+
+        }
+
+
     }
 
 }
