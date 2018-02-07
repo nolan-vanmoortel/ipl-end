@@ -115,12 +115,12 @@ class AdminDashboard extends PureComponent {
     if(uploadError) {
       this.openErrorNotification('Une erreur est survenue');
       toggleUploadError();
-      this.setState({ uploading:false });
+      this.setState({ uploading: false });
     }
     if(uploadSuccess) {
       this.openSuccessNotification('Le fichier a bien ete envoye');
       toggleUploadSuccess();
-      this.setState({ uploading:false });
+      this.setState({ uploading: false });
     }
   };
 

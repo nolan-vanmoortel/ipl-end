@@ -5,6 +5,8 @@ import React, {
 }                     from 'react';
 import PropTypes      from 'prop-types';
 import QrPrint        from '../../components/qrPrintMachine/QrPrintMachine';
+import h2c             from 'html2canvas';
+import jsPDF          from 'jspdf';
 
 class PrintQr extends PureComponent {
   static propTypes= {
@@ -36,9 +38,9 @@ class PrintQr extends PureComponent {
         toPrint.push(<br/>);
       }
       toPrint.push(
-        <span style={{display:'inline-block'}}>
-        <h3>Scannez-moi<br/>en cas de problème &nbsp;</h3>
-          <h5>Machine name : {m} &nbsp;</h5>
+        <span style={{display:'inline-block'}} key={i}>
+        <h3>Scannez-moi &nbsp;</h3>
+        <h5>{m} &nbsp;</h5>
         <QrPrint key={i} urlMachine = {window.location.hostname+':'+window.location.port+'/report/'+m} />
         </span>
       );
@@ -46,11 +48,23 @@ class PrintQr extends PureComponent {
     return toPrint;
   };
 
+  printDocument = () => {
+    const input = document.getElementById('Thing to print');
+    h2c(input).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, 'JPEG', 0, 0);
+      pdf.save(this.props.match.params.machineName+'.pdf');
+    });
+  };
+
+
   render() {
     const toPrint = this.fillPage();
     return(
       <div>
-        {toPrint}
+        <button onClick={this.printDocument}>Print</button>
+        <div id="Thing to print">{toPrint}</div>
       </div>
     );
   }

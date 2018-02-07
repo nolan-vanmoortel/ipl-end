@@ -93,7 +93,7 @@ class Login extends PureComponent<Props, State> {
       <Card title="Veuilliez vous identifier : ">
         <Form onSubmit={this.handleSubmit}>
           <Row>
-            <Col span={8}>
+            <Col span={8} offset={8}>
               <FormItem>
                 {getFieldDecorator('login', {
                   rules: [{
@@ -108,7 +108,7 @@ class Login extends PureComponent<Props, State> {
             </Col>
           </Row>
           <Row>
-            <Col span={8}>
+            <Col span={8} offset={8}>
               <FormItem
                 validateStatus={passwordError ? 'error' : ''}
                 help={passwordError || ''}
@@ -122,7 +122,7 @@ class Login extends PureComponent<Props, State> {
             </Col>
           </Row>
           <Row>
-            <Col span={8}>
+            <Col span={8} offset={8}>
               <FormItem>
                 <Button
                   type="primary"

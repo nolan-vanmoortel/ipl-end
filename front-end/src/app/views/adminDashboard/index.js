@@ -12,10 +12,10 @@ const mapStateToProps = (state) => {
   return {
     // views
     currentView:  state.views.currentView,
-
     file:         state.machine.file,
-
-    machines:     state.machine.machines
+    machines:     state.machine.machines,
+    uploadError:  state.machine.uploadError,
+    uploadSuccess:state.machine.uploadSuccess,
   };
 };
 
