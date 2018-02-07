@@ -15,4 +15,5 @@ interface UserDao {
     fun getUserById(id: String): UserReal
     fun getUserByEMail(email: String): UserReal
     fun save(user: UserDto): UserReal
+    fun getAllUsers(): ArrayList<UserDto>
 }

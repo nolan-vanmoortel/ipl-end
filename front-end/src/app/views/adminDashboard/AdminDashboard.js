@@ -1,10 +1,11 @@
+/* eslint-disable no-undef */
 // @flow weak
 
 import React, {
   PureComponent
 }                     from 'react';
 import PropTypes      from 'prop-types';
-import {Col, Divider, Row, Table, Icon, Switch, Radio, Form} from 'antd';
+import {Col, Divider, Row, Table, Icon, Switch, Radio, Form, notification} from 'antd';
 import {MachineImport} from '../../components';
 import ReportTable from '../../components/reportTable/ReportTable';
 import MachineManual from '../../components/machineImport/MachineManual';
@@ -32,7 +33,14 @@ class AdminDashboard extends PureComponent {
     uploadFile:         PropTypes.func.isRequired,
     machines:           PropTypes.array.isRequired,
     form:               PropTypes.object.isRequired,
-    manual:             PropTypes.func.isRequired
+    manual:             PropTypes.func.isRequired,
+
+    toggleUploadError:    PropTypes.func.isRequired,
+    uploadError:          PropTypes.bool.isRequired,
+    toggleUploadSuccess:  PropTypes.func.isRequired,
+    uploadSuccess:        PropTypes.bool.isRequired
+
+
   };
 
   componentDidMount() {
@@ -87,6 +95,33 @@ class AdminDashboard extends PureComponent {
     this.setState({ uploading:true });
     const { uploadFile } = this.props;
     uploadFile(formData);
+  };
+
+  openErrorNotification = (comment) => {
+    notification.error({
+      message: comment
+    });
+  };
+
+  openSuccessNotification = (comment) => {
+    notification.success({
+      message: comment
+    });
+  };
+
+  componentDidUpdate() {
+    const { uploadError, toggleUploadError,
+      uploadSuccess, toggleUploadSuccess} = this.props;
+    if(uploadError) {
+      this.openErrorNotification('Une erreur est survenue');
+      toggleUploadError();
+      this.setState({ uploading:false });
+    }
+    if(uploadSuccess) {
+      this.openSuccessNotification('Le fichier a bien ete envoye');
+      toggleUploadSuccess();
+      this.setState({ uploading:false });
+    }
   };
 
   render() {

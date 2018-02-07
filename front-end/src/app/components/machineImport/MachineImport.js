@@ -22,7 +22,7 @@ const MachineImport =({
       <div>
         <Upload {...props}>
           <Button>
-            <Icon type="upload" disabled={fileList.length === 1}/> Ajouter un fichier
+            <Icon type="upload"/> Ajouter un fichier
           </Button>
         </Upload>
         <Button

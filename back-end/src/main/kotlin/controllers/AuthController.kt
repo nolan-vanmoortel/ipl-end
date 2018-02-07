@@ -95,6 +95,15 @@ fun AuthController(userDao: UserDao,
                 ObjectMapper().writeValueAsString(Message("Wrong e-mail or password !"))
             }
         }
+        get("/users") {
+            checkCookie(request, userDao)
+            try {
+                ObjectMapper().writeValueAsString(userDao.getAllUsers())
+            } catch (e:Exception) {
+                println(e.message)
+                ObjectMapper().writeValueAsString(Message("An error occured"))
+            }
+        }
     }
 }
 

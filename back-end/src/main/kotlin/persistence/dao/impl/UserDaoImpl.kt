@@ -17,6 +17,10 @@ import util.PluginProperties
 class UserDaoImpl(private val dal: DalServices,
                   private val userFactory: UserFactory,
                   private val properties: PluginProperties): UserDao {
+    override fun getAllUsers(): ArrayList<UserDto> {
+        return dal.getCollection(properties.getProperty("USERS_COLLECTION"))
+                .find().mapTo(ArrayList<UserDto>()) { userFactory.getUser(it) as UserReal }
+    }
 
     override fun save(user: UserDto): UserReal {
         dal.getCollection(properties.getProperty("USERS_COLLECTION"))
