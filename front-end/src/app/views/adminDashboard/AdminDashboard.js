@@ -73,7 +73,7 @@ class AdminDashboard extends PureComponent{
         <Divider />
         <Row>
           <Col>
-            <MachineManual getFieldDecorator={getFieldDecorator} handleSubmit={this.handleSubmit}/>
+            <MachineManual getFieldDecorator={getFieldDecorator} handleSubmit={this.handleSubmit} />
           </Col>
         </Row>
         <Divider />

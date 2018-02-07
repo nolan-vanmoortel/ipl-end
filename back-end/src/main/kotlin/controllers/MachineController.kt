@@ -83,15 +83,7 @@ fun MachineController(machineDao: MachineDao, machineFactory: MachineFactory){
 
         post("/manual") {
             try {
-                println("IN MANUAL")
                 val map = ObjectMapper().readValue<Map<String, String>>(request.body(),object: TypeReference<Map<String, String>>() {})
-
-                    println(request.body().toString())
-
-
-                for (key in map.keys){
-                    println("key: "+ key + " Value: " + map.get(key))
-                }
 
                 if(map["name"] == null || map["ip"] == null || map["mac"] == null
                             || map["location"] == null)
