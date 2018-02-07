@@ -15,36 +15,17 @@ const footer = () => 'Here is footer';
 
 class ReportTable extends PureComponent {
 
-  constructor(){
-    super();
-    for (let i = 1; i <= 9; i++) {
-      this.state.data.push({
-        key: i,
-        date: '2018-02-06 19:21',
-        etat: 'TODO',
-        severite: 'Mineur',
-        type: 'Hardware',
-        local: '019',
-        nom : `Machine ${i}`,
-        admin : 'Jean Dupont',
-        commentaire: 'Mon super rapport de bug !'
-      });
-    }
-    this.state.data.push({
-      key: 11,
-      date: '2018-02-08 19:22',
-      etat: 'DOING',
-      severite: 'Majeur',
-      type: 'Software',
-      local: '020',
-      nom : 'Machine 11',
-      admin : 'Jean Dupont',
-      commentaire: 'blabla'
-    });
-    this.state.dataReadOnly = this.state.data.slice(0);
+  componentDidUpdate(){
+    const { machines }  = this.props;
+    const { data }  = this.state;
+    if(machines.length !== 0 && data.length === 0)
+      this.fillTable(machines);
   }
 
   state={
+    intToState:["TODO","DOING","DONE"],
+    intToSeverite:["Mineur","Majeur"],
+    intToType:["","Software","Hardware"],
     data:[],
     dataReadOnly:[],
     sortedInfo:{},
@@ -106,8 +87,33 @@ class ReportTable extends PureComponent {
     this.setState({ selectedRowKeys });
   }
 
+  fillTable = (machines) =>{
+    const reportTable = [];
+    const { intToSeverite, intToState, intToType } = this.state;
+
+    console.log(machines);
+
+    machines.map((machine)=>{
+      machine.reports.map((report)=>{
+        reportTable.push({
+          key: machine.id+";"+report.date,
+          date: report.date,
+          etat: intToState[report.state],
+          severite: intToSeverite[report.severity],
+          type:intToType[report.type],
+          local: machine.location,
+          nom: machine.name,
+          admin: report.emailAdmin.split('@')[0].replace('.',' '),
+          commentaire: <div dangerouslySetInnerHTML={{ __html: report.comment }}/>
+        });
+      });
+    });
+    this.setState({data:reportTable.slice(0), dataReadOnly:reportTable.slice(0)});
+  }
+
   render() {
     const { sortedInfo, filteredInfo, data, selectedRowKeys } = this.state;
+
     const hasSelected = selectedRowKeys.length > 0;
     const columns = [ {
       title: 'Local',

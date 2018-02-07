@@ -18,7 +18,8 @@ class AdminDashboard extends PureComponent{
     enterAdminDashboard:    PropTypes.func.isRequired,
     leaveAdminDashboard:    PropTypes.func.isRequired,
 
-    uploadFile:         PropTypes.func.isRequired
+    uploadFile:         PropTypes.func.isRequired,
+    machines:           PropTypes.array.isRequired
   }
 
   componentDidMount() {
@@ -34,7 +35,8 @@ class AdminDashboard extends PureComponent{
 
   render(){
     const {
-      uploadFile
+      uploadFile,
+      machines
     } = this.props;
 
     return(
@@ -48,7 +50,7 @@ class AdminDashboard extends PureComponent{
         <Divider />
         <Row>
         <Col span={24} >
-          <ReportTable/>
+          <ReportTable machines={machines}/>
         </Col>
         </Row>
       </div>

@@ -12,7 +12,9 @@ const mapStateToProps = (state) => {
     // views
     currentView:  state.views.currentView,
 
-    file:         state.machine.file
+    file:         state.machine.file,
+
+    machines:     state.machine.machines
   };
 };
 
