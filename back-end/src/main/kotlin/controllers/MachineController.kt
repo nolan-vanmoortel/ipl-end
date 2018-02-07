@@ -1,28 +1,25 @@
 package controllers
 
-import business.entities.MachineDto
 import persistence.dao.MachineDao
-import spark.Spark.path
 import spark.kotlin.post
 import util.Message
 import business.factory.MachineFactory
-import business.factory.impl.MachineFactoryImpl
 import com.fasterxml.jackson.databind.ObjectMapper
-import spark.Request
-import util.*
-import java.nio.file.StandardCopyOption
-import java.nio.file.Files
+import spark.Spark.path
+import spark.kotlin.get
 import javax.servlet.MultipartConfigElement
-import spark.Spark.staticFiles
-import jdk.nashorn.internal.runtime.ScriptingFunctions.readLine
-import java.io.*
-import java.util.ArrayList
-import java.util.stream.Stream
-
 
 
 fun MachineController(machineDao: MachineDao, machineFactory: MachineFactory){
     path("/machines"){
+        get("/allMachines") {
+            try {
+                ObjectMapper().writeValueAsString(machineDao.getAllMachines())
+            } catch (e:Exception) {
+                println(e.message)
+                ObjectMapper().writeValueAsString(Message(""))
+            }
+        }
         post("/import") {
             try {
 

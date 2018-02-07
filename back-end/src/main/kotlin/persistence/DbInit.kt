@@ -26,5 +26,10 @@ fun main(args: Array<String>) {
             .append("reports", ArrayList<Any>())
             .append("state", false)
     machines.insertOne(machine1)
+    val user1 = Document("email", "jean.luc@vinci.be")
+            .append("salt", "123")
+            .append("id", "1")
+            .append("password", "1234")
+    users.insertOne(user1)
 
 }
