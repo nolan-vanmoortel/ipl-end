@@ -29,15 +29,10 @@ class ReportDaoImpl(private val dal: DalServices,
                     private val properties: PluginProperties): ReportDao {
 
     override fun updateState(name: String, report: ReportDto, state: Int) {
-        try {
             val result = dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
                     .updateOne(Document().append("name", name).append("reports.date", report.date),
                             Document().append("\$set", Document().append("reports.\$.state", state)),
                             UpdateOptions().upsert(true))
-        } catch (e: MongoWriteException) {
-            e.printStackTrace()
-        }
-
     }
 
     override fun save(name: String, report: ReportDto) {
