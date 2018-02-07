@@ -6,7 +6,7 @@ export const appConfig = {
     reports: 'reports',
     machines: 'machines',
     auth: 'auth',
-    setState:'auth/update/state/'
+    setState:'auth/update/state'
 
   },
   MACHINE_TYPES: {

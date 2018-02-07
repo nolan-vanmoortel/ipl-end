@@ -91,7 +91,8 @@ class AdminDashboard extends PureComponent {
 
   render() {
     const {
-      machines
+      machines,
+      setStateReport
     } = this.props;
 
     const { getFieldDecorator } = this.props.form;
@@ -120,7 +121,7 @@ class AdminDashboard extends PureComponent {
         <Divider />
         <Row>
         <Col span={24} >
-          <ReportTable machines={machines}/>
+          <ReportTable setStateReport={setStateReport} machines={machines}/>
         </Col>
         </Row>
       </div>

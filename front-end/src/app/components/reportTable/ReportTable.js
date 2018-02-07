@@ -52,6 +52,19 @@ class ReportTable extends PureComponent {
 
   handleChangeSelect = (record, value) => {
     console.log(record, value);
+    const { setStateReport } = this.props;
+    const { data, intToState } = this.state;
+    const _data = data.slice(0);
+
+    data.map((elem,index)=>{
+      if(elem.key === record.key)
+        _data[index].etat[intToState[value]];
+    });
+
+    setStateReport(record.key.split(';')[0], record.date, value).then(()=>{
+      this.setState({data:_data});
+      console.log(_data);
+    });
   }
 
   onInputChange = (e) => {
@@ -102,7 +115,7 @@ class ReportTable extends PureComponent {
     machines.map((machine)=>{
       machine.reports.map((report)=>{
         reportTable.push({
-          key: machine.id+';'+report.date,
+          key: machine.name+';'+report.date,
           date: report.date,
           etat: intToState[report.state],
           severite: intToSeverite[report.severity],
