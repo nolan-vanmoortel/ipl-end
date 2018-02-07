@@ -114,7 +114,6 @@ export function manual(machine){
         mac: machine.mac,
         location: machine.location,
         comment: machine.comment
-
       }
     };
 
