@@ -19,7 +19,7 @@ const MachineImport =({
     fileList
   };
   return (
-      <div>
+      <div style={{display: "inline" }}>
         <Upload {...props}>
           <Button
             disabled={fileList.length >= 1}
