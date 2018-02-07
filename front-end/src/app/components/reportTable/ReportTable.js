@@ -19,13 +19,13 @@ class ReportTable extends PureComponent {
   componentDidUpdate(){
     const { machines }  = this.props;
     const { data }  = this.state;
-    if(machines.length !== 0 && data.length === 0)
+    if((machines.length !== 0 && data.length === 0) && (machines.length !== data.length ))
       this.fillTable(machines);
   }
   componentWillMount(){
     const { machines }  = this.props;
     const { data }  = this.state;
-    if(machines.length !== 0 && data.length === 0)
+    if((machines.length !== 0 && data.length === 0) && (machines.length !== data.length ))
       this.fillTable(machines);
   }
 
@@ -200,7 +200,7 @@ class ReportTable extends PureComponent {
       sortOrder: sortedInfo.columnKey === 'type' && sortedInfo.order,
       width: 150
     }, {
-      title: 'Nom',
+      title: 'Machine',
       dataIndex: 'nom',
       key: 'nom',
       sorter: (a, b) => a.nom.localeCompare(b.nom),
