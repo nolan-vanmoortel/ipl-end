@@ -13,6 +13,12 @@ import persistence.DalServices
 import persistence.dao.ReportDao
 import util.PluginProperties
 import java.time.LocalDateTime
+import com.mongodb.MongoWriteException
+import com.mongodb.client.model.UpdateOptions
+import com.mongodb.client.result.UpdateResult
+import org.bson.conversions.Bson
+
+
 
 /**
  * Implementation of ReportDao.
@@ -23,10 +29,14 @@ class ReportDaoImpl(private val dal: DalServices,
                     private val properties: PluginProperties): ReportDao {
 
     override fun updateState(name: String, report: ReportDto, state: Int) {
-        val machine = machineFactory.getMachine(dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
-                .find(Document("name", name)).first()
-                ?: throw NoFatalException("find(Document(\"name\",name) failed"))
-        val reports = machine.reports.filter { any -> ((any as Document).get("date")) == report.date }
+        try {
+            val result = dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
+                    .updateOne(Document().append("name", name).append("reports.date", report.date),
+                            Document().append("\$set", Document().append("reports.\$.state", state)),
+                            UpdateOptions().upsert(true))
+        } catch (e: MongoWriteException) {
+            e.printStackTrace()
+        }
 
     }
 

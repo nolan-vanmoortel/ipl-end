@@ -69,8 +69,10 @@ fun AuthController(userDao: UserDao,
                 val state = Integer.parseInt(request.qp("state"))
                 val machine = request.qp("machine")
                 if(state != 0 && state != 1 && state != 2)
-                    throw NoFatalException("L'État n'est pas correct")
+                    throw NoFatalException("Incorrect State")
                 reportDao.updateState(machine, report, state)
+                status(200)
+                ObjectMapper().writeValueAsString(Message("Report sucessfully updated"))
             } catch (e: NoFatalException) {
                 e.printStackTrace()
                 status(403)
