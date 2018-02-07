@@ -30,24 +30,44 @@ class NavigationBar extends PureComponent {
     handleToForm(e.item);
   };
 
+  generateMenuItems = (location) => {
+    const {itemList} = this.props;
+    const toReturn = [];
+    itemList.map((machine, index) => {
+      if (machine.location === location){
+        toReturn.push( <Menu.Item item={machine.name} key={index+1} >
+          Machine : {machine.name}
+        </Menu.Item>);
+      }
+    });
+    return toReturn;
+  };
+
   generateMenu = () => {
     const {itemList} = this.props;
-    const test = [];
-    itemList.map((machine, index) => {
-      test.push(<Menu.Item item={machine.name} key={index+1} >
-        Machine {machine.name}
-      </Menu.Item>);
+    const toReturn = [];
+    const locationList = [];
+    itemList.map((m) => {
+      if (!locationList.includes(m.location)) {
+        locationList.push(m.location);
+      }
     });
 
-    return (<Menu onClick={this.handleClickMenu} theme="dark" defaultSelectedKeys={['1']} mode="inline">
-      <SubMenu
-        key="1"
-        title={<span><Icon type="home" /><span>Test</span></span>}
+    locationList.map((location, index) => {
+      const myItems = this.generateMenuItems(location);
+      toReturn.push(<SubMenu
+        key={index+1}
+        title={<span><Icon type="home" /><span>{location}</span></span>}
       >
-        {test}
-      </SubMenu>
+        {myItems}
+      </SubMenu>);
+    });
+
+    return (<Menu onClick={this.handleClickMenu} theme="dark" mode="inline">
+        {toReturn}
     </Menu>);
   };
+
 
   render() {
     const { collapsedNav } = this.props;
@@ -66,3 +86,4 @@ class NavigationBar extends PureComponent {
 }
 
 export default NavigationBar;
+
