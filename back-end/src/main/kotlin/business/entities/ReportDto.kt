@@ -10,7 +10,7 @@ interface ReportDto {
 
     val id: String
 
-    val date: LocalDateTime
+    val date: String
 
     val email: String
 
@@ -22,6 +22,6 @@ interface ReportDto {
 
     val type: Int
 
-    val state: String
+    val state: Int
 
 }
