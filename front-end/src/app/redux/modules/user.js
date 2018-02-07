@@ -193,7 +193,7 @@ export function logUserIfNeeded(
 function shouldLogUser(
   state: any
 ): boolean {
-  const isLogging = state.userAuth.isLogging;
+  const isLogging = state.user.isLogging;
   if (isLogging) {
     return false;
   }
@@ -247,7 +247,7 @@ export function fetchUserInfoDataIfNeeded(
 }
 
 function shouldFetchUserInfoData(state): boolean {
-  const userInfos = state.userAuth;
+  const userInfos = state.user;
   if (userInfos.isFetching) {
     return false;
   }

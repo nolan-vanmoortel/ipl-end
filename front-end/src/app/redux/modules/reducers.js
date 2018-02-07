@@ -3,7 +3,7 @@
 import { routerReducer }    from 'react-router-redux';
 import { combineReducers }  from 'redux';
 import views                from './views';
-import userAuth             from './userAuth';
+import user             from './user';
 import counter             from './counter';
 import machine             from './machine';
 import scanQr               from './scanQr';
@@ -11,7 +11,7 @@ import report               from './report';
 
 export const reducers = {
   views,
-  userAuth,
+  user,
   counter,
   machine,
   scanQr,

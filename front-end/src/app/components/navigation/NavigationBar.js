@@ -36,7 +36,7 @@ class NavigationBar extends PureComponent {
     itemList.map((machine, index) => {
       if (machine.location === location){
         toReturn.push( <Menu.Item item={machine.name} key={index+1} >
-          Machine : {machine.name}
+          {machine.name}
         </Menu.Item>);
       }
     });

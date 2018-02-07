@@ -3,16 +3,16 @@
 import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 import * as viewsActions      from '../../redux/modules/views';
-import * as userAuthActions   from '../../redux/modules/userAuth';
+import * as userActions   from '../../redux/modules/user';
 import Login                  from './Login';
 
 const mapStateToProps = (state) => {
   return {
     currentView:  state.views.currentView,
 
-    isAuthenticated: state.userAuth.isAuthenticated,
-    isFetching:      state.userAuth.isFetching,
-    isLogging:       state.userAuth.isLogging
+    isAuthenticated: state.user.isAuthenticated,
+    isFetching:      state.user.isFetching,
+    isLogging:       state.user.isLogging
 
   };
 };
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       ...viewsActions,
-      ...userAuthActions
+      ...userActions
     },
     dispatch
   );

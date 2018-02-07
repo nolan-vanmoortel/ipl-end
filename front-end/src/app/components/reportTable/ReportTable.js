@@ -67,7 +67,25 @@ class ReportTable extends PureComponent {
     });
   }
 
-  handleChangeSelect = (record, value) => {
+  handleChangeSelectState = (record, value) => {
+    console.log(record, value);
+    const { setStateReport } = this.props;
+    const { data, intToState } = this.state;
+    const _data = data.slice(0);
+
+    data.map((elem,index)=>{
+      if(elem.key === record.key)
+        _data[index].etat=intToState[value];
+    });
+
+
+    setStateReport(record.key.split(';')[0], record.date, value).then(()=>{
+      this.setState({data:_data});
+      console.log(_data);
+    });
+  }
+
+  handleChangeSelectAdmin = (record, value) => {
     console.log(record, value);
     const { setStateReport } = this.props;
     const { data, intToState } = this.state;
@@ -248,13 +266,24 @@ class ReportTable extends PureComponent {
     }, {
       title: 'Action',
       key: 'action',
-      width: 200,
+      width: 350,
       render: (text,record) => (
         <span>
-          <Select placeholder="Etat" style={{ width: 120 }} onChange={(value)=>{this.handleChangeSelect(record,value)}}>
+          <Select placeholder="Etat" style={{ width: 120, marginRight:5 }} onChange={(value)=>{this.handleChangeSelectState(record,value)}}>
             <Select.Option value="0">TODO</Select.Option>
             <Select.Option value="1">DOING</Select.Option>
             <Select.Option value="2">DONE</Select.Option>
+          </Select>
+          <Select
+            showSearch
+            style={{ width: 200 }}
+            placeholder="Select Admin"
+            optionFilterProp="children"
+            onChange={(value)=>{this.handleChangeSelectAdmin(record,value)}}
+            filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}>
+            <Option value="jack">Jack</Option>
+            <Option value="lucy">Lucy</Option>
+            <Option value="tom">Tom</Option>
           </Select>
     </span>
       )
