@@ -19,13 +19,29 @@ class ReportTable extends PureComponent {
   componentDidUpdate(){
     const { machines }  = this.props;
     const { data }  = this.state;
-    if((machines.length !== 0 && data.length === 0) && (machines.length !== data.length ))
+    let haveReport = false;
+    machines.forEach((elem)=>{
+      if(elem.reports.length > 0) {
+        haveReport = true;
+        return true;
+      }
+      return false;
+    });
+    if((machines.length !== 0 && data.length === 0) && (haveReport))
       this.fillTable(machines);
   }
   componentWillMount(){
     const { machines }  = this.props;
     const { data }  = this.state;
-    if((machines.length !== 0 && data.length === 0) && (machines.length !== data.length ))
+    let haveReport = false;
+    machines.forEach((elem)=>{
+      if(elem.reports.length > 0) {
+        haveReport = true;
+        return true;
+      }
+      return false;
+    });
+    if((machines.length !== 0 && data.length === 0) && (haveReport))
       this.fillTable(machines);
   }
 
