@@ -82,7 +82,7 @@ class AdminDashboard extends PureComponent {
     const txt = /^ipscan....*txt$/;
     const csv = /^ipscan....*csv$/;
     if(!txt.test(file.name) && !csv.test(file.name)){
-      this.openErrorNotification('Fichier invalide');
+      this.openErrorNotification('Erreur: Veuillez choisir un fichier txt ou csv commencant par ipscan');
       this.onRemove(file);
     }else{
       this.setState(({ fileList }) => ({
