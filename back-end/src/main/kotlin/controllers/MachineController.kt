@@ -1,6 +1,5 @@
 package controllers
 
-import business.entities.MachineDto
 import persistence.dao.MachineDao
 import spark.kotlin.post
 import util.Message
@@ -25,32 +24,39 @@ fun MachineController(machineDao: MachineDao, machineFactory: MachineFactory){
         }
         post("/import") {
             try {
+                //Retrive the Formdata from the request
                 request.attribute("org.eclipse.jetty.multipartConfig", MultipartConfigElement("/temp"))
                 request.raw().getPart("file").inputStream.bufferedReader().use {
                     //Skipping first line from the CSV file
                     it.readLine()
-                    println("data value: ${request.raw().getPart("file").submittedFileName}")
-                    var location = "017"
-                            //request.params("data")
+
+                    //Retrieving the filename for the location
+                    var location = request.raw().getPart("file").submittedFileName
+
+                    //Trimming the prefix and file extention to get the exact room name
+                    location = location.subSequence(6,location.length-4).toString()
+
+                    //Reading the first machine in the file
                     var line: String? = it.readLine()
 
-                    //Map with mac as key and state as value. Represent all machines of a location
+                    //Map with mac as key and state as value. Represent all machines of a location registered in the DB
                     var macMap: MutableMap<String,Boolean> = machineDao.getLocationMac(location)
 
                     //Loop each line of the file
                     while(line != null){
                         //Separating each information from the file
                         val machineDetails = line.split(";")
-                        //Removing extra "
+
+                        //storing mac address for several instances and tirmming the "
                         var trueMac = machineDetails[2].replace("\"","")
 
                         //if the current mac isn't in the map, the machine is added to the DB
                         if(!macMap.containsKey(trueMac)){
                             val newMachine = machineFactory.getMachine(
-                                    ip = machineDetails[0],
-                                    name = machineDetails[1],
+                                    ip = machineDetails[0].replace("\"",""),
+                                    name = machineDetails[1].replace("\"",""),
                                     mac = trueMac,
-                                    comment = machineDetails[3],
+                                    comment = machineDetails[3].replace("\"",""),
                                     location = location,
                                     state = true)
 
@@ -82,11 +88,15 @@ fun MachineController(machineDao: MachineDao, machineFactory: MachineFactory){
 
         post("/manual") {
             try {
+                //Retrieving a map with fields as keys and their content as their values
                 val map = ObjectMapper().readValue<Map<String, String>>(request.body(),object: TypeReference<Map<String, String>>() {})
 
+                //Making sure the request is properly done
                 if(map["name"] == null || map["ip"] == null || map["mac"] == null
-                            || map["location"] == null)
+                            || map["location"] == null || map["comment"] == null)
                         throw NoFatalException("Requête Incorrecte")
+
+                //New machine created based on the information provided. Enabled by default.
                 val newMachine = machineFactory.getMachine(
                         name = map["name"]!!,
                         ip = map["ip"]!!,
@@ -95,6 +105,7 @@ fun MachineController(machineDao: MachineDao, machineFactory: MachineFactory){
                         location = map["location"]!!,
                         state = true)
 
+                //Add the new machine to the DB
                 machineDao.save(newMachine)
                 ObjectMapper().writeValueAsString(Message("Report correctement enregistré"))
             } catch(e: Exception) {

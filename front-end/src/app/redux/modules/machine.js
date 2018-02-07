@@ -32,13 +32,13 @@ export default function (
     return {
       ...state,
       file: action.payload,
-      upload: false
+      upload: true
     };
   case UPLOAD_RECEIVED:
     return {
       ...state,
       file: null,
-      upload: true
+      upload: false
     };
   case UPLOAD_ERROR:
     return{
