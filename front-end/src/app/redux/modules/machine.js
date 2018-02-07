@@ -149,9 +149,7 @@ export function uploadFile(file) {
     const headers     = {};
     const options     = {
       credentials: 'same-origin',
-      data: {
-        file:file
-      }
+      data: file
     };
 
     return dispatch({
