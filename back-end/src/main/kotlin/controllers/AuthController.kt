@@ -1,10 +1,13 @@
 package controllers
 
+import business.factory.ReportFactory
 import business.factory.UserFactory
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import exceptions.NoFatalException
+import persistence.dao.ReportDao
 import persistence.dao.UserDao
+import spark.Request
 import spark.Spark.path
 import spark.kotlin.before
 import spark.kotlin.get
@@ -13,8 +16,12 @@ import spark.kotlin.post
 import util.Message
 import util.getSalt
 import util.hashPassword
+import java.time.LocalDateTime
 
-fun AuthController(userDao: UserDao, userFactory: UserFactory){
+fun AuthController(userDao: UserDao,
+                   userFactory: UserFactory,
+                   reportFactory: ReportFactory,
+                   reportDao: ReportDao){
     path("/auth") {
         post("/login") {
             val salt = getSalt()
@@ -52,17 +59,36 @@ fun AuthController(userDao: UserDao, userFactory: UserFactory){
             }
         }
         get("/private"){
-            val email = request.cookie("email")
-            val token = request.cookie("token")
-
-            if(email.isNullOrBlank() || token.isNullOrBlank())
-                halt(401,ObjectMapper().writeValueAsString(Message("Not logged !")))
-
-            val user = userDao.getUserByEMail(email)
-            if(token != user.password)
-                halt(401,ObjectMapper().writeValueAsString(Message("Not logged !")))
-
+            checkCookie(request, userDao)
             ObjectMapper().writeValueAsString(Message("Welkome my bro !"))
         }
+        get("/update/state") {
+            checkCookie(request, userDao)
+            try {
+                val report = reportFactory.getReport(date=request.qp("date"))
+                val state = Integer.parseInt(request.qp("state"))
+                val machine = request.qp("machine")
+                if(state != 0 && state != 1 && state != 2)
+                    throw NoFatalException("L'État n'est pas correct")
+                reportDao.updateState(machine, report, state)
+            } catch (e: NoFatalException) {
+                e.printStackTrace()
+                status(403)
+                ObjectMapper().writeValueAsString(Message("Wrong e-mail or password !"))
+
+            }
+        }
     }
+}
+
+private fun checkCookie(request: Request, userDao: UserDao) {
+    val email = request.cookie("email")
+    val token = request.cookie("token")
+
+    if(email.isNullOrBlank() || token.isNullOrBlank())
+        halt(401,ObjectMapper().writeValueAsString(Message("Not logged !")))
+
+    val user = userDao.getUserByEMail(email)
+    if(token != user.password)
+        halt(401,ObjectMapper().writeValueAsString(Message("Not logged !")))
 }

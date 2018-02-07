@@ -8,11 +8,11 @@ import java.time.LocalDateTime
  */
 
 data class ReportImpl(override val id: String = "",
-                      override val date: LocalDateTime = LocalDateTime.now(),
+                      override val date: String = "",
                       override val email: String = "",
                       override val emailAdmin: String = "",
                       override val comment: String = "",
-                      override val state: String = "TODO",
+                      override val state: Int = 0,
                       override val severity: Int = 0,
                       override val type: Int = 0) : ReportReal {
 

@@ -12,10 +12,11 @@ import java.time.LocalDateTime
  */
 class ReportFactoryImpl : ReportFactory {
     override fun getReport(document: Document): ReportDto {
-        return getReport((document.get("_id") as ObjectId).toHexString(), document.get("date") as LocalDateTime, document.getString("email"), document.getString("comment"), document.getString("emailAdmin"), document.getString("state"))
+        return getReport((document.get("_id") as ObjectId).toHexString(),
+                document.getString("date"), document.getString("email"), document.getString("comment"), document.getString("emailAdmin"), document.getInteger("state"))
     }
 
-    override fun getReport(id:String, date:LocalDateTime, email:String, comment:String, emailAdmin: String, state: String, severity: Int, type: Int): ReportDto {
+    override fun getReport(id:String, date:String, email:String, comment:String, emailAdmin: String, state: Int, severity: Int, type: Int): ReportDto {
         return ReportImpl(id, date, email, comment, emailAdmin, state, severity, type)
     }
 }
