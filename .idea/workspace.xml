@@ -4,10 +4,6 @@
     <list default="true" id="dc183b59-1437-4f96-84cb-a336534cf540" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/components/reportTable/ReportTable.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/reportTable/ReportTable.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/config/index.js" afterPath="$PROJECT_DIR$/front-end/src/app/config/index.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/redux/modules/report.js" afterPath="$PROJECT_DIR$/front-end/src/app/redux/modules/report.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js" afterPath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/index.js" afterPath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/back-end/.gradle/" />
@@ -30,8 +26,8 @@
       <file leaf-file-name="ReportTable.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/front-end/src/app/components/reportTable/ReportTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="60" column="45" lean-forward="true" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
+            <state relative-caret-position="171">
+              <caret line="66" column="25" lean-forward="false" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
               <folding>
                 <element signature="e#14#81#0" expanded="true" />
               </folding>
@@ -897,7 +893,7 @@
       <workItem from="1517983846114" duration="7976000" />
       <workItem from="1517995042954" duration="5058000" />
       <workItem from="1518008279134" duration="12664000" />
-      <workItem from="1518021234772" duration="4211000" />
+      <workItem from="1518021234772" duration="4539000" />
     </task>
     <task id="LOCAL-00001" summary="MAC C EST DE LA MERDE">
       <created>1518008573715</created>
@@ -934,11 +930,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518022429168</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="FRONT-END | REPORT TABLE DYNAMIC UPDATE STATE DOING!">
+      <created>1518027876166</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1518027876166</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36852000" />
+    <option name="totallyTimeSpent" value="37180000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
@@ -1018,7 +1021,8 @@
     <MESSAGE value="FRONT-END | FIX WILL MOUNT BUG DONE!" />
     <MESSAGE value="FRONT-END | FIX CREATE COOKIES DONE!" />
     <MESSAGE value="FRONT-END | FIX KEY REPORT TABLE DONE!" />
-    <option name="LAST_COMMIT_MESSAGE" value="FRONT-END | FIX KEY REPORT TABLE DONE!" />
+    <MESSAGE value="FRONT-END | REPORT TABLE DYNAMIC UPDATE STATE DOING!" />
+    <option name="LAST_COMMIT_MESSAGE" value="FRONT-END | REPORT TABLE DYNAMIC UPDATE STATE DOING!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1413,8 +1417,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/components/reportTable/ReportTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="60" column="45" lean-forward="true" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
+        <state relative-caret-position="171">
+          <caret line="66" column="25" lean-forward="false" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="25" />
           <folding>
             <element signature="e#14#81#0" expanded="true" />
           </folding>

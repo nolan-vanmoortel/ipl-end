@@ -58,8 +58,9 @@ class ReportTable extends PureComponent {
 
     data.map((elem,index)=>{
       if(elem.key === record.key)
-        _data[index].etat[intToState[value]];
+        _data[index].etat=intToState[value];
     });
+
 
     setStateReport(record.key.split(';')[0], record.date, value).then(()=>{
       this.setState({data:_data});
@@ -236,7 +237,7 @@ class ReportTable extends PureComponent {
       width: 200,
       render: (text,record) => (
         <span>
-          <Select defaultValue="0" style={{ width: 120 }} onChange={(value)=>{this.handleChangeSelect(record,value)}}>
+          <Select placeholder="Etat" style={{ width: 120 }} onChange={(value)=>{this.handleChangeSelect(record,value)}}>
             <Select.Option value="0">TODO</Select.Option>
             <Select.Option value="1">DOING</Select.Option>
             <Select.Option value="2">DONE</Select.Option>
