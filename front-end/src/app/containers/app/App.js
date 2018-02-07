@@ -29,19 +29,14 @@ class App extends Component {
     collapsed: true,
   };
 
-  constructor() {
-    super();
+  componentWillMount(){
     this.getMachines();
   }
 
   getMachines = async () => {
     const { updateMachines, getMachines } = this.props;
-    const response = await getMachines;
-    const {
-      data: {
-        allMachines
-      }
-    } = response.payload;
+    const response = await getMachines();
+    const allMachines = response.payload.data;
     updateMachines(allMachines);
   };
 
@@ -67,13 +62,14 @@ class App extends Component {
 
 
   render() {
-    const { collapsed, allMachines } = this.state;
-    console.log(allMachines);
+    const { collapsed } = this.state;
+    const { machines } = this.props;
+    console.log(machines);
 
     return (
       <div id="appContainer">
         <Layout style={{ minHeight: '100vh' }}>
-          <NavigationBar itemList={allMachines} collapsedNav={collapsed} handleToForm={this.goToForm} handleReturn={this.goToReader}/>
+          <NavigationBar itemList={machines} collapsedNav={collapsed} handleToForm={this.goToForm} handleReturn={this.goToReader}/>
           <Layout>
             <Content className={styles.backgroundApp}>
               <MainRoutes />
