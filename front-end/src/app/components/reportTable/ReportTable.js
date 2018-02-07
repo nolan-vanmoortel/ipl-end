@@ -18,6 +18,14 @@ class ReportTable extends PureComponent {
   componentDidUpdate(){
     const { machines }  = this.props;
     const { data }  = this.state;
+    console.log(machines.length+" / "+data.length);
+    if(machines.length !== 0 && data.length === 0)
+      this.fillTable(machines);
+  }
+  componentWillMount(){
+    const { machines }  = this.props;
+    const { data }  = this.state;
+    console.log("will "+machines.length+" / "+data.length);
     if(machines.length !== 0 && data.length === 0)
       this.fillTable(machines);
   }
@@ -96,14 +104,14 @@ class ReportTable extends PureComponent {
     machines.map((machine)=>{
       machine.reports.map((report)=>{
         reportTable.push({
-          key: machine.id+";"+report.date,
+          key: machine.id+';'+report.date,
           date: report.date,
           etat: intToState[report.state],
           severite: intToSeverite[report.severity],
           type:intToType[report.type],
           local: machine.location,
           nom: machine.name,
-          admin: report.emailAdmin.split('@')[0].replace('.',' '),
+          admin: report.emailAdmin.split('@')[0].replace('.', ' '),
           commentaire: <div dangerouslySetInnerHTML={{ __html: report.comment }}/>
         });
       });
