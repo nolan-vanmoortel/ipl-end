@@ -19,9 +19,11 @@ const MachineImport =({
     fileList
   };
   return (
-      <div>
+      <div style={{display: "inline" }}>
         <Upload {...props}>
-          <Button>
+          <Button
+            disabled={fileList.length >= 1}
+          >
             <Icon type="upload"/> Ajouter un fichier
           </Button>
         </Upload>

@@ -83,10 +83,17 @@ class AdminDashboard extends PureComponent {
   };
 
   beforeUpload = (file) => {
-    console.log(file);
-    this.setState(({ fileList }) => ({
-      fileList: [...fileList, file]
-    }));
+    const txt = /^ipscan....*txt$/;
+    const csv = /^ipscan....*csv$/;
+    if(!txt.test(file.name) && !csv.test(file.name)){
+      this.openErrorNotificationWithDescription('Erreur avec le fichier',
+        'Veuillez choisir un fichier txt ou csv commencant par ipscan');
+      this.onRemove(file);
+    }else{
+      this.setState(({ fileList }) => ({
+        fileList: [...fileList, file]
+      }));
+    }
     return false;
   };
 
@@ -107,6 +114,13 @@ class AdminDashboard extends PureComponent {
     });
   };
 
+  openErrorNotificationWithDescription = (comment, description) => {
+    notification.error({
+      message: comment,
+      description: description
+    });
+  };
+
   openSuccessNotification = (comment) => {
     notification.success({
       message: comment
@@ -119,12 +133,12 @@ class AdminDashboard extends PureComponent {
     if(uploadError) {
       this.openErrorNotification('Une erreur est survenue');
       toggleUploadError();
-      this.setState({ uploading:false });
+      this.setState({ uploading: false });
     }
     if(uploadSuccess) {
       this.openSuccessNotification('Le fichier a bien ete envoye');
       toggleUploadSuccess();
-      this.setState({ uploading:false });
+      this.setState({ uploading: false });
     }
   };
 

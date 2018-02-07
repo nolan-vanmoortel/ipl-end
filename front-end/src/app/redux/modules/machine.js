@@ -38,19 +38,25 @@ export default function (
     return {
       ...state,
       file: action.payload,
-      uploading: true
+      uploading: true,
+      uploadError: false,
+      uploadSuccess:  false
     };
   case UPLOAD_RECEIVED:
     return {
       ...state,
       file: null,
-      uploading: false
+      uploading: false,
+      uploadError: false,
+      uploadSuccess: true
     };
   case UPLOAD_ERROR:
     return{
       ...state,
       file: null,
-      uploading: false
+      uploading: false,
+      uploadError: true,
+      uploadSuccess:  false
     };
   case UPDATE_MACHINES:
     return{

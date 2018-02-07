@@ -5,7 +5,9 @@ import React, {
 }                     from 'react';
 import PropTypes      from 'prop-types';
 import auth           from '../../services/auth';
-import { Form, Icon, Input, Button, notification, Card, Row, Col } from 'antd';
+import { Form, Icon, Input, Button, notification } from 'antd';
+
+import styles from './login.scss';
 const FormItem = Form.Item;
 
 
@@ -49,6 +51,13 @@ class Login extends PureComponent<Props, State> {
 
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false
+    };
+  }
+
   static defaultProps = {
     isFetching:      false,
     isLogging:       false
@@ -88,12 +97,12 @@ class Login extends PureComponent<Props, State> {
 // eslint-disable-next-line react/prop-types
     const { getFieldDecorator, getFieldsError, isFieldTouched, getFieldError } = this.props.form;
     const passwordError = isFieldTouched('password') && getFieldError('password');
-
+    const { loading } = this.state;
     return (
-      <Card title="Veuilliez vous identifier : ">
-        <Form onSubmit={this.handleSubmit}>
-          <Row>
-            <Col span={8}>
+      <div style={{width:'100%', textAlign:'center'}}>
+        <div className={styles.login}>
+          <h1 className={styles.h1}>Connexion</h1>
+          <Form onSubmit={this.handleSubmit}>
               <FormItem>
                 {getFieldDecorator('login', {
                   rules: [{
@@ -105,10 +114,6 @@ class Login extends PureComponent<Props, State> {
                   <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="E-Mail" />
                 )}
               </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={8}>
               <FormItem
                 validateStatus={passwordError ? 'error' : ''}
                 help={passwordError || ''}
@@ -119,23 +124,19 @@ class Login extends PureComponent<Props, State> {
                   <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
                 )}
               </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={8}>
               <FormItem>
                 <Button
                   type="primary"
                   htmlType="submit"
                   disabled={this.hasErrors(getFieldsError())}
+                  loading={loading}
                 >
-                  Log in
+                  Se connecter
                 </Button>
               </FormItem>
-            </Col>
-          </Row>
-        </Form>
-      </Card>
+          </Form>
+        </div>
+      </div>
     );
   }
 
@@ -148,6 +149,7 @@ class Login extends PureComponent<Props, State> {
     this.props.form.validateFields(async (err, values) => {
       if (!err) {
         try {
+          this.setState({ loading: true });
           const response = await logUserIfNeeded(values);
           const {
             data: {
@@ -155,12 +157,13 @@ class Login extends PureComponent<Props, State> {
               email
             }
           } = response.payload;
-
+          this.setState({ loading: false });
           auth.setToken(token);
           auth.setUserInfo(email);
           this.openSuccessNotification('Connexion réussie');
           history.push({pathname: '/adminDashboard'}); // back to Home
         } catch (error) {
+          this.setState({ loading: false });
           /* eslint-disable no-console */
           console.log('login wrong..., error: ', error);
           /* eslint-enable no-console */
