@@ -156,9 +156,9 @@ export function checkUserIsConnected() {
 }
 
 function logUser(
-  login: string,
-  password: string
+  login: string
 ) {
+  console.log(login);
   return async (dispatch) => {
     const FETCH_TYPE  = 'FETCH';
     const url         = `${getLocationOrigin()}/${appConfig.API.auth}/login`;
@@ -167,11 +167,10 @@ function logUser(
     const options     = {
       credentials: 'same-origin',
       data: {
-        email: login,
-        password
+        email: login.login,
+        password: login.password
       }
     };
-
     // fetchMiddleware gère tout seul le principe de mock/real, il dispatch tout seul les 3 action(REQUEST, RECEIVED et ERROR)
     return dispatch({
       type: 'FETCH_MIDDLEWARE',
@@ -188,8 +187,6 @@ function logUser(
         headers,
         options
       }
-    }).then((res) => {
-      console.log(res.headers);
     });
   };
 }

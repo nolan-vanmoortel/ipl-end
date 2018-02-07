@@ -36,6 +36,7 @@ fun AuthController(userDao: UserDao, userFactory: UserFactory){
 
             } catch (e: Exception) {
                 e.printStackTrace()
+                status(403)
                 ObjectMapper().writeValueAsString(Message("Wrong e-mail or password !"))
             }
         }
