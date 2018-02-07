@@ -42,13 +42,8 @@ class ReportViewer extends PureComponent{
           </Row>
           <Row>
             <Col>
-              <h1>{name}</h1>
-              <div className={styles["field-wrap"]}>
-                <p className={styles.label}>Commentaire Machine</p>
-                <div className={styles.area}>
-                  <p>{commentMachine}</p>
-                </div>
-              </div>
+              <h1 style={{marginBottom:5}}>{name}</h1>
+              <h1 style={{color:'#a0b3b0', fontSize:'12px'}}>{commentMachine}</h1>
             </Col>
           </Row>
           <Row>
@@ -56,7 +51,7 @@ class ReportViewer extends PureComponent{
               <div className={styles["field-wrap"]}>
                 <p className={styles.label}>Rapport</p>
                 <div className={styles.area}>
-                  <div dangerouslySetInnerHTML={{ __html: commentReport}}/>
+                  <div className={styles.removeMarginBottom} dangerouslySetInnerHTML={{ __html: commentReport}}/>
                 </div>
               </div>
             </Col>
