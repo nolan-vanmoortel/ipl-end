@@ -10,6 +10,9 @@ import { appConfig }      from '../../config';
 const UPLOAD_REQUEST:                   string = 'UPLOAD_REQUEST';
 const UPLOAD_RECEIVED:                  string = 'UPLOAD_RECEIVED';
 const UPLOAD_ERROR:                     string = 'UPLOAD_ERROR';
+const GET_ALL_MACHINES:                  string = 'GET_ALL_MACHINES';
+const ALL_MACHINES_RECEIVED:             string = 'ALL_MACHINES_RECEIVED';
+const ALL_MACHINES_ERROR:                string = 'ALL_MACHINES_ERROR';
 
 
 // --------------------------------
@@ -29,19 +32,31 @@ export default function (
         ...state,
         file: action.payload,
         upload: false
-      }
+      };
     case UPLOAD_RECEIVED:
       return {
         ...state,
         file: null,
         upload: true
-      }
+      };
     case UPLOAD_ERROR:
       return{
         ...state,
         file: null,
         upload: false
-      }
+      };
+    case GET_ALL_MACHINES:
+      return{
+        ...state
+      };
+    case ALL_MACHINES_RECEIVED:
+      return{
+        ...state
+      };
+    case ALL_MACHINES_ERROR:
+      return{
+        ...state
+      };
     default:
       return state;
   }
@@ -51,6 +66,33 @@ export default function (
 // --------------------------------
 // ACTIONS CREATORS
 // --------------------------------
+export function getMachines(){
+  return dispatch => {
+    const FETCH_TYPE  = 'FETCH';
+    const url         = `${getLocationOrigin()}/${appConfig.API.machines}/allMachines`;
+    const method      = 'get';
+    const headers     = {};
+    const options     = {
+      credentials: 'same-origin',
+    };
+
+    return dispatch({
+      type: 'FETCH_MIDDLEWARE',
+      fetch: {
+        type: FETCH_TYPE,
+        actionTypes: {
+          request:  GET_ALL_MACHINES,
+          success:  ALL_MACHINES_RECEIVED,
+          fail:     ALL_MACHINES_ERROR
+        },
+        url,
+        method,
+        headers,
+        options
+      }
+    });
+  };
+}
 
 export function uploadFile(file){
   return dispatch => {
@@ -80,7 +122,6 @@ export function uploadFile(file){
         options
       }
     });
-
-  }
+  };
 }
 
