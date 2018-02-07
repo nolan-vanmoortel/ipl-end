@@ -31,7 +31,7 @@ const MachineImport =({
           disabled={fileList.length !== 1}
           loading={uploading}
         >
-          {uploading ? 'Envoi' : 'Envoyer le fichier'}
+          {uploading ? 'Envoi' : 'Envoyer le fichier' }
         </Button>
       </div>
   );
