@@ -1,45 +1,49 @@
 // @flow weak
-import React, {PureComponent} from 'react';
+import React from 'react';
 import PropTypes      from 'prop-types';
-import {Button, Icon, Upload, Input} from "antd";
-import getLocationOrigin from "../../services/utils/getLocationOrigin";
-import {appConfig} from "../../config";
+import {Button, Icon, Upload } from 'antd';
+import getLocationOrigin from '../../services/utils/getLocationOrigin';
+import {appConfig} from '../../config';
 
-class MachineImport extends PureComponent {
-
-  state = {
-    file: null,
-    location: ""
+const MachineImport =({
+    onRemove,
+    beforeUpload,
+    handleUpload,
+    fileList,
+    uploading
+}) => {
+  const props = {
+    action: getLocationOrigin()+'/'+appConfig.API.machines+'/import',
+    onRemove,
+    beforeUpload,
+    fileList
   };
-
-// eslint-disable-next-line no-undef
-  static propTypes = {
-    uploadFile:  PropTypes.func
-  };
-
-  //handleChange = (e) => {
-  //  this.setState({ file: e.target.value });
-  //}
-
-  onHandleInput= (e) =>{
-    this.setState({ location: e.target.value });
-  }
-
-
-  render() {
-    //const file = this.state.file
-    return (
+  return (
       <div>
-        <Upload name="file"  action={getLocationOrigin()+'/'+appConfig.API.machines+'/import'}>
+        <Upload {...props}>
           <Button>
-            <Icon type="upload" /> Envoyer les machines
+            <Icon type="upload" /> Ajouter un fichier
           </Button>
         </Upload>
+        <Button
+          type="primary"
+          onClick={handleUpload}
+          disabled={fileList.length === 0}
+          loading={uploading}
+        >
+          {uploading ? 'Envoi' : 'Envoyer le fichier'}
+        </Button>
       </div>
-    );
+  );
+};
 
-  }
-}
+MachineImport.propTypes = {
+  onRemove: PropTypes.func.isRequired,
+  beforeUpload: PropTypes.func.isRequired,
+  handleUpload: PropTypes.func.isRequired,
+  fileList: PropTypes.object.isRequired,
+  uploading: PropTypes.bool.isRequired
+};
 
 
 export default MachineImport;

@@ -27,59 +27,58 @@ const initialState = {
 
 export default function (
   state = initialState, action) {
-  switch(action.type){
-    case UPLOAD_REQUEST:
-      return {
-        ...state,
-        file: action.payload,
-        upload: false
-      };
-    case UPLOAD_RECEIVED:
-      return {
-        ...state,
-        file: null,
-        upload: true
-      };
-    case UPLOAD_ERROR:
-      return{
-        ...state,
-        file: null,
-        upload: false
-      };
-    case UPDATE_MACHINES:
-      return{
-        ...state,
-        machines: action.machines
-      };
-    case GET_ALL_MACHINES:
-      return{
-        ...state
-      };
-    case GET_ALL_MACHINES_RECEIVED:
-      return{
-        ...state
-      };
-    case GET_ALL_MACHINES_ERROR:
-      return{
-        ...state
-      };
-    default:
-      return state;
+  switch(action.type) {
+  case UPLOAD_REQUEST:
+    return {
+      ...state,
+      file: action.payload,
+      upload: false
+    };
+  case UPLOAD_RECEIVED:
+    return {
+      ...state,
+      file: null,
+      upload: true
+    };
+  case UPLOAD_ERROR:
+    return{
+      ...state,
+      file: null,
+      upload: false
+    };
+  case UPDATE_MACHINES:
+    return{
+      ...state,
+      machines: action.machines
+    };
+  case GET_ALL_MACHINES:
+    return{
+      ...state
+    };
+  case GET_ALL_MACHINES_RECEIVED:
+    return{
+      ...state
+    };
+  case GET_ALL_MACHINES_ERROR:
+    return{
+      ...state
+    };
+  default:
+    return state;
   }
-
 }
 
 // --------------------------------
 // ACTIONS CREATORS
 // --------------------------------
-export function getMachines(){
+export function getMachines() {
   return dispatch => {
     const FETCH_TYPE  = 'FETCH';
     const url         = `${getLocationOrigin()}/${appConfig.API.machines}/allMachines`;
     const method      = 'get';
     const headers     = {};
     const options     = {
-      credentials: 'same-origin',
+      credentials: 'same-origin'
     };
 
     return dispatch({
@@ -100,7 +99,7 @@ export function getMachines(){
   };
 }
 
-export function manual(machine){
+export function manual(machine) {
   return dispatch => {
     const FETCH_TYPE  = 'FETCH';
     const url         = `${getLocationOrigin()}/${appConfig.API.machines}/manual`;
@@ -135,14 +134,14 @@ export function manual(machine){
   };
 }
 
-export function updateMachines(machines){
+export function updateMachines(machines) {
   return {
     type: UPDATE_MACHINES,
     machines
   };
 }
 
-export function uploadFile(file){
+export function uploadFile(file) {
   return dispatch => {
     const FETCH_TYPE  = 'FETCH';
     const url         = `${getLocationOrigin()}/${appConfig.API.machines}/import`;
