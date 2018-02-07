@@ -17,6 +17,6 @@ class ReportFactoryImpl : ReportFactory {
     }
 
     override fun getReport(id:String, date:String, email:String, comment:String, emailAdmin: String, state: Int, severity: Int, type: Int): ReportDto {
-        return ReportImpl(id, date, email, comment, emailAdmin, state, severity, type)
+        return ReportImpl(id, date, email, emailAdmin, comment, state, severity, type)
     }
 }

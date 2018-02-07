@@ -27,6 +27,7 @@ class ReportDaoImpl(private val dal: DalServices,
                 .find(Document("name", name)).first()
                 ?: throw NoFatalException("find(Document(\"name\",name) failed"))
         val reports = machine.reports.filter { any -> ((any as Document).get("date")) == report.date }
+
     }
 
     override fun save(name: String, report: ReportDto) {

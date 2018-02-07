@@ -2,52 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc183b59-1437-4f96-84cb-a336534cf540" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/httpRequests/2018-02-07T022608.404.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/httpRequests/2018-02-07T022634.401.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/httpRequests/2018-02-07T022800.200.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/httpRequests/2018-02-07T022826.500.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/httpRequests/2018-02-07T023905.500.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/httpRequests/2018-02-07T024034.500.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/httpRequests/2018-02-07T024111.200.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/httpRequests/2018-02-07T024404.200.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_1_3_9.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_1_3_9.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_11_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_11_0.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_googlecode_owasp_java_html_sanitizer_owasp_java_html_sanitizer_r136.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_googlecode_owasp_java_html_sanitizer_owasp_java_html_sanitizer_r136.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mindrot_jbcrypt_0_3m.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mindrot_jbcrypt_0_3m.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/kotlin/Main.kt" afterPath="$PROJECT_DIR$/back-end/src/main/kotlin/Main.kt" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/ReportDto.kt" afterPath="$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/ReportDto.kt" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/impl/ReportImpl.kt" afterPath="$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/impl/ReportImpl.kt" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/ReportFactory.kt" afterPath="$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/ReportFactory.kt" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/ReportFactoryImpl.kt" afterPath="$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/ReportFactoryImpl.kt" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/kotlin/controllers/AuthController.kt" afterPath="$PROJECT_DIR$/back-end/src/main/kotlin/controllers/AuthController.kt" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/kotlin/controllers/ReportController.kt" afterPath="$PROJECT_DIR$/back-end/src/main/kotlin/controllers/ReportController.kt" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/kotlin/persistence/DbInit.kt" afterPath="$PROJECT_DIR$/back-end/src/main/kotlin/persistence/DbInit.kt" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/kotlin/persistence/dao/ReportDao.kt" afterPath="$PROJECT_DIR$/back-end/src/main/kotlin/persistence/dao/ReportDao.kt" />
       <change beforePath="$PROJECT_DIR$/back-end/src/main/kotlin/persistence/dao/impl/ReportDaoImpl.kt" afterPath="$PROJECT_DIR$/back-end/src/main/kotlin/persistence/dao/impl/ReportDaoImpl.kt" />
-      <change beforePath="$PROJECT_DIR$/back-end/src/main/kotlin/util/Authentication.kt" afterPath="$PROJECT_DIR$/back-end/src/main/kotlin/util/Authentication.kt" />
-      <change beforePath="$PROJECT_DIR$/front-end/package-lock.json" afterPath="$PROJECT_DIR$/front-end/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/footer/Footer.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/footer/Footer.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/machineImport/MachineImport.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/machineImport/MachineImport.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/navigation/NavigationBar.scss" afterPath="$PROJECT_DIR$/front-end/src/app/components/navigation/NavigationBar.scss" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/qrPrintMachine/QrPrintMachine.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/qrPrintMachine/QrPrintMachine.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/qrReaderMachine/QrReaderMachine.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/qrReaderMachine/QrReaderMachine.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/qrReaderMachine/QrReaderMachine.scss" afterPath="$PROJECT_DIR$/front-end/src/app/components/qrReaderMachine/QrReaderMachine.scss" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/qrReaderMachine/img/scanQr.png" afterPath="$PROJECT_DIR$/front-end/src/app/components/qrReaderMachine/img/scanQr.png" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/report/Report.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/report/Report.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/report/report.scss" afterPath="$PROJECT_DIR$/front-end/src/app/components/report/report.scss" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/reportTable/ReportTable.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/reportTable/ReportTable.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/reportTable/reportTable.scss" afterPath="$PROJECT_DIR$/front-end/src/app/components/reportTable/reportTable.scss" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/redux/modules/machine.js" afterPath="$PROJECT_DIR$/front-end/src/app/redux/modules/machine.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/redux/modules/report.js" afterPath="$PROJECT_DIR$/front-end/src/app/redux/modules/report.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/redux/modules/scanQr.js" afterPath="$PROJECT_DIR$/front-end/src/app/redux/modules/scanQr.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js" afterPath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/index.js" afterPath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/index.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/home/Home.js" afterPath="$PROJECT_DIR$/front-end/src/app/views/home/Home.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/reportForm/ReportForm.js" afterPath="$PROJECT_DIR$/front-end/src/app/views/reportForm/ReportForm.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/reportForm/index.js" afterPath="$PROJECT_DIR$/front-end/src/app/views/reportForm/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/back-end/.gradle/" />
@@ -66,22 +23,42 @@
     </projectState>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ReportDao.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/persistence/dao/ReportDao.kt">
+    <leaf>
+      <file leaf-file-name="ReportController.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/controllers/ReportController.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="9" column="10" lean-forward="false" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
+            <state relative-caret-position="186">
+              <caret line="23" column="90" lean-forward="true" selection-start-line="23" selection-start-column="90" selection-end-line="23" selection-end-column="90" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReportController.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/controllers/ReportController.kt">
+      <file leaf-file-name="MachineFactoryImpl.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/MachineFactoryImpl.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="126">
+              <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserFactoryImpl.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/UserFactoryImpl.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReportFactoryImpl.kt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/ReportFactoryImpl.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -90,18 +67,8 @@
       <file leaf-file-name="AuthController.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/controllers/AuthController.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="116">
+            <state relative-caret-position="278">
               <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportDaoImpl.kt" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/persistence/dao/impl/ReportDaoImpl.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="49" column="60" lean-forward="true" selection-start-line="49" selection-start-column="60" selection-end-line="49" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -110,58 +77,8 @@
       <file leaf-file-name="DbInit.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/persistence/DbInit.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
+            <state relative-caret-position="150">
               <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MachineReal.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/MachineReal.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="6" column="10" lean-forward="false" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportDto.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/ReportDto.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportImpl.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/impl/ReportImpl.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportFactory.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/ReportFactory.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="16" column="79" lean-forward="false" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportFactoryImpl.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/ReportFactoryImpl.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -610,12 +527,12 @@
         <option value="$PROJECT_DIR$/front-end/src/app/containers/app/index.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/redux/modules/userAuth.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/containers/app/App.js" />
-        <option value="$PROJECT_DIR$/back-end/src/main/kotlin/persistence/dao/impl/ReportDaoImpl.kt" />
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/ReportDto.kt" />
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/impl/ReportImpl.kt" />
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/ReportFactory.kt" />
-        <option value="$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/ReportFactoryImpl.kt" />
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/persistence/DbInit.kt" />
+        <option value="$PROJECT_DIR$/back-end/src/main/kotlin/persistence/dao/impl/ReportDaoImpl.kt" />
+        <option value="$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/ReportFactoryImpl.kt" />
       </list>
     </option>
   </component>
@@ -1231,12 +1148,20 @@
       <workItem from="1517983846114" duration="7976000" />
       <workItem from="1517995042954" duration="5058000" />
       <workItem from="1518008279134" duration="267000" />
-      <workItem from="1518009419759" duration="1936000" />
+      <workItem from="1518009419759" duration="3528000" />
     </task>
+    <task id="LOCAL-00001" summary="BACK END | UPDATE REPORT STATE | DONE">
+      <created>1518011433577</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1518011433577</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22180000" />
+    <option name="totallyTimeSpent" value="23772000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="22" width="1303" height="780" extended-state="6" />
@@ -1287,27 +1212,17 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="BACK END | UPDATE REPORT STATE | DONE" />
+    <option name="LAST_COMMIT_MESSAGE" value="BACK END | UPDATE REPORT STATE | DONE" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/util/Util.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/util/Authentication.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/MachineDto.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1595,22 +1510,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/controllers/AuthController.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/controllers/ReportController.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/persistence/dao/ReportDao.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -1627,34 +1526,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/ReportDto.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/ReportFactory.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="250">
           <caret line="16" column="79" lean-forward="false" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/ReportFactoryImpl.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="14" column="5" lean-forward="false" selection-start-line="14" selection-start-column="5" selection-end-line="14" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/persistence/DbInit.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1667,10 +1542,68 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/ReportDto.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/controllers/AuthController.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/persistence/DbInit.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/persistence/dao/impl/ReportDaoImpl.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="49" column="60" lean-forward="true" selection-start-line="49" selection-start-column="60" selection-end-line="49" selection-end-column="60" />
+        <state relative-caret-position="78">
+          <caret line="30" column="4" lean-forward="false" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
+          <folding>
+            <element signature="e#30#486#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/controllers/ReportController.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="23" column="90" lean-forward="true" selection-start-line="23" selection-start-column="90" selection-end-line="23" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/MachineFactoryImpl.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/UserFactoryImpl.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/ReportFactoryImpl.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
           <folding />
         </state>
       </provider>
