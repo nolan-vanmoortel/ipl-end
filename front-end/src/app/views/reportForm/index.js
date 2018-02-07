@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as viewsActions from '../../redux/modules/views';
 import * as reportActions from '../../redux/modules/report';
+import * as machinesActions from '../../redux/modules/machine';
 import ReportForm from './ReportForm';
 
 const mapStateToProps = (state) => {
@@ -19,6 +20,7 @@ const mapDispatchToProps = (dispatch) => {
     {
       enterReportForm: viewsActions.enterReportForm,
       leaveReportForm: viewsActions.leaveReportForm,
+      ...machinesActions,
       ...reportActions
     },
     dispatch
