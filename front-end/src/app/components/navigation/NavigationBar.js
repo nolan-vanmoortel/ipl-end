@@ -25,19 +25,18 @@ class NavigationBar extends PureComponent {
     handleReturn();
   };
 
-  handleClickMenu = (machineName) => {
+  handleClickMenu = (e) => {
     const { handleToForm } = this.props;
-    handleToForm(machineName);
+    handleToForm(e.item);
   };
 
   generateMenu = () => {
     const {itemList} = this.props;
     const test = [];
     itemList.map((machine, index) => {
-      test.push(<Menu.Item key={index+1} >
+      test.push(<Menu.Item item={machine.name} key={index+1} >
         Machine {machine.name}
       </Menu.Item>);
-
     });
 
     return (<Menu onClick={this.handleClickMenu} theme="dark" defaultSelectedKeys={['1']} mode="inline">
@@ -53,7 +52,6 @@ class NavigationBar extends PureComponent {
   render() {
     const { collapsedNav } = this.props;
     const menu = this.generateMenu();
-    console.log(menu);
     return (
       <Sider style={{display:collapsedNav?'none':'block'}} >
         <div className={styles.logo}>

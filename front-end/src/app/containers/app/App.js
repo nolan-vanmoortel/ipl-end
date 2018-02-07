@@ -56,16 +56,12 @@ class App extends Component {
   goToForm = (machineName) =>{
     const { history } = this.props;
     this.onCollapse();
-    history.push('/report/'+machineName );
+    history.push('/report/'+machineName.props.item);
   };
-
-
 
   render() {
     const { collapsed } = this.state;
     const { machines } = this.props;
-    console.log(machines);
-
     return (
       <div id="appContainer">
         <Layout style={{ minHeight: '100vh' }}>
