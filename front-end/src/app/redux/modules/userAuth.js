@@ -167,8 +167,8 @@ function logUser(
     const options     = {
       credentials: 'same-origin',
       data: {
-        email: login,
-        password
+        email: login.login,
+        password:login.password
       }
     };
 
@@ -188,8 +188,6 @@ function logUser(
         headers,
         options
       }
-    }).then((res) => {
-      console.log(res.headers);
     });
   };
 }

@@ -24,17 +24,17 @@ class Root extends Component<Props, State> {
   render() {
     return (
       <Provider store={store}>
-        <div>
-          <ConnectedRouter history={history}>
-            <ScrollTop>
-              <Switch>
-                <App />
-                {/* logout: just redirects to login (App will take care of removing the token) */}
-                <LogoutRoute path="/logout" />
-              </Switch>
-            </ScrollTop>
-          </ConnectedRouter>
-        </div>
+          <div>
+            <ConnectedRouter history={history}>
+              <ScrollTop>
+                <Switch>
+                  <App />
+                  {/* logout: just redirects to login (App will take care of removing the token) */}
+                  <LogoutRoute path="/logout" />
+                </Switch>
+              </ScrollTop>
+            </ConnectedRouter>
+          </div>
       </Provider>
     );
   }

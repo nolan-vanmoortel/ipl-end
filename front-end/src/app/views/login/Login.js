@@ -129,12 +129,13 @@ class Login extends PureComponent<Props, State> {
           const {
             data: {
               token,
-              user
-            }
+              email
+          }
           } = response.payload;
+          console.log(response.payload);
 
           auth.setToken(token);
-          auth.setUserInfo(user);
+          auth.setUserInfo(email);
 
           history.push({pathname: '/'}); // back to Home
         } catch (error) {

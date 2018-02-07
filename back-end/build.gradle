@@ -42,6 +42,7 @@ dependencies {
     compile 'org.junit.jupiter:junit-jupiter-api:5.0.0'
     compile group: 'com.googlecode.owasp-java-html-sanitizer', name: 'owasp-java-html-sanitizer', version: 'r136'
     compile group: 'org.mindrot', name: 'jbcrypt', version: '0.3m'
+
 }
 
 compileKotlin {

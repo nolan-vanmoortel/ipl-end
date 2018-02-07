@@ -29,13 +29,14 @@ fun AuthController(userDao: UserDao, userFactory: UserFactory){
                 if(hash == user.password) {
                     response.cookie("email", user.email, 3600)
                     response.cookie("token", hash, 3600)
-                    ObjectMapper().writeValueAsString(user)
+                    "{'email':${user.email},'token':$hash}"
                 }
                 else
                     throw NoFatalException("")
 
             } catch (e: Exception) {
                 e.printStackTrace()
+                status(403)
                 ObjectMapper().writeValueAsString(Message("Wrong e-mail or password !"))
             }
         }
