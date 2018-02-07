@@ -46,9 +46,11 @@ class PrintQr extends PureComponent {
     } = this.props;
     return(
       <div>
-        <h3>Scannez-moi<br/>en cas de problème</h3>
-        <h5>Machine name : {machineName}</h5>
+        <span style={{display:'inline-block'}}>
+        <h3>Scannez-moi<br/>en cas de problème </h3>
+          <h5>Machine name : {machineName} &nbsp;</h5>
         <QrPrint urlMachine = {this.state.machineUrl} />
+        </span>
       </div>
     );
   }

@@ -5,7 +5,7 @@ import React, {
 }                     from 'react';
 import PropTypes      from 'prop-types';
 import auth           from '../../services/auth';
-import { Form, Icon, Input, Button } from 'antd';
+import { Form, Icon, Input, Button, notification } from 'antd';
 const FormItem = Form.Item;
 
 
@@ -66,6 +66,18 @@ class Login extends PureComponent<Props, State> {
     const { leaveLogin } = this.props;
     leaveLogin();
   }
+
+  openErrorNotification = (comment) => {
+    notification.error({
+      message: comment
+    });
+  };
+
+  openSuccessNotification = (comment) => {
+    notification.success({
+      message: comment
+    });
+  };
 
   hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
@@ -135,12 +147,13 @@ class Login extends PureComponent<Props, State> {
 
           auth.setToken(token);
           auth.setUserInfo(email);
-
+          this.openSuccessNotification('Connexion réussie');
           history.push({pathname: '/adminDashboard'}); // back to Home
         } catch (error) {
           /* eslint-disable no-console */
           console.log('login wrong..., error: ', error);
           /* eslint-enable no-console */
+          this.openErrorNotification('Connexion échouée');
         }
       }
     });
