@@ -5,7 +5,9 @@ import React, {
 }                     from 'react';
 import PropTypes      from 'prop-types';
 import auth           from '../../services/auth';
-import { Form, Icon, Input, Button, notification, Card, Row, Col } from 'antd';
+import { Form, Icon, Input, Button, notification } from 'antd';
+
+import styles from './login.scss';
 const FormItem = Form.Item;
 
 
@@ -90,10 +92,10 @@ class Login extends PureComponent<Props, State> {
     const passwordError = isFieldTouched('password') && getFieldError('password');
 
     return (
-      <Card title="Veuilliez vous identifier : ">
-        <Form onSubmit={this.handleSubmit}>
-          <Row>
-            <Col span={8} offset={8}>
+      <div style={{width:'100%', textAlign:'center'}}>
+        <div className={styles.login}>
+          <h1 className={styles.h1}>Connexion</h1>
+          <Form onSubmit={this.handleSubmit}>
               <FormItem>
                 {getFieldDecorator('login', {
                   rules: [{
@@ -105,10 +107,6 @@ class Login extends PureComponent<Props, State> {
                   <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="E-Mail" />
                 )}
               </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={8} offset={8}>
               <FormItem
                 validateStatus={passwordError ? 'error' : ''}
                 help={passwordError || ''}
@@ -119,23 +117,18 @@ class Login extends PureComponent<Props, State> {
                   <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
                 )}
               </FormItem>
-            </Col>
-          </Row>
-          <Row>
-            <Col span={8} offset={8}>
               <FormItem>
                 <Button
                   type="primary"
                   htmlType="submit"
                   disabled={this.hasErrors(getFieldsError())}
                 >
-                  Log in
+                  Se connecter
                 </Button>
               </FormItem>
-            </Col>
-          </Row>
-        </Form>
-      </Card>
+          </Form>
+        </div>
+      </div>
     );
   }
 
