@@ -1,22 +1,14 @@
 package controllers
 
-import business.entities.DEFAULT_TYPE
-import business.entities.MINOR_SEVERITY
 import business.entities.ReportDto
+import business.factory.ReportFactory
+import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import exceptions.NoFatalException
 import persistence.dao.ReportDao
 import spark.Spark.path
-import spark.kotlin.get
 import spark.kotlin.post
 import util.Message
-import business.factory.ReportFactory
-import com.fasterxml.jackson.core.type.TypeReference
-import org.owasp.html.PolicyFactory
-import org.owasp.html.Sanitizers
-import policy
-import spark.Request
-import util.*
 import java.time.LocalDateTime
 
 fun ReportController(reportDao: ReportDao, reportFactory: ReportFactory){

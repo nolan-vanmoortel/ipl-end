@@ -10,30 +10,33 @@ import exceptions.NoFatalException
 import persistence.DalServices
 import org.bson.Document
 import org.bson.types.ObjectId
-import persistence.MACHINES_COLLECTION
 import persistence.dao.ReportDao
+import util.PluginProperties
 import java.time.LocalDateTime
 
 /**
  * Implementation of ReportDao.
  */
 class ReportDaoImpl(private val dal: DalServices,
-                    private val reportFactory: ReportFactory): ReportDao {
+                    private val reportFactory: ReportFactory,
+                    private val properties: PluginProperties): ReportDao {
 
     override fun save(name: String, report: ReportDto) {
-        dal.getCollection(MACHINES_COLLECTION)
+        dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
                 .updateOne(eq("name", name),
                         Document("\$push", Document("reports",
                                 Document.parse(ObjectMapper().writeValueAsString(report)))))
     }
 
     override fun getReportById(id: String): ReportReal {
-        val report = dal.getCollection(MACHINES_COLLECTION).find(Document("_id", ObjectId(id))).first()
+        val report = dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
+                .find(Document("_id", ObjectId(id))).first()
                 ?: throw NoFatalException("getReportById failed !")
         return reportFactory.getReport(report) as ReportReal
     }
     override fun getReportByDate(date: LocalDateTime): ReportReal {
-        val report = dal.getCollection(MACHINES_COLLECTION).find(Document("date", date)).first()
+        val report = dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
+                .find(Document("date", date)).first()
                 ?: throw NoFatalException("getReportByEMail failed !")
         return reportFactory.getReport(report) as ReportReal
     }

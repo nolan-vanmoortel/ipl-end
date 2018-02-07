@@ -1,11 +1,9 @@
 package persistence
 
-import business.entities.impl.UserImpl
-import com.mongodb.*
-import util.PluginProperties
+import com.mongodb.MongoClient
+import com.mongodb.MongoClientURI
 import org.bson.Document
-import java.util.*
-import kotlin.collections.ArrayList
+import util.PluginProperties
 
 /**
  * Used to initialize the data base
@@ -16,10 +14,10 @@ fun main(args: Array<String>) {
             "@${properties.getProperty("dbUrl")}:${properties.getProperty("dbPort")}/${properties.getProperty("dbName")}"))
     val database = mongo.getDatabase(properties.getProperty("dbName"))
     database.drop()
-    database.createCollection(MACHINES_COLLECTION)
-    database.createCollection(USERS_COLLECTION)
-    val machines = database.getCollection(MACHINES_COLLECTION)
-    val users = database.getCollection(USERS_COLLECTION)
+    database.createCollection(properties.getProperty("MACHINES_COLLECTION"))
+    database.createCollection(properties.getProperty("USERS_COLLECTION"))
+    val machines = database.getCollection(properties.getProperty("MACHINES_COLLECTION"))
+    val users = database.getCollection(properties.getProperty("USERS_COLLECTION"))
     val machine1 = Document("ip", "165.17.54.21")
             .append("mac", "yolo:fd01")
             .append("name", "machine1")

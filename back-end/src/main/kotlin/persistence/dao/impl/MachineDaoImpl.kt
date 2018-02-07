@@ -8,30 +8,34 @@ import exceptions.NoFatalException
 import persistence.DalServices
 import org.bson.Document
 import org.bson.types.ObjectId
-import persistence.MACHINES_COLLECTION
 import persistence.dao.MachineDao
 import com.mongodb.client.model.Filters.eq
+import util.PluginProperties
 
 /**
  * Implementation of MachineDao.
  */
 class MachineDaoImpl(private val dal: DalServices,
-                     private val machineFactory: MachineFactory): MachineDao {
+                     private val machineFactory: MachineFactory,
+                     private val properties: PluginProperties): MachineDao {
 
     override fun save(machine: MachineDto): MachineReal {
-        dal.getCollection(MACHINES_COLLECTION).insertOne(Document.parse(ObjectMapper().writeValueAsString(machine)))
+        dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
+                .insertOne(Document.parse(ObjectMapper().writeValueAsString(machine)))
         return getMachineByMac(machine.mac)
     }
 
     override fun getMachineById(id: String): MachineReal {
-        val machine = dal.getCollection(MACHINES_COLLECTION).find(Document("_id", ObjectId(id))).first()
+        val machine = dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
+                .find(Document("_id", ObjectId(id))).first()
                 ?: throw NoFatalException("getMachineById failed !")
         return machineFactory.getMachine(machine) as MachineReal
     }
 
     override fun getAllMachines(): ArrayList<MachineDto> {
         val machinesList = arrayListOf<MachineDto>()
-        val machinesMongo = dal.getCollection(MACHINES_COLLECTION).find()
+        val machinesMongo = dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
+                .find()
 
         for (document in machinesMongo){
             val machine = machineFactory.getMachine(document) as MachineReal
@@ -43,7 +47,7 @@ class MachineDaoImpl(private val dal: DalServices,
 
     override fun getLocationMachines(location: String): ArrayList<MachineDto> {
         val machinesList = arrayListOf<MachineDto>()
-        val machinesMongo = dal.getCollection(MACHINES_COLLECTION).find(Document("location",location))
+        val machinesMongo = dal.getCollection(properties.getProperty("MACHINES_COLLECTION")).find(Document("location",location))
 
         for (document in machinesMongo){
             val machine = machineFactory.getMachine(document) as MachineReal
@@ -54,7 +58,7 @@ class MachineDaoImpl(private val dal: DalServices,
     }
 
     override fun getMachineByMac(mac: String): MachineReal {
-        val machine = dal.getCollection(MACHINES_COLLECTION).find(Document("mac", mac)).first()
+        val machine = dal.getCollection(properties.getProperty("MACHINES_COLLECTION")).find(Document("mac", mac)).first()
                 ?: throw NoFatalException("getMachineByMac failed !")
         return machineFactory.getMachine(machine) as MachineReal
     }
@@ -69,13 +73,13 @@ class MachineDaoImpl(private val dal: DalServices,
     }
 
     override fun enableMachine(mac: String){
-        dal.getCollection(MACHINES_COLLECTION)
+        dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
                 .updateOne(eq("mac", mac),
                         Document("\$set", Document("state", true)))
     }
 
     override fun disableMachine(mac: String){
-        dal.getCollection(MACHINES_COLLECTION)
+        dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
                 .updateOne(eq("mac", mac),
                         Document("\$set", Document("state", false)))
     }

@@ -8,17 +8,18 @@ import exceptions.NoFatalException
 import persistence.DalServices
 import org.bson.Document
 import org.bson.types.ObjectId
-import persistence.USERS_COLLECTION
 import persistence.dao.UserDao
+import util.PluginProperties
 
 /**
  * Implementation of UserDao.
  */
 class UserDaoImpl(private val dal: DalServices,
-                  private val userFactory: UserFactory): UserDao {
+                  private val userFactory: UserFactory,
+                  private val properties: PluginProperties): UserDao {
 
     override fun save(user: UserDto): UserReal {
-        dal.getCollection(USERS_COLLECTION)
+        dal.getCollection(properties.getProperty("USERS_COLLECTION"))
                 .insertOne(Document("email", user.email)
                         .append("salt", user.salt)
                         .append("password", user.password))
@@ -26,12 +27,14 @@ class UserDaoImpl(private val dal: DalServices,
     }
 
     override fun getUserById(id: String): UserReal {
-        val user = dal.getCollection(USERS_COLLECTION).find(Document("_id", ObjectId(id))).first()
+        val user = dal.getCollection(properties.getProperty("USERS_COLLECTION"))
+                .find(Document("_id", ObjectId(id))).first()
                 ?: throw NoFatalException("getUserById failed !")
         return userFactory.getUser(user) as UserReal
     }
     override fun getUserByEMail(email: String): UserReal {
-        val user = dal.getCollection(USERS_COLLECTION).find(Document("email", email)).first()
+        val user = dal.getCollection(properties.getProperty("USERS_COLLECTION"))
+                .find(Document("email", email)).first()
                 ?: throw NoFatalException("getUserByEMail failed !")
         return userFactory.getUser(user) as UserReal
     }

@@ -10,9 +10,6 @@ import util.PluginProperties
 import org.bson.Document
 import java.util.*
 
-const val USERS_COLLECTION = "Users"
-const val MACHINES_COLLECTION = "Machines"
-
 class DalServicesNoSql(private val properties: PluginProperties) : DalServices {
 
     private val connections = ThreadLocal<MongoDatabase>()
