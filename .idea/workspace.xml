@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dc183b59-1437-4f96-84cb-a336534cf540" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/report/Report.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/report/Report.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/reportForm/ReportForm.js" afterPath="$PROJECT_DIR$/front-end/src/app/views/reportForm/ReportForm.js" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/printQr/PrintQr.js" afterPath="$PROJECT_DIR$/front-end/src/app/views/printQr/PrintQr.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/back-end/.gradle/" />
@@ -26,14 +24,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ReportForm.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ReportForm.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-end/src/app/views/reportForm/ReportForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="161" column="6" lean-forward="true" selection-start-line="161" selection-start-column="6" selection-end-line="161" selection-end-column="6" />
+            <state relative-caret-position="168">
+              <caret line="166" column="26" lean-forward="true" selection-start-line="166" selection-start-column="26" selection-end-line="166" selection-end-column="26" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PrintQr.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/front-end/src/app/views/printQr/PrintQr.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="810">
+              <caret line="58" column="23" lean-forward="false" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -494,7 +502,6 @@
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/controllers/MachineController.kt" />
         <option value="$PROJECT_DIR$/front-end/src/app/components/navigation/NavigationBar.js" />
         <option value="$PROJECT_DIR$/back-end/src/main/resources/prod.properties" />
-        <option value="$PROJECT_DIR$/front-end/src/app/views/printQr/PrintQr.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/views/login/Login.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/redux/modules/scanQr.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/redux/modules/machine.js" />
@@ -513,6 +520,7 @@
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/persistence/dao/impl/ReportDaoImpl.kt" />
         <option value="$PROJECT_DIR$/front-end/src/app/components/report/Report.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/views/reportForm/ReportForm.js" />
+        <option value="$PROJECT_DIR$/front-end/src/app/views/printQr/PrintQr.js" />
       </list>
     </option>
   </component>
@@ -663,6 +671,14 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="adminDashboard" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ipl-end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="printQr" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ipl-end" type="b2602c69:ProjectViewProjectNode" />
@@ -1153,7 +1169,7 @@
       <workItem from="1517995042954" duration="5058000" />
       <workItem from="1518008279134" duration="12664000" />
       <workItem from="1518021234772" duration="4539000" />
-      <workItem from="1518032816579" duration="5233000" />
+      <workItem from="1518032816579" duration="5401000" />
     </task>
     <task id="LOCAL-00001" summary="MAC C EST DE LA MERDE">
       <created>1518008573715</created>
@@ -1211,11 +1227,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518038499039</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="FRONT-END | LOADING BUTTON DONE">
+      <created>1518039173673</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1518039173673</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42413000" />
+    <option name="totallyTimeSpent" value="42581000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
@@ -1300,7 +1323,8 @@
     <MESSAGE value="FRONT-END | REPORT TABLE DYNAMIC UPDATE STATE DOING!" />
     <MESSAGE value="BACK-END | BUGGY BUGGED IN PROGRESS" />
     <MESSAGE value="BACK-END | UPDATE ADMIN DONE" />
-    <option name="LAST_COMMIT_MESSAGE" value="BACK-END | UPDATE ADMIN DONE" />
+    <MESSAGE value="FRONT-END | LOADING BUTTON DONE" />
+    <option name="LAST_COMMIT_MESSAGE" value="FRONT-END | LOADING BUTTON DONE" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1409,13 +1433,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1227">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-end/src/app/views/printQr/PrintQr.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-162">
-          <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -1715,11 +1732,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/views/reportForm/ReportForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="161" column="6" lean-forward="true" selection-start-line="161" selection-start-column="6" selection-end-line="161" selection-end-column="6" />
+        <state relative-caret-position="168">
+          <caret line="166" column="26" lean-forward="true" selection-start-line="166" selection-start-column="26" selection-end-line="166" selection-end-column="26" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/app/views/printQr/PrintQr.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="58" column="23" lean-forward="false" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>

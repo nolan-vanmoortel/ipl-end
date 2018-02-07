@@ -17,21 +17,10 @@ class PrintQr extends PureComponent {
     currentView:  PropTypes.string.isRequired,
     enterPrintQr:   PropTypes.func.isRequired,
     leavePrintQr:   PropTypes.func.isRequired,
-
-    // url machine
-    machineName: PropTypes.string
   };
-
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      machineUrl: ''
-    };
-  }
 
   componentDidMount() {
     const { enterPrintQr } = this.props;
-    this.setState({ machineUrl: window.location.hostname+':'+window.location.port+'/report/'+this.props.match.params.machineName });
     enterPrintQr();
   }
 
@@ -40,17 +29,28 @@ class PrintQr extends PureComponent {
     leavePrintQr();
   }
 
+  fillPage = () => {
+    const toPrint = [];
+    this.props.match.params.machineName.split(';').map((m, i) => {
+      if (i%4===0 && i>0) {
+        toPrint.push(<br/>);
+      }
+      toPrint.push(
+        <span style={{display:'inline-block'}}>
+        <h3>Scannez-moi<br/>en cas de problème &nbsp;</h3>
+          <h5>Machine name : {m} &nbsp;</h5>
+        <QrPrint key={i} urlMachine = {window.location.hostname+':'+window.location.port+'/report/'+m} />
+        </span>
+      );
+    });
+    return toPrint;
+  };
+
   render() {
-    const {
-      machineName
-    } = this.props;
+    const toPrint = this.fillPage();
     return(
       <div>
-        <span style={{display:'inline-block'}}>
-        <h3>Scannez-moi<br/>en cas de problème </h3>
-          <h5>Machine name : {machineName} &nbsp;</h5>
-        <QrPrint urlMachine = {this.state.machineUrl} />
-        </span>
+        {toPrint}
       </div>
     );
   }
