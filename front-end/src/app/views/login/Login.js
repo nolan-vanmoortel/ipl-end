@@ -5,7 +5,7 @@ import React, {
 }                     from 'react';
 import PropTypes      from 'prop-types';
 import auth           from '../../services/auth';
-import { Form, Icon, Input, Button, notification } from 'antd';
+import { Form, Icon, Input, Button, notification, Card, Row, Col } from 'antd';
 const FormItem = Form.Item;
 
 
@@ -90,38 +90,52 @@ class Login extends PureComponent<Props, State> {
     const passwordError = isFieldTouched('password') && getFieldError('password');
 
     return (
-      <Form layout="inline" onSubmit={this.handleSubmit}>
-        <FormItem>
-          {getFieldDecorator('login', {
-            rules: [{
-              type: 'email', message: 'E-mail non-valide!',
-            }, {
-              required: true, message: 'Veuillez entrer votre e-mail !',
-            }]
-          })(
-            <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="E-Mail" />
-          )}
-        </FormItem>
-        <FormItem
-          validateStatus={passwordError ? 'error' : ''}
-          help={passwordError || ''}
-        >
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }],
-          })(
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
-          )}
-        </FormItem>
-        <FormItem>
-          <Button
-            type="primary"
-            htmlType="submit"
-            disabled={this.hasErrors(getFieldsError())}
-          >
-            Log in
-          </Button>
-        </FormItem>
-      </Form>
+      <Card title="Veuilliez vous identifier : ">
+        <Form onSubmit={this.handleSubmit}>
+          <Row>
+            <Col span={8}>
+              <FormItem>
+                {getFieldDecorator('login', {
+                  rules: [{
+                    type: 'email', message: 'E-mail non-valide!',
+                  }, {
+                    required: true, message: 'Veuillez entrer votre e-mail !',
+                  }]
+                })(
+                  <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="E-Mail" />
+                )}
+              </FormItem>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={8}>
+              <FormItem
+                validateStatus={passwordError ? 'error' : ''}
+                help={passwordError || ''}
+              >
+                {getFieldDecorator('password', {
+                  rules: [{ required: true, message: 'Please input your Password!' }],
+                })(
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                )}
+              </FormItem>
+            </Col>
+          </Row>
+          <Row>
+            <Col span={8}>
+              <FormItem>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  disabled={this.hasErrors(getFieldsError())}
+                >
+                  Log in
+                </Button>
+              </FormItem>
+            </Col>
+          </Row>
+        </Form>
+      </Card>
     );
   }
 
@@ -139,7 +153,7 @@ class Login extends PureComponent<Props, State> {
             data: {
               token,
               email
-          }
+            }
           } = response.payload;
 
           auth.setToken(token);
