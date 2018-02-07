@@ -16,7 +16,7 @@ class NavigationBar extends PureComponent {
     handleReturn: PropTypes.func.isRequired,
     handleToForm: PropTypes.func.isRequired,
 
-    itemList: PropTypes.array
+    itemList: PropTypes.array,
   };
 
   // eslint-disable-next-line no-undef

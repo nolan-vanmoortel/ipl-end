@@ -21,6 +21,12 @@ class ReportTable extends PureComponent {
     if(machines.length !== 0 && data.length === 0)
       this.fillTable(machines);
   }
+  componentWillMount(){
+    const { machines }  = this.props;
+    const { data }  = this.state;
+    if(machines.length !== 0 && data.length === 0)
+      this.fillTable(machines);
+  }
 
   state={
     intToState:["TODO","DOING","DONE"],
@@ -44,8 +50,8 @@ class ReportTable extends PureComponent {
     });
   }
 
-  handleChangeSelect = (value) => {
-    console.log(`selected ${value}`);
+  handleChangeSelect = (record, value) => {
+    console.log(record, value);
   }
 
   onInputChange = (e) => {
@@ -96,14 +102,14 @@ class ReportTable extends PureComponent {
     machines.map((machine)=>{
       machine.reports.map((report)=>{
         reportTable.push({
-          key: machine.id+";"+report.date,
+          key: machine.id+';'+report.date,
           date: report.date,
           etat: intToState[report.state],
           severite: intToSeverite[report.severity],
           type:intToType[report.type],
           local: machine.location,
           nom: machine.name,
-          admin: report.emailAdmin.split('@')[0].replace('.',' '),
+          admin: report.emailAdmin.split('@')[0].replace('.', ' '),
           commentaire: <div dangerouslySetInnerHTML={{ __html: report.comment }}/>
         });
       });
@@ -215,9 +221,9 @@ class ReportTable extends PureComponent {
       title: 'Action',
       key: 'action',
       width: 200,
-      render: () => (
+      render: (text,record) => (
         <span>
-          <Select defaultValue="0" style={{ width: 120 }} onChange={this.handleChangeSelect}>
+          <Select defaultValue="0" style={{ width: 120 }} onChange={(value)=>{this.handleChangeSelect(record,value)}}>
             <Select.Option value="0">TODO</Select.Option>
             <Select.Option value="1">DOING</Select.Option>
             <Select.Option value="2">DONE</Select.Option>
