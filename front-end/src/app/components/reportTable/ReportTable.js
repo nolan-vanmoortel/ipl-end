@@ -19,14 +19,12 @@ class ReportTable extends PureComponent {
   componentDidUpdate(){
     const { machines, users }  = this.props;
     this.fillTable(machines);
-    console.log(users);
     this.updateListAdmin(users);
 
   }
   componentWillMount(){
     const { machines, users }  = this.props;
     this.fillTable(machines);
-    console.log(users);
     this.updateListAdmin(users);
   }
 
@@ -46,7 +44,6 @@ class ReportTable extends PureComponent {
   }
 
   handleChange = (pagination, filters, sorter) => {
-    console.log('Various parameters', pagination, filters, sorter);
     this.setState({
       filteredInfo: filters,
       sortedInfo: sorter
@@ -54,7 +51,6 @@ class ReportTable extends PureComponent {
   }
 
   handleChangeSelectState = (record, value) => {
-    console.log(record, value);
     const { setStateReport } = this.props;
     const { data, intToState } = this.state;
     const _data = data.slice(0);
@@ -67,23 +63,22 @@ class ReportTable extends PureComponent {
 
     setStateReport(record.key.split(';')[0], record.date, value).then(()=>{
       this.setState({data:_data});
-      console.log(_data);
     });
   }
 
   handleChangeSelectAdmin = (record, value) => {
     console.log(record, value);
-    const { setStateReport } = this.props;
+    const { setAdminReport } = this.props;
     const { data, intToState } = this.state;
     const _data = data.slice(0);
 
     data.map((elem,index)=>{
       if(elem.key === record.key)
-        _data[index].etat=intToState[value];
+        _data[index].admin=value.split('@')[0].replace('.', ' ');
     });
 
 
-    setStateReport(record.key.split(';')[0], record.date, value).then(()=>{
+    setAdminReport(record.key.split(';')[0], record.date, value).then(()=>{
       this.setState({data:_data});
       console.log(_data);
     });
@@ -166,7 +161,7 @@ class ReportTable extends PureComponent {
       return;
     const listUsers = [];
     users.map((user)=>{
-      listUsers.push(<Select.Option value={user.email}>{user.email.split('@')[0].replace('.', ' ')}</Select.Option>);
+      listUsers.push(<Select.Option key={'option'+user.email} value={user.email}>{user.email.split('@')[0].replace('.', ' ')}</Select.Option>);
     });
     this.setState({listOptionUser:listUsers});
   }

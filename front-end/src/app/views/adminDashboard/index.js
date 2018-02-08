@@ -17,10 +17,9 @@ const mapStateToProps = (state) => {
     file:         state.machine.file,
 
     machines:     state.machine.machines,
-    users:        state.user.users
-    machines:     state.machine.machines,
+    users:        state.user.users,
     uploadError:  state.machine.uploadError,
-    uploadSuccess:state.machine.uploadSuccess,
+    uploadSuccess:state.machine.uploadSuccess
   };
 };
 

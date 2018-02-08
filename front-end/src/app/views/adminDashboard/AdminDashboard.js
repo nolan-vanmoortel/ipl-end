@@ -41,7 +41,9 @@ class AdminDashboard extends PureComponent {
     uploadSuccess:        PropTypes.bool.isRequired,
 
     getUsers:             PropTypes.func.isRequired,
-    users:                PropTypes.array.isRequired
+    users:                PropTypes.array.isRequired,
+    setStateReport:       PropTypes.func.isRequired,
+    setAdminReport:       PropTypes.func.isRequired
 
 
   };
@@ -146,7 +148,8 @@ class AdminDashboard extends PureComponent {
     const {
       machines,
       setStateReport,
-      users
+      users,
+      setAdminReport
     } = this.props;
 
     const { getFieldDecorator } = this.props.form;
@@ -175,7 +178,7 @@ class AdminDashboard extends PureComponent {
         <Divider />
         <Row>
         <Col span={24} >
-          <ReportTable users={users} setStateReport={setStateReport} machines={machines}/>
+          <ReportTable setAdminReport={setAdminReport} users={users} setStateReport={setStateReport} machines={machines}/>
         </Col>
         </Row>
       </div>

@@ -19,6 +19,10 @@ const REQUEST_SET_STATE_REPORT:  string = 'REQUEST_SET_STATE_REPORT';
 const RECEIVED_SET_STATE_REPORT: string = 'RECEIVED_SET_STATE_REPORT';
 const ERROR_SET_STATE_REPORT:    string = 'ERROR_SET_STATE_REPORT';
 
+const REQUEST_SET_ADMIN_REPORT:  string = 'REQUEST_SET_ADMIN_REPORT';
+const RECEIVED_SET_ADMIN_REPORT: string = 'RECEIVED_SET_ADMIN_REPORT';
+const ERROR_SET_ADMIN_REPORT:    string = 'ERROR_SET_ADMIN_REPORT';
+
 // -----------------------------
 // REDUCER
 // -----------------------------
@@ -46,6 +50,21 @@ export default function (
       actionTime: currentTime
     };
     case ERROR_SET_STATE_REPORT:
+    return {
+      ...state,
+      actionTime: currentTime
+    };
+  case REQUEST_SET_ADMIN_REPORT:
+    return {
+      ...state,
+      actionTime: currentTime
+    };
+    case RECEIVED_SET_ADMIN_REPORT:
+    return {
+      ...state,
+      actionTime: currentTime
+    };
+    case ERROR_SET_ADMIN_REPORT:
     return {
       ...state,
       actionTime: currentTime
@@ -143,6 +162,32 @@ export function setStateReport(id, date, state) {
           request: REQUEST_SET_STATE_REPORT,
           success: RECEIVED_SET_STATE_REPORT,
           fail: ERROR_SET_STATE_REPORT
+        },
+        url,
+        method,
+        headers,
+        options
+      }
+    });
+  };
+}
+export function setAdminReport(id, date, admin) {
+  return dispatch => {
+    const FETCH_TYPE = 'FETCH';
+    const url = `${getLocationOrigin()}/${appConfig.API.setAdmin}/${id}/${date}/${admin}`;
+    const method = 'get';
+    const headers = {};
+    const options = {
+      credentials: 'same-origin',
+    };
+    return dispatch({
+      type: 'FETCH_MIDDLEWARE',
+      fetch: {
+        type: FETCH_TYPE,
+        actionTypes: {
+          request: REQUEST_SET_ADMIN_REPORT,
+          success: RECEIVED_SET_ADMIN_REPORT,
+          fail: ERROR_SET_ADMIN_REPORT
         },
         url,
         method,
