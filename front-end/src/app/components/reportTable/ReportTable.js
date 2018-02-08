@@ -7,6 +7,7 @@ import PropTypes      from 'prop-types';
 import styles         from './reportTable.scss';
 import {Table, Icon, Button, Input, Select} from 'antd';
 import ReportViewer from './reportViewer/ReportViewer';
+import {notification} from "antd/lib/index";
 
 class ReportTable extends PureComponent {
 
@@ -46,6 +47,27 @@ class ReportTable extends PureComponent {
     this.fillTable(machines);
     this.updateListAdmin(users);
   };
+
+  openErrorNotification = (comment, description) => {
+    notification.error({
+      message: comment,
+      description: description
+    });
+  };
+
+  openErrorNotificationWithDescription = (comment, description) => {
+    notification.error({
+      message: comment,
+      description: description
+    });
+  };
+
+  openSuccessNotification = (comment) => {
+    notification.success({
+      message: comment
+    });
+  };
+
 
   fillTable = (machines) =>{
     const { data, intToSeverite, intToState, intToType }  = this.state;

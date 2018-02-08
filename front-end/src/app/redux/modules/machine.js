@@ -8,21 +8,24 @@ import moment             from 'moment';
 // CONSTANTS
 // --------------------------------
 
-const UPLOAD_REQUEST:                   string = 'UPLOAD_REQUEST';
-const UPLOAD_RECEIVED:                  string = 'UPLOAD_RECEIVED';
-const UPLOAD_ERROR:                     string = 'UPLOAD_ERROR';
+const UPLOAD_REQUEST:                     string = 'UPLOAD_REQUEST';
+const UPLOAD_RECEIVED:                    string = 'UPLOAD_RECEIVED';
+const UPLOAD_ERROR:                       string = 'UPLOAD_ERROR';
 
-const TOGGLE_UPLOAD_ERROR:              string = 'TOGGLE_UPLOAD_ERROR';
-const TOGGLE_UPLOAD_SUCCESS:            string = 'TOGGLE_UPLOAD_SUCCESS';
+const TOGGLE_UPLOAD_ERROR:                string = 'TOGGLE_UPLOAD_ERROR';
+const TOGGLE_UPLOAD_SUCCESS:              string = 'TOGGLE_UPLOAD_SUCCESS';
 
-const GET_ALL_MACHINES:                  string = 'GET_ALL_MACHINES';
-const GET_ALL_MACHINES_RECEIVED:             string = 'GET_ALL_MACHINES_RECEIVED';
-const GET_ALL_MACHINES_ERROR:                string = 'GET_ALL_MACHINES_ERROR';
-const UPDATE_MACHINES:                string = 'UPDATE_MACHINES';
+const TOGGLE_SET_STATE_SUCCESS:           string = 'TOGGLE_SET_STATE_SUCCESS';
+const TOGGLE_SET_STATE_ERROR:             string = 'TOGGLE_SET_STATE_ERROR';
 
-const REQUEST_SET_STATE_MACHINE:  string = 'REQUEST_SET_STATE_MACHINE';
-const RECEIVED_SET_STATE_MACHINE: string = 'RECEIVED_SET_STATE_MACHINE';
-const ERROR_SET_STATE_MACHINE:    string = 'ERROR_SET_STATE_MACHINE';
+const GET_ALL_MACHINES:                   string = 'GET_ALL_MACHINES';
+const GET_ALL_MACHINES_RECEIVED:          string = 'GET_ALL_MACHINES_RECEIVED';
+const GET_ALL_MACHINES_ERROR:             string = 'GET_ALL_MACHINES_ERROR';
+const UPDATE_MACHINES:                    string = 'UPDATE_MACHINES';
+
+const REQUEST_SET_STATE_MACHINE:          string = 'REQUEST_SET_STATE_MACHINE';
+const RECEIVED_SET_STATE_MACHINE:         string = 'RECEIVED_SET_STATE_MACHINE';
+const ERROR_SET_STATE_MACHINE:            string = 'ERROR_SET_STATE_MACHINE';
 
 
 // --------------------------------
@@ -34,29 +37,37 @@ const initialState = {
   uploading:      false,
   uploadError:    false,
   uploadSuccess:  false,
-  machines:       []
+  machines:       [],
+
+  setStateSuccess:false,
+  setStateError:  false
 };
 
 export default function (
   state = initialState, action) {
-
   const currentTime = moment().format();
 
   switch(action.type) {
   case REQUEST_SET_STATE_MACHINE:
     return {
       ...state,
-      actionTime: currentTime
+      actionTime: currentTime,
+      setStateSuccess: false,
+      setStateError: false
     };
   case RECEIVED_SET_STATE_MACHINE:
     return {
       ...state,
-      actionTime: currentTime
+      actionTime: currentTime,
+      setStateSuccess: true,
+      setStateError: false
     };
   case ERROR_SET_STATE_MACHINE:
     return {
       ...state,
-      actionTime: currentTime
+      actionTime: currentTime,
+      setStateSuccess: false,
+      setStateError: true
     };
   case UPLOAD_REQUEST:
     return {
@@ -100,18 +111,26 @@ export default function (
       ...state
     };
 
-    case TOGGLE_UPLOAD_ERROR:
-      return {
-        ...state,
-        uploadError: !state.uploadError
-      };
-    case TOGGLE_UPLOAD_SUCCESS:
-      return {
-        ...state,
-        uploadSuccess: !state.uploadSuccess
-      };
-
-
+  case TOGGLE_UPLOAD_ERROR:
+    return {
+      ...state,
+      uploadError: !state.uploadError
+    };
+  case TOGGLE_UPLOAD_SUCCESS:
+    return {
+      ...state,
+      uploadSuccess: !state.uploadSuccess
+    };
+  case TOGGLE_SET_STATE_SUCCESS:
+    return {
+      ...state,
+      setStateSuccess: !state.setStateSuccess
+    };
+  case TOGGLE_SET_STATE_ERROR:
+    return {
+      ...state,
+      setStateError: !state.setStateError
+    };
   default:
     return state;
   }
@@ -155,7 +174,7 @@ export function setStateMachine(id, state) {
     const method = 'get';
     const headers = {};
     const options = {
-      credentials: 'same-origin',
+      credentials: 'same-origin'
     };
     return dispatch({
       type: 'FETCH_MIDDLEWARE',
@@ -255,6 +274,18 @@ export function toggleUploadError() {
 export function toggleUploadSuccess() {
   return {
     type: TOGGLE_UPLOAD_SUCCESS
+  };
+}
+
+export function toggleSetStateSuccess() {
+  return {
+    type: TOGGLE_SET_STATE_SUCCESS
+  };
+}
+
+export function toggleSetStateError() {
+  return {
+    type: TOGGLE_SET_STATE_ERROR
   };
 }
 

@@ -20,7 +20,7 @@ const MachineImport =({
   };
   return (
       <Row >
-        <Col span={6} style={{marginRight: 130}}>
+        <Col xs={{span:24}} md={{span:10}} style={{marginRight: 100, textAlign:'center'}}>
         <Upload {...props}>
           <Button
             disabled={fileList.length >= 1}
@@ -29,7 +29,7 @@ const MachineImport =({
           </Button>
         </Upload>
         </Col>
-        <Col span={6}>
+        <Col span={1}>
         <Button
           type="primary"
           onClick={handleUpload}
@@ -40,6 +40,7 @@ const MachineImport =({
         </Button>
         </Col>
       </Row>
+
   );
 };
 

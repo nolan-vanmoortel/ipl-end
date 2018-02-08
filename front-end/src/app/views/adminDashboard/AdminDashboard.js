@@ -25,32 +25,34 @@ class AdminDashboard extends PureComponent {
   }
 
   static propTypes = {
-    match:    PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history:  PropTypes.object.isRequired,
+    match:                  PropTypes.object.isRequired,
+    location:               PropTypes.object.isRequired,
+    history:                PropTypes.object.isRequired,
 
-    currentView:  PropTypes.string.isRequired,
+    currentView:            PropTypes.string.isRequired,
     enterAdminDashboard:    PropTypes.func.isRequired,
     leaveAdminDashboard:    PropTypes.func.isRequired,
 
-    uploadFile:         PropTypes.func.isRequired,
-    machines:           PropTypes.array.isRequired,
-    form:               PropTypes.object.isRequired,
-    manual:             PropTypes.func.isRequired,
+    uploadFile:             PropTypes.func.isRequired,
+    machines:               PropTypes.array.isRequired,
+    form:                   PropTypes.object.isRequired,
+    manual:                 PropTypes.func.isRequired,
 
-    toggleUploadError:    PropTypes.func.isRequired,
-    uploadError:          PropTypes.bool.isRequired,
-    toggleUploadSuccess:  PropTypes.func.isRequired,
-    uploadSuccess:        PropTypes.bool.isRequired,
+    toggleUploadError:      PropTypes.func.isRequired,
+    uploadError:            PropTypes.bool.isRequired,
+    toggleUploadSuccess:    PropTypes.func.isRequired,
+    uploadSuccess:          PropTypes.bool.isRequired,
 
-    getUsers:             PropTypes.func.isRequired,
-    users:                PropTypes.array.isRequired,
-    setStateReport:       PropTypes.func.isRequired,
-    setStateMachine:       PropTypes.func.isRequired,
-    setAdminReport:       PropTypes.func.isRequired,
-    getMachines:          PropTypes.func.isRequired,
-    updateMachines:          PropTypes.func.isRequired
+    getUsers:               PropTypes.func.isRequired,
+    users:                  PropTypes.array.isRequired,
+    setStateReport:         PropTypes.func.isRequired,
+    setStateMachine:        PropTypes.func.isRequired,
+    setAdminReport:         PropTypes.func.isRequired,
+    getMachines:            PropTypes.func.isRequired,
+    updateMachines:         PropTypes.func.isRequired,
 
+    setStateError:          PropTypes.bool.isRequired,
+    setStateSuccess:        PropTypes.bool.isRequired
   };
 
   componentDidMount() {
@@ -143,30 +145,53 @@ class AdminDashboard extends PureComponent {
 
   componentDidUpdate() {
     const { uploadError, toggleUploadError,
-      uploadSuccess, toggleUploadSuccess} = this.props;
+      uploadSuccess, toggleUploadSuccess,
+      setStateSuccess, setStateError,
+      setReportStateSuccess, setReportStateError,
+      setReportAdminSuccess, setReportAdminError,
+      toggleSetStateSuccess, toggleSetStateError,
+      toggleSetReportStateSuccess, toggleSetReportStateError,
+      toggleSetReportAdminSuccess, toggleSetReportAdminError
+    } = this.props;
     if(uploadError) {
       this.openErrorNotification('Une erreur est survenue');
       toggleUploadError();
       this.setState({ uploading: false });
     }
     if(uploadSuccess) {
-      this.getMachines();
-      if(this.state.fileList.length === 0){
+      if(this.state.file === null){
         this.openSuccessNotification('La machine a bien été enregistrée');
       }else{
-        this.openSuccessNotification('Le fichier a bien été envoyé');
+        this.openSuccessNotification('Le fichier a bien ete envoyé');
       }
       toggleUploadSuccess();
       this.setState({ uploading: false });
     }
+    if (setStateSuccess) {
+      toggleSetStateSuccess();
+      this.openSuccessNotification('État changé avec succès');
+    }
+    if (setStateError) {
+      toggleSetStateError();
+      this.openErrorNotification('Erreur lors du changement d\'état');
+    }
+    if (setReportStateSuccess) {
+      toggleSetReportStateSuccess();
+      this.openSuccessNotification('État changé avec succès');
+    }
+    if (setReportStateError) {
+      toggleSetReportStateError();
+      this.openErrorNotification('Erreur lors du changement d\'état');
+    }
+    if (setReportAdminSuccess) {
+      toggleSetReportAdminSuccess();
+      this.openSuccessNotification('Admin modifié avec succès');
+    }
+    if (setReportAdminError) {
+      toggleSetReportAdminError();
+      this.openErrorNotification('Erreur lors de la modification de l\'admin');
+    }
   }
-
-  getMachines = async () => {
-    const { updateMachines, getMachines } = this.props;
-    const response = await getMachines();
-    const allMachines = response.payload.data;
-    updateMachines(allMachines);
-  };
 
   render() {
     const {
@@ -174,8 +199,7 @@ class AdminDashboard extends PureComponent {
       setStateReport,
       users,
       setAdminReport,
-      setStateMachine,
-      getMachines
+      setStateMachine
     } = this.props;
 
     const { getFieldDecorator } = this.props.form;
@@ -189,21 +213,20 @@ class AdminDashboard extends PureComponent {
             <Row>
               <h3>Soumission d'une nouvelle machine</h3>
               <Col>
-                <MachineManual getMachines={getMachines} getFieldDecorator={getFieldDecorator} handleSubmit={this.handleSubmit} />
+                <MachineManual getFieldDecorator={getFieldDecorator} handleSubmit={this.handleSubmit} />
               </Col>
             </Row>
             <Divider />
             <Row>
               <h3>Soumission de machines à partir d'un fichier</h3>
               <Col span={6}  />
-              <Col xs={{span:12}} md={{span:6, offset:3}} style={{textAlign:'center'}}>
+              <Col xs={{span:12}} md={{span:6, offset:3}}  style={{textAlign:'center'}}>
                 <MachineImport
                   onRemove={this.onRemove}
                   beforeUpload={this.beforeUpload}
                   handleUpload={this.handleUpload}
                   fileList={fileList}
-                  uploading={uploading}
-                  />
+                  uploading={uploading}/>
               </Col>
             </Row>
           </TabPane>
