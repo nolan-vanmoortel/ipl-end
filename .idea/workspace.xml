@@ -3,17 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="dc183b59-1437-4f96-84cb-a336534cf540" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/front-end/package-lock.json" afterPath="$PROJECT_DIR$/front-end/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/front-end/package.json" afterPath="$PROJECT_DIR$/front-end/package.json" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/footer/Footer.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/footer/Footer.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/index.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/index.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/qrPrintMachine/PrintQr.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/qrPrintMachine/QrMaker/QrMaker.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/qrPrintMachine/printQr.scss" afterPath="" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/containers/app/App.js" afterPath="$PROJECT_DIR$/front-end/src/app/containers/app/App.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js" afterPath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/index.js" afterPath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/index.js" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/containers/app/app.scss" afterPath="$PROJECT_DIR$/front-end/src/app/containers/app/app.scss" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/back-end/.gradle/" />
@@ -82,68 +73,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Footer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front-end/src/app/components/footer/Footer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="31" column="64" lean-forward="false" selection-start-line="31" selection-start-column="64" selection-end-line="31" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front-end/src/app/redux/modules/views.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="91" column="35" lean-forward="false" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front-end/src/app/containers/app/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="15" />
-              <folding>
-                <element signature="e#15#64#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/front-end/src/app/containers/app/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="67" column="88" lean-forward="false" selection-start-line="67" selection-start-column="88" selection-end-line="67" selection-end-column="88" />
+            <state relative-caret-position="339">
+              <caret line="77" column="74" lean-forward="false" selection-start-line="77" selection-start-column="74" selection-end-line="77" selection-end-column="74" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminDashboard.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js">
+      <file leaf-file-name="app.scss" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-end/src/app/containers/app/app.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="57" column="26" lean-forward="true" selection-start-line="57" selection-start-column="26" selection-end-line="57" selection-end-column="26" />
-              <folding>
-                <element signature="e#45#112#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/front-end/src/app/views/adminDashboard/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="30" column="59" lean-forward="false" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
-              <folding>
-                <element signature="e#14#63#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="187">
+              <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -159,7 +104,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>handleClick</find>
       <find>Navigation</find>
       <find>NavigationBar</find>
       <find>logUserIfNeeded</find>
@@ -189,6 +133,7 @@
       <find>onPrint</find>
       <find>getLocationOrigin</find>
       <find>enterAdminDashboard</find>
+      <find>onCollapse</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -595,7 +540,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/front-end/src/app/components/qrPrintMachine/QrPrintMachine.js" />
-        <option value="$PROJECT_DIR$/front-end/src/app/containers/app/app.scss" />
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/ReportDto.kt" />
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/controllers/UserController.kt" />
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/persistence/DbInit.kt" />
@@ -630,8 +574,9 @@
         <option value="$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/services/utils/generatePDF.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/components/footer/Footer.js" />
-        <option value="$PROJECT_DIR$/front-end/src/app/containers/app/App.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/index.js" />
+        <option value="$PROJECT_DIR$/front-end/src/app/containers/app/app.scss" />
+        <option value="$PROJECT_DIR$/front-end/src/app/containers/app/App.js" />
       </list>
     </option>
   </component>
@@ -2192,11 +2137,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518117205675</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="FRONT-END | FOOTER FIXED DONE!">
+      <created>1518117952026</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1518117952026</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61727000" />
+    <option name="totallyTimeSpent" value="63751000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
@@ -2348,7 +2300,8 @@
     <MESSAGE value="FRONT-END | BUG LOGOUT FIXED" />
     <MESSAGE value="FRONT-END | ADMIN DESIGN DONE" />
     <MESSAGE value="FRONT-END | QR CODE FUCKING DONE!" />
-    <option name="LAST_COMMIT_MESSAGE" value="FRONT-END | QR CODE FUCKING DONE!" />
+    <MESSAGE value="FRONT-END | FOOTER FIXED DONE!" />
+    <option name="LAST_COMMIT_MESSAGE" value="FRONT-END | FOOTER FIXED DONE!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2357,13 +2310,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/front-end/src/app/views/pageNotFound/PageNotFound.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-237">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/views/home/home.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2727,22 +2673,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front-end/src/app/components/footer/Footer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="31" column="64" lean-forward="false" selection-start-line="31" selection-start-column="64" selection-end-line="31" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-end/src/app/containers/app/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="67" column="88" lean-forward="false" selection-start-line="67" selection-start-column="88" selection-end-line="67" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -2755,11 +2685,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/views/adminDashboard/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="30" column="59" lean-forward="false" selection-start-line="30" selection-start-column="59" selection-end-line="30" selection-end-column="59" />
-          <folding>
-            <element signature="e#14#63#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="62">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/app/components/footer/Footer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" column="20" lean-forward="false" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/app/containers/app/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/app/containers/app/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="77" column="74" lean-forward="false" selection-start-line="77" selection-start-column="74" selection-end-line="77" selection-end-column="74" />
+          <folding />
         </state>
       </provider>
     </entry>
