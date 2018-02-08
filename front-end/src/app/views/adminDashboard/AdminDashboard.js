@@ -72,8 +72,14 @@ class AdminDashboard extends PureComponent {
           location: values.location,
           comment: values.comment
         };
-        const {manual} = this.props;
-        manual(machine);
+        const { machines } = this.props;
+        if (machines.map(m => m.name).includes(machine.name)) {
+          this.openErrorNotification('Erreur avec le nom',
+            'Une machine du même nom est déjà enregistrée');
+        } else {
+          const {manual} = this.props;
+          manual(machine);
+        }
       }
     });
   };
@@ -112,9 +118,10 @@ class AdminDashboard extends PureComponent {
     uploadFile(formData);
   };
 
-  openErrorNotification = (comment) => {
+  openErrorNotification = (comment, description) => {
     notification.error({
-      message: comment
+      message: comment,
+      description: description
     });
   };
 
@@ -141,7 +148,7 @@ class AdminDashboard extends PureComponent {
     }
     if(uploadSuccess) {
       if(this.state.file === null){
-        this.openSuccessNotification('La machine a bien été enregistrée')
+        this.openSuccessNotification('La machine a bien été enregistrée');
       }else{
         this.openSuccessNotification('Le fichier a bien ete envoyé');
       }
