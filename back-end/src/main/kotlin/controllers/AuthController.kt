@@ -5,6 +5,7 @@ import business.factory.UserFactory
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import exceptions.NoFatalException
+import persistence.dao.MachineDao
 import persistence.dao.ReportDao
 import persistence.dao.UserDao
 import spark.Request
@@ -21,7 +22,8 @@ import java.time.LocalDateTime
 fun AuthController(userDao: UserDao,
                    userFactory: UserFactory,
                    reportFactory: ReportFactory,
-                   reportDao: ReportDao){
+                   reportDao: ReportDao,
+                   machineDao: MachineDao){
     path("/auth") {
         post("/login") {
             val salt = getSalt()
@@ -89,6 +91,20 @@ fun AuthController(userDao: UserDao,
                 reportDao.updateAdmin(machine, date, admin)
                 status(200)
                 ObjectMapper().writeValueAsString(Message("Report sucessfully updated"))
+            } catch (e: NoFatalException) {
+                e.printStackTrace()
+                status(403)
+                ObjectMapper().writeValueAsString(Message("Wrong e-mail or password !"))
+            }
+        }
+        get("/update/admin/:machine/:state") {
+            checkCookie(request, userDao)
+            try {
+                val machine = request.params("machine")
+                val state = request.params("state").toBoolean()
+                machineDao.switchMachineState(machine,state)
+                status(200)
+                ObjectMapper().writeValueAsString(Message("Machine state successfully updated"))
             } catch (e: NoFatalException) {
                 e.printStackTrace()
                 status(403)

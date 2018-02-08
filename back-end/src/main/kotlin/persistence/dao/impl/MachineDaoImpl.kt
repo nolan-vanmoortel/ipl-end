@@ -83,4 +83,10 @@ class MachineDaoImpl(private val dal: DalServices,
                 .updateOne(eq("mac", mac),
                         Document("\$set", Document("state", false)))
     }
+
+    override fun switchMachineState(machineName: String, newState: Boolean){
+        dal.getCollection(properties.getProperty("MACHINES_COLLECTION"))
+                .updateOne(eq("name", machineName),
+                        Document("\$set", Document("state", newState)))
+    }
 }
