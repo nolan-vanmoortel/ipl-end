@@ -3,16 +3,20 @@
 import React, {
   PureComponent
 }                     from 'react';
+import {renderToStaticMarkup} from 'react-dom/server';
 import PropTypes      from 'prop-types';
-import QrPrint        from '../../components/qrPrintMachine/QrMaker/QrMaker';
+import QrMaker        from '../../components/qrPrintMachine/QrMaker/QrMaker';
 import h2c            from 'html2canvas';
 import jsPDF          from 'jspdf';
 import styles         from './printQr.scss';
 import {Icon, Button} from 'antd';
+import QRCode         from 'qrcode';
+import JQuery         from 'jquery';
 
 class PrintQr extends PureComponent {
   static propTypes= {
-    machineUrlParam: PropTypes.array.isRequired
+    machines: PropTypes.array.isRequired,
+    name: PropTypes.string.isRequired
   };
 
   state = {
@@ -20,49 +24,39 @@ class PrintQr extends PureComponent {
   };
 
   fillPage = () => {
-    const toPrint = [];
-    const { machineUrlParam } = this.props;
-    console.log(machineUrlParam);
-    machineUrlParam.split(';').map((m, i) => {
-      if (i%4===0 && i>0) {
-        toPrint.push(<br/>);
-      }
-      toPrint.push(
-        <span style={{display:'inline-block'}} key={i}>
-        <h3>Scannez-moi &nbsp;</h3>
-        <h5>{m} &nbsp;</h5>
-        <QrPrint key={i} urlMachine = {window.location.hostname+':'+window.location.port+'/report/'+m} />
-        </span>
-      );
-    });
     return toPrint;
   };
 
-  printDocument = async (qrDisplayed) => {
-    const { machineUrlParam } = this.props;
-    const input = document.getElementById('ttp'+machineUrlParam);
-    input.setAttribute('style', 'max-height : none;');
-    input.setAttribute('style', 'visibility : visible;');
-    return h2c(input).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF();
-      pdf.addImage(imgData, 'JPEG', 0, 0);
-      pdf.save(machineUrlParam+'.pdf');
+  printDocument = async () => {
+    const { name, machines } = this.props;
+    const pdf = new jsPDF();
+    machines.forEach((machine) => {
+      const code = QRCode.toDataURL(window.location.hostname+':'+window.location.port+'/report/machine1',
+        {type: 'image/jpeg'}, function(err, url) {
+          if (err) throw err;
+          pdf.addImage(url,'JPEG', 0, 0);
+          pdf.addImage(url, 'JPEG', 0, 0);
+          document.getElementById("yolo").src = url;
+          const temp = (
+            <span key={machine}>
+          <h3>Scannez-moi &nbsp;</h3>
+          <h5>{machine} &nbsp;</h5>
+          </span>);
+          pdf.text(temp);
+        });
     });
+    pdf.save(name+'.pdf');
   };
 
 
   render() {
-    const toPrint = this.fillPage();
-    const{ machineUrlParam } = this.props;
-    const{ qrDisplayed } = this.state;
-    if(qrDisplayed){
-      this.printDocument(qrDisplayed).then(()=>this.setState({qrDisplayed:false}));
-    }
+    const { machines } = this.props;
     return(
       <div>
-        <Button onClick={()=>this.setState({qrDisplayed: true})}><Icon type="printer"/>Print</Button>
-        <div className = {styles.ttp} style = {{ height:qrDisplayed?'none':'1px', visibility:qrDisplayed?'visible':'hidden'}} id={'ttp'+machineUrlParam}>{toPrint}</div>
+        <Button onClick={this.printDocument}>
+          <Icon type="printer"/>Imprimer
+        </Button>
+        <img id="yolo" />
       </div>
     );
   }

@@ -291,7 +291,7 @@ class MachineTable extends PureComponent {
       render: (text, record) => (
         <span style={{textAlign:'right'}}>
           <Switch style={{marginRight:'15px'}} defaultChecked={true} checkedChildren="Activer" unCheckedChildren="Desactiver" onChange={(value)=>{this.handleSwitchState(record,value)}} />
-          <QrPrinter style={{display: 'inline'}} machineUrlParam={record.nom}/>
+          <QrPrinter style={{display: 'inline'}} machines={[record.nom]} name={record.nom}/>
     </span>
       )
     }];

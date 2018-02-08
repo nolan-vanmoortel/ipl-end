@@ -16,9 +16,7 @@ class QrMaker extends PureComponent {
   render() {
     const { urlMachine } = this.props;
     return (
-      <div>
         <QRCode value={urlMachine}/>
-      </div>
     );
   }
 }
