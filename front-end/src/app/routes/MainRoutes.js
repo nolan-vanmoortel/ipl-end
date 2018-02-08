@@ -22,19 +22,20 @@ import LogoutRoute      from '../components/logoutRoute/LogoutRoute';
 
 class MainRoutes extends Component {
   static propTypes = {
-    disconnectUser: PropTypes.func.isRequired
+    disconnectUser: PropTypes.func.isRequired,
+    checkUserIsConnected: PropTypes.func.isRequired
   };
 
   render() {
-    const { disconnectUser } = this.props;
+    const { disconnectUser, checkUserIsConnected } = this.props;
     return (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/report/:machineName" component={ReportForm} />
-        <PrivateRoute path="/adminDashboard" component={AdminDashboard} />
+        <PrivateRoute checkUserIsConnected={checkUserIsConnected} path="/adminDashboard" component={AdminDashboard} />
         <Route exact path="/login" component={Login} />
         <Route path="/qr/:machineName" component={PrintQr} />
-        <PrivateRoute path="/protected" component={Protected} />
+        <PrivateRoute checkUserIsConnected={checkUserIsConnected} path="/protected" component={Protected} />
         <LogoutRoute path="/logout" disconnectUser={disconnectUser} />
         <Route component={PageNotFound} />
       </Switch>

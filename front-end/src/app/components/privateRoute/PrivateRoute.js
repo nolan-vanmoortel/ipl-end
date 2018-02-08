@@ -18,7 +18,9 @@ class PrivateRoute extends Component {
     history:  PropTypes.object.isRequired,
 
     component:  PropTypes.any.isRequired,
-    path:       PropTypes.string
+    path:       PropTypes.string,
+
+    checkUserIsConnected: PropTypes.func.isRequired
   };
 
   render() {
@@ -49,9 +51,9 @@ class PrivateRoute extends Component {
     const user            = auth.getUserInfo()
                             ? auth.getUserInfo()
                             : null;
-    const isAuthenticated = auth.getToken() && checkUserHasId(user)
-                            ? true
-                            : false;
+    const isAuthenticated = !!(auth.getToken() && checkUserHasId(user));
+    const { checkUserIsConnected } = this.props;
+    checkUserIsConnected();
     return isAuthenticated;
   }
 }

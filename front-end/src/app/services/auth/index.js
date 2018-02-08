@@ -220,11 +220,9 @@ export const auth = {
     }
     const cookies = new Cookies();
     if (cookies.get('token')) {
-      console.log('remove : token');
       cookies.remove('token');
     }
     if (cookies.get('email')) {
-      console.log('remove : email');
       cookies.remove('email');
     }
   }

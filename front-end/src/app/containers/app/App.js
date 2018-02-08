@@ -23,7 +23,10 @@ class App extends Component {
     machines: PropTypes.array.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     getMachines: PropTypes.func.isRequired,
-    updateMachines: PropTypes.func.isRequired
+    updateMachines: PropTypes.func.isRequired,
+
+    disconnectUser: PropTypes.func.isRequired,
+    checkUserIsConnected: PropTypes.func.isRequired
   };
 
   state = {
@@ -62,14 +65,14 @@ class App extends Component {
 
   render() {
     const { collapsed } = this.state;
-    const { machines, isAuthenticated, disconnectUser } = this.props;
+    const { machines, isAuthenticated, disconnectUser, checkUserIsConnected } = this.props;
     return (
       <div id="appContainer">
         <Layout style={{ minHeight: '100vh' }}>
           <NavigationBar itemList={machines} collapsedNav={collapsed} handleToForm={this.goToForm} handleReturn={this.goToReader}/>
           <Layout>
             <Content className={styles.backgroundApp}>
-              <MainRoutes disconnectUser={disconnectUser}/>
+              <MainRoutes disconnectUser={disconnectUser} checkUserIsConnected={checkUserIsConnected}/>
             </Content>
             <Footer isAuthenticated={isAuthenticated}/>
             <Affix offsetTop={0} offsetBottom={0} onChange={affixed => console.log(affixed)}>
