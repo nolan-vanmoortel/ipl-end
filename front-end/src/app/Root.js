@@ -13,7 +13,6 @@ import configureStore           from './redux/store/configureStore';
 import { history }              from './redux/store/configureStore';
 import App                      from './containers/app';
 import ScrollTop                from './components/scrollToTop/ScrollToTop';
-import LogoutRoute              from './components/logoutRoute/LogoutRoute';
 
 type Props = any;
 type State = any;
@@ -30,7 +29,6 @@ class Root extends Component<Props, State> {
                 <Switch>
                   <App />
                   {/* logout: just redirects to login (App will take care of removing the token) */}
-                  <LogoutRoute path="/logout" />
                 </Switch>
               </ScrollTop>
             </ConnectedRouter>

@@ -13,6 +13,7 @@ import PageNotFound     from '../views/pageNotFound';
 import ReportForm       from '../views/reportForm';
 import Login            from '../views/login';
 import PrintQr          from '../views/printQr';
+import LogoutRoute              from '../components/logoutRoute/LogoutRoute';
 const MainRoutes = () => {
   return (
     <Switch>
@@ -22,6 +23,7 @@ const MainRoutes = () => {
       <Route exact path="/login" component={Login} />
       <Route path="/qr/:machineName" component={PrintQr} />
       <PrivateRoute path="/protected" component={Protected} />
+      <LogoutRoute path="/logout" />
       <Route component={PageNotFound} />
     </Switch>
   );
