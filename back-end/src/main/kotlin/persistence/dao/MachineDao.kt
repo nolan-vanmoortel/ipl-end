@@ -19,6 +19,6 @@ interface MachineDao {
     fun getLocationMac(location: String): MutableMap<String,Boolean>
     fun enableMachine(mac: String)
     fun disableMachine(mac: String)
-    fun switchMachineState(mac: String, newState: Boolean)
+    fun switchMachineState(machineName: String, newState: Boolean)
     fun save(machine: MachineDto): MachineReal
 }

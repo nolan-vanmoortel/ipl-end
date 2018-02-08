@@ -21,12 +21,13 @@ class App extends Component {
 
     currentView: PropTypes.string,
     machines: PropTypes.array.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
     getMachines: PropTypes.func.isRequired,
     updateMachines: PropTypes.func.isRequired
   };
 
   state = {
-    collapsed: true,
+    collapsed: true
   };
 
   componentWillMount(){
@@ -61,16 +62,16 @@ class App extends Component {
 
   render() {
     const { collapsed } = this.state;
-    const { machines } = this.props;
+    const { machines, isAuthenticated, disconnectUser } = this.props;
     return (
       <div id="appContainer">
         <Layout style={{ minHeight: '100vh' }}>
           <NavigationBar itemList={machines} collapsedNav={collapsed} handleToForm={this.goToForm} handleReturn={this.goToReader}/>
           <Layout>
             <Content className={styles.backgroundApp}>
-              <MainRoutes />
+              <MainRoutes disconnectUser={disconnectUser}/>
             </Content>
-            <Footer/>
+            <Footer isAuthenticated={isAuthenticated}/>
             <Affix offsetTop={0} offsetBottom={0} onChange={affixed => console.log(affixed)}>
               <Button className={styles.darkButton} onClick={this.onCollapse} >{collapsed?'Afficher Menu':'Cacher Menu'}</Button>
             </Affix>

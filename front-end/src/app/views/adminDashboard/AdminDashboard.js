@@ -46,7 +46,6 @@ class AdminDashboard extends PureComponent {
     setStateReport:       PropTypes.func.isRequired,
     setAdminReport:       PropTypes.func.isRequired
 
-
   };
 
   componentDidMount() {
@@ -147,7 +146,7 @@ class AdminDashboard extends PureComponent {
       toggleUploadSuccess();
       this.setState({ uploading: false });
     }
-  };
+  }
 
   render() {
     const {

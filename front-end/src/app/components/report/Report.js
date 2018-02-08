@@ -25,11 +25,19 @@ const Report = ({
                   config,
                   handleSubmit,
                   handleModelChange,
-                  loading
+                  loading,
+                  machine
 })=>{
   return (
     <Form onSubmit={handleSubmit}>
       <h1>Soumission d'un problème : </h1>
+      <Row>
+        <Col xs={{ span:24 }} lg={{ span:8 }}>
+          <FormItem>
+            <Input prefix={<Icon type="laptop" style={{ color: 'rgba(0,0,0,.25)' }} />}  disabled={true} value={machine} />
+          </FormItem>
+        </Col>
+      </Row>
       <Row>
         <Col xs={{ span:24 }} lg={{ span:8 }}>
           <FormItem>
@@ -40,7 +48,7 @@ const Report = ({
                 required: true, message: 'Veuillez entrer votre e-mail !'
               }]
             })(
-              <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="E-Mail *" />
+              <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}  />
             )}
           </FormItem>
         </Col>
@@ -77,7 +85,8 @@ Report.propTypes = {
   handleModelChange:  PropTypes.func.isRequired,
   model:              PropTypes.string.isRequired,
   config:             PropTypes.object.isRequired,
-  loading:            PropTypes.bool.isRequired
+  loading:            PropTypes.bool.isRequired,
+  machine:            PropTypes.object.isRequired
 };
 
 export default Report;

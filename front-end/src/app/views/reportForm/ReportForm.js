@@ -147,7 +147,7 @@ class ReportForm extends PureComponent<Props, State> {
 
 
   render() {
-    const { model, loading } = this.state;
+    const { model, loading, machine } = this.state;
     const { getFieldDecorator } = this.props.form;
     const config = {
       heightMin: 200,
@@ -168,7 +168,8 @@ class ReportForm extends PureComponent<Props, State> {
           handleModelChange={this.handleModelChange}
           model={model}
           config={config}
-          loading={loading} />
+          loading={loading}
+          machine={machine} />
       </AnimatedView>
     );
   }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EslintConfiguration">
-    <custom-configuration-file used="true" path="C:\Users\Klashikari\IdeaProjects\ipl-end\front-end\.eslintrc" />
+    <custom-configuration-file used="true" path="$PROJECT_DIR$/front-end/.eslintrc" />
   </component>
 </project>

@@ -77,7 +77,7 @@ private fun handler(userDao: UserDao, userFactory: UserFactory,
                     reportDao: ReportDao, reportFactory: ReportFactory, properties: PluginProperties) {
     enableCORS(properties.getProperty("siteUrl"))
     UserController(userDao, userFactory)
-    AuthController(userDao, userFactory, reportFactory, reportDao)
+    AuthController(userDao, userFactory, reportFactory, reportDao, machineDao)
     MachineController(machineDao, machineFactory)
     ReportController(reportDao, reportFactory)
 }
