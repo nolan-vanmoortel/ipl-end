@@ -13,7 +13,6 @@ import PropTypes        from 'prop-types';
 import Home             from '../views/home';
 import AdminDashboard   from '../views/adminDashboard';
 import PrivateRoute     from '../components/privateRoute/PrivateRoute';
-import Protected        from '../views/protected';
 import PageNotFound     from '../views/pageNotFound';
 import ReportForm       from '../views/reportForm';
 import Login            from '../views/login';
@@ -33,7 +32,6 @@ class MainRoutes extends Component {
         <Route path="/report/:machineName" component={ReportForm} />
         <PrivateRoute checkUserIsConnected={checkUserIsConnected} path="/adminDashboard" component={AdminDashboard} />
         <Route exact path="/login" component={Login} />
-        <PrivateRoute checkUserIsConnected={checkUserIsConnected} path="/protected" component={Protected} />
         <LogoutRoute path="/logout" disconnectUser={disconnectUser} />
         <Route component={PageNotFound} />
       </Switch>

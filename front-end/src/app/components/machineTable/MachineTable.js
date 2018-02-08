@@ -6,12 +6,12 @@ import React, {
 import PropTypes      from 'prop-types';
 import styles         from './machineTable.scss';
 import {Table, Icon, Button, Input, Switch} from 'antd';
-import QrPrinter      from '../qrPrintMachine/PrintQr';
 
 class MachineTable extends PureComponent {
 
   static propTypes = {
-    machines:                PropTypes.array.isRequired
+    machines:                 PropTypes.array.isRequired,
+    setStateMachine:            PropTypes.func.isRequired
   };
 
   state={
@@ -69,6 +69,25 @@ class MachineTable extends PureComponent {
   /*
     *HANDLE CHANGE
    */
+  handleSwitchState = (record, value) =>{
+    const { setStateMachine } = this.props;
+    const { data } = this.state;
+    const _data = data.slice(0);
+
+    data.forEach((elem, index)=>{
+      if(elem.key === record.key) {
+        _data[index].etat = value?'Activer':'Désactiver';
+        return true;
+      }
+      return false;
+    });
+
+    setStateMachine(record.key, value)
+      .then(()=>{
+        this.setState({data:_data});
+      });
+  };
+
   handleChange = (pagination, filters, sorter) => {
     this.setState({
       filteredInfo: filters,
@@ -79,7 +98,7 @@ class MachineTable extends PureComponent {
   onPrint = (selectedRowKeys) => {
     console.log(selectedRowKeys);
     this.setState({
-      toPrint: <QrPrinter machineUrlParam = {selectedRowKeys}/>
+      toPrint: <Button/>
     });
   };
 
@@ -275,24 +294,18 @@ class MachineTable extends PureComponent {
       title: 'Etat',
       dataIndex: 'etat',
       key: 'etat',
-      filters: [
-        { text: 'Activer', value: true },
-        { text: 'Desactiver', value: false }
-      ],
-      filteredValue: filteredInfo.type || null,
-      onFilter: (value, record) => record.type.includes(value),
-      sorter: (a, b) => a.type.localeCompare(b.type),
+      sorter: (a, b) => a.etat.localeCompare(b.etat),
       sortOrder: sortedInfo.columnKey === 'etat' && sortedInfo.order,
+      render: (text, record) => (
+        <Switch style={{marginRight:'15px'}} defaultChecked={record.etat==='Activer'} checkedChildren="Activer" unCheckedChildren="Desactiver" onChange={(value)=>{this.handleSwitchState(record,value)}} />
+      ),
       width: 150
     }, {
       title: 'Action',
       key: 'action',
       width: 150,
       render: (text, record) => (
-        <span style={{textAlign:'right'}}>
-          <Switch style={{marginRight:'15px'}} defaultChecked={true} checkedChildren="Activer" unCheckedChildren="Desactiver" onChange={(value)=>{this.handleSwitchState(record,value)}} />
-          <QrPrinter style={{display: 'inline'}} machines={[record.nom]} name={record.nom}/>
-    </span>
+        <Button style={{display: 'inline'}} machineUrlParam={record.nom}/>
       )
     }];
 

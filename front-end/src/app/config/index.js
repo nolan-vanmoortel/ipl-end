@@ -7,6 +7,7 @@ export const appConfig = {
     machines: 'machines',
     auth: 'auth',
     setState:'auth/update/state',
+    setStateMachine:'auth/update/admin',
     setAdmin:'auth/update/admin',
     users:'auth/users'
 

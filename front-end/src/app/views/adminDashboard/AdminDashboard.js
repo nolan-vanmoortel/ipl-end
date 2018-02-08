@@ -46,6 +46,7 @@ class AdminDashboard extends PureComponent {
     getUsers:             PropTypes.func.isRequired,
     users:                PropTypes.array.isRequired,
     setStateReport:       PropTypes.func.isRequired,
+    setStateMachine:       PropTypes.func.isRequired,
     setAdminReport:       PropTypes.func.isRequired
 
   };
@@ -162,7 +163,8 @@ class AdminDashboard extends PureComponent {
       machines,
       setStateReport,
       users,
-      setAdminReport
+      setAdminReport,
+      setStateMachine
     } = this.props;
 
     const { getFieldDecorator } = this.props.form;
@@ -196,7 +198,7 @@ class AdminDashboard extends PureComponent {
           <TabPane tab={<span><Icon type="laptop" />Machines</span>} key="machines">
             <Row>
               <Col span={24} >
-                <MachineTable machines={machines}/>
+                <MachineTable setStateMachine={setStateMachine} machines={machines}/>
               </Col>
             </Row>
           </TabPane>
