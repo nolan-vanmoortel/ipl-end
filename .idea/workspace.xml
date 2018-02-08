@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dc183b59-1437-4f96-84cb-a336534cf540" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/navigation/NavigationBar.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/navigation/NavigationBar.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/back-end/.gradle/" />
@@ -92,14 +92,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MachineTable.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MachineTable.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="317" column="94" lean-forward="false" selection-start-line="317" selection-start-column="94" selection-end-line="317" selection-end-column="94" />
+            <state relative-caret-position="-131">
+              <caret line="316" column="23" lean-forward="true" selection-start-line="316" selection-start-column="23" selection-end-line="316" selection-end-column="23" />
               <folding>
                 <element signature="e#14#81#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NavigationBar.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/front-end/src/app/components/navigation/NavigationBar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="124">
+              <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -115,7 +125,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Navigation</find>
       <find>NavigationBar</find>
       <find>logUserIfNeeded</find>
       <find>const</find>
@@ -145,9 +154,11 @@
       <find>getLocationOrigin</find>
       <find>enterAdminDashboard</find>
       <find>onCollapse</find>
+      <find>Desactiver</find>
     </findStrings>
     <replaceStrings>
       <replace />
+      <replace>Désactivée</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/front-end/src/app/views</dir>
@@ -555,7 +566,6 @@
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/controllers/UserController.kt" />
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/persistence/DbInit.kt" />
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/controllers/MachineController.kt" />
-        <option value="$PROJECT_DIR$/front-end/src/app/components/navigation/NavigationBar.js" />
         <option value="$PROJECT_DIR$/back-end/src/main/resources/prod.properties" />
         <option value="$PROJECT_DIR$/front-end/src/app/views/printQr/PrintQr.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/views/login/Login.js" />
@@ -588,6 +598,7 @@
         <option value="$PROJECT_DIR$/front-end/src/app/containers/app/app.scss" />
         <option value="$PROJECT_DIR$/front-end/src/app/containers/app/App.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js" />
+        <option value="$PROJECT_DIR$/front-end/src/app/components/navigation/NavigationBar.js" />
       </list>
     </option>
   </component>
@@ -689,6 +700,14 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="machineTable" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ipl-end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="navigation" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ipl-end" type="b2602c69:ProjectViewProjectNode" />
@@ -2162,11 +2181,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518119966932</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="FRONT-END | FRANCAIS DONE!">
+      <created>1518120609105</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1518120609105</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64395000" />
+    <option name="totallyTimeSpent" value="65825000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
@@ -2320,7 +2346,8 @@
     <MESSAGE value="FRONT-END | QR CODE FUCKING DONE!" />
     <MESSAGE value="FRONT-END | FOOTER FIXED DONE!" />
     <MESSAGE value="FRONT-END | BUTTON NAVBAR FIXED DONE!" />
-    <option name="LAST_COMMIT_MESSAGE" value="FRONT-END | BUTTON NAVBAR FIXED DONE!" />
+    <MESSAGE value="FRONT-END | FRANCAIS DONE!" />
+    <option name="LAST_COMMIT_MESSAGE" value="FRONT-END | FRANCAIS DONE!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2329,13 +2356,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/front-end/src/app/views/home/home.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/redux/modules/scanQr.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
@@ -2726,11 +2746,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="317" column="94" lean-forward="false" selection-start-line="317" selection-start-column="94" selection-end-line="317" selection-end-column="94" />
+        <state relative-caret-position="-131">
+          <caret line="316" column="23" lean-forward="true" selection-start-line="316" selection-start-column="23" selection-end-line="316" selection-end-column="23" />
           <folding>
             <element signature="e#14#81#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/app/components/navigation/NavigationBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

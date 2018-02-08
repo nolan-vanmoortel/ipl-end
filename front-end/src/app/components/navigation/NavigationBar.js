@@ -33,7 +33,7 @@ class NavigationBar extends PureComponent {
   generateMenuItems = (location) => {
     const {itemList} = this.props;
     const toReturn = [];
-    itemList.map((machine, index) => {
+    itemList.filter(elem=>elem.state).map((machine, index) => {
       if (machine.location === location){
         toReturn.push( <Menu.Item item={machine.name} key={index+1} >
           {machine.name}
