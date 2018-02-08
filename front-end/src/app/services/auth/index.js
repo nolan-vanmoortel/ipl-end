@@ -58,7 +58,7 @@ export const auth = {
     if (!value || value.length <= 0) {
       return;
     }const cookies = new Cookies();
-    cookies.set('token',value,{path:'/'})
+    cookies.set('token', value, {path:'/'});
 
     // localStorage:
     if (toStorage === APP_PERSIST_STORES_TYPES[0]) {
@@ -178,7 +178,7 @@ export const auth = {
       return;
     }
     const cookies = new Cookies();
-    cookies.set('email',value,{path:'/'});
+    cookies.set('email', value, {path:'/'});
     // localStorage:
     if (toStorage === APP_PERSIST_STORES_TYPES[0]) {
       if (localStorage) {
@@ -217,6 +217,15 @@ export const auth = {
     }
     if (sessionStorage) {
       sessionStorage.clear();
+    }
+    const cookies = new Cookies();
+    if (cookies.get('token')) {
+      console.log('remove : token');
+      cookies.remove('token');
+    }
+    if (cookies.get('email')) {
+      console.log('remove : email');
+      cookies.remove('email');
     }
   }
 };

@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="dc183b59-1437-4f96-84cb-a336534cf540" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/logoutRoute/LogoutRoute.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/logoutRoute/LogoutRoute.js" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/services/auth/index.js" afterPath="$PROJECT_DIR$/front-end/src/app/services/auth/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/back-end/.gradle/" />
@@ -128,52 +130,51 @@
       <file leaf-file-name="LogoutRoute.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-end/src/app/components/logoutRoute/LogoutRoute.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="24" column="30" lean-forward="false" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="30" />
+            <state relative-caret-position="234">
+              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PrivateRoute.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-end/src/app/components/privateRoute/PrivateRoute.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="398">
+              <caret line="53" column="36" lean-forward="true" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-end/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="481">
+              <caret line="143" column="28" lean-forward="true" selection-start-line="143" selection-start-column="28" selection-end-line="143" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-end/src/app/redux/modules/user.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3300">
-              <caret line="238" column="8" lean-forward="false" selection-start-line="238" selection-start-column="8" selection-end-line="238" selection-end-column="8" />
+            <state relative-caret-position="-1416">
+              <caret line="84" column="28" lean-forward="true" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/front-end/src/app/services/auth/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2223">
-              <caret line="215" column="27" lean-forward="false" selection-start-line="215" selection-start-column="27" selection-end-line="215" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthController.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/controllers/AuthController.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="104" column="15" lean-forward="true" selection-start-line="104" selection-start-column="15" selection-end-line="104" selection-end-column="15" />
+            <state relative-caret-position="355">
+              <caret line="226" column="36" lean-forward="false" selection-start-line="226" selection-start-column="36" selection-end-line="226" selection-end-column="36" />
               <folding>
-                <marker date="1518084878501" expanded="true" signature="4265:4837" ph="{...}" />
-                <marker date="1518084878501" expanded="true" signature="4813:4827" ph="{...}" />
+                <element signature="e#10#109#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReportDao.kt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/persistence/dao/ReportDao.kt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="9" column="10" lean-forward="false" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -204,6 +205,7 @@
       <find>ch</find>
       <find>if</find>
       <find>Footer</find>
+      <find>Cookies</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -631,8 +633,6 @@
         <option value="$PROJECT_DIR$/front-end/src/app/config/index.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/Root.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/components/footer/Footer.js" />
-        <option value="$PROJECT_DIR$/front-end/src/app/services/auth/index.js" />
-        <option value="$PROJECT_DIR$/front-end/src/app/components/logoutRoute/LogoutRoute.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/containers/app/index.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/containers/app/App.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/routes/MainRoutes.js" />
@@ -642,6 +642,8 @@
         <option value="$PROJECT_DIR$/back-end/src/main/kotlin/Main.kt" />
         <option value="$PROJECT_DIR$/front-end/src/app/views/reportForm/ReportForm.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/components/report/Report.js" />
+        <option value="$PROJECT_DIR$/front-end/src/app/components/logoutRoute/LogoutRoute.js" />
+        <option value="$PROJECT_DIR$/front-end/src/app/services/auth/index.js" />
       </list>
     </option>
   </component>
@@ -847,6 +849,14 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
               <item name="machineImport" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ipl-end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="privateRoute" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ipl-end" type="b2602c69:ProjectViewProjectNode" />
@@ -1546,11 +1556,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518085547991</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="FRONT-END | LOGIN MACHINE INPUT DONE">
+      <created>1518085681240</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1518085681240</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41424000" />
+    <option name="totallyTimeSpent" value="42318000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
@@ -1573,7 +1590,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5119139" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.48808607" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32882884" sideWeight="0.48808607" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298969" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32882884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1705,13 +1722,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/ReportDto.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="34" lean-forward="true" selection-start-line="9" selection-start-column="34" selection-end-line="9" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/views/login/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1854,14 +1864,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="9" lean-forward="false" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-end/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="143" column="31" lean-forward="false" selection-start-line="143" selection-start-column="31" selection-end-line="143" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2098,27 +2100,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/app/redux/modules/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1416">
+          <caret line="84" column="28" lean-forward="true" selection-start-line="84" selection-start-column="28" selection-end-line="84" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/components/logoutRoute/LogoutRoute.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="24" column="30" lean-forward="false" selection-start-line="24" selection-start-column="29" selection-end-line="24" selection-end-column="30" />
+        <state relative-caret-position="234">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/app/components/privateRoute/PrivateRoute.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="53" column="36" lean-forward="true" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="143" column="28" lean-forward="true" selection-start-line="143" selection-start-column="28" selection-end-line="143" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/services/auth/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2223">
-          <caret line="215" column="27" lean-forward="false" selection-start-line="215" selection-start-column="27" selection-end-line="215" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-end/src/app/redux/modules/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3300">
-          <caret line="238" column="8" lean-forward="false" selection-start-line="238" selection-start-column="8" selection-end-line="238" selection-end-column="8" />
-          <folding />
+        <state relative-caret-position="355">
+          <caret line="226" column="36" lean-forward="false" selection-start-line="226" selection-start-column="36" selection-end-line="226" selection-end-column="36" />
+          <folding>
+            <element signature="e#10#109#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

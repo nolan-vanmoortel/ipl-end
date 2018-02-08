@@ -23,6 +23,7 @@ class LogoutRoute extends PureComponent {
 
   componentDidMount() {
     auth.clearAllAppStorage();
+    auth.clearToken();
     const { disconnectUser } = this.props;
     disconnectUser();
   }
