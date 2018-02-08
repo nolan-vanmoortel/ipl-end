@@ -65,7 +65,7 @@ class App extends Component {
 
   render() {
     const { collapsed } = this.state;
-    const { machines, isAuthenticated, disconnectUser, checkUserIsConnected } = this.props;
+    const { machines, isAuthenticated, disconnectUser, checkUserIsConnected, currentView } = this.props;
     return (
       <div id="appContainer">
         <Layout style={{ minHeight: '100vh' }}>
@@ -74,7 +74,7 @@ class App extends Component {
             <Content className={styles.backgroundApp}>
               <MainRoutes disconnectUser={disconnectUser} checkUserIsConnected={checkUserIsConnected}/>
             </Content>
-            <Footer isAuthenticated={isAuthenticated}/>
+            <Footer isAuthenticated={isAuthenticated} currentView={currentView}/>
             <Affix offsetTop={0} offsetBottom={0} onChange={affixed => console.log(affixed)}>
               <Button className={styles.darkButton} onClick={this.onCollapse} >{collapsed?'Afficher Menu':'Cacher Menu'}</Button>
             </Affix>

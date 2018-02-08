@@ -27,8 +27,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       // views
-      enterAdminDashboard: viewsActions.enterHome,
-      leaveAdminDashboard: viewsActions.leaveHome,
+      enterAdminDashboard: viewsActions.enterAdminDashboard,
+      leaveAdminDashboard: viewsActions.leaveAdminDashboard,
       ...machineActions,
       ...reportActions,
       ...userActions
