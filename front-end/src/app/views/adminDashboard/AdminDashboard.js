@@ -47,7 +47,9 @@ class AdminDashboard extends PureComponent {
     users:                PropTypes.array.isRequired,
     setStateReport:       PropTypes.func.isRequired,
     setStateMachine:       PropTypes.func.isRequired,
-    setAdminReport:       PropTypes.func.isRequired
+    setAdminReport:       PropTypes.func.isRequired,
+    getMachines:          PropTypes.func.isRequired,
+    updateMachines:          PropTypes.func.isRequired
 
   };
 
@@ -148,6 +150,7 @@ class AdminDashboard extends PureComponent {
       this.setState({ uploading: false });
     }
     if(uploadSuccess) {
+      this.getMachines();
       if(this.state.file === null){
         this.openSuccessNotification('La machine a bien été enregistrée');
       }else{
@@ -158,13 +161,21 @@ class AdminDashboard extends PureComponent {
     }
   }
 
+  getMachines = async () => {
+    const { updateMachines, getMachines } = this.props;
+    const response = await getMachines();
+    const allMachines = response.payload.data;
+    updateMachines(allMachines);
+  };
+
   render() {
     const {
       machines,
       setStateReport,
       users,
       setAdminReport,
-      setStateMachine
+      setStateMachine,
+      getMachines
     } = this.props;
 
     const { getFieldDecorator } = this.props.form;
@@ -178,7 +189,7 @@ class AdminDashboard extends PureComponent {
             <Row>
               <h3>Soumission d'une nouvelle machine</h3>
               <Col>
-                <MachineManual getFieldDecorator={getFieldDecorator} handleSubmit={this.handleSubmit} />
+                <MachineManual getMachines={getMachines} getFieldDecorator={getFieldDecorator} handleSubmit={this.handleSubmit} />
               </Col>
             </Row>
             <Divider />
@@ -191,7 +202,8 @@ class AdminDashboard extends PureComponent {
                   beforeUpload={this.beforeUpload}
                   handleUpload={this.handleUpload}
                   fileList={fileList}
-                  uploading={uploading}/>
+                  uploading={uploading}
+                  />
               </Col>
             </Row>
           </TabPane>
