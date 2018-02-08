@@ -90,7 +90,7 @@ class AdminDashboard extends PureComponent {
     const csv = /^ipscan....*csv$/;
     if(!txt.test(file.name) && !csv.test(file.name)){
       this.openErrorNotificationWithDescription('Erreur avec le fichier',
-        'Veuillez choisir un fichier txt ou csv commencant par ipscan');
+        'Veuillez choisir un fichier txt ou csv commençant par ipscan');
       this.onRemove(file);
     }else{
       this.setState(({ fileList }) => ({
@@ -139,7 +139,11 @@ class AdminDashboard extends PureComponent {
       this.setState({ uploading: false });
     }
     if(uploadSuccess) {
-      this.openSuccessNotification('Le fichier a bien ete envoye');
+      if(this.state.file === null){
+        this.openSuccessNotification('La machine a bien été enregistrée')
+      }else{
+        this.openSuccessNotification('Le fichier a bien ete envoyé');
+      }
       toggleUploadSuccess();
       this.setState({ uploading: false });
     }

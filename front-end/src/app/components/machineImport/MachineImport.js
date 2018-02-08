@@ -1,7 +1,7 @@
 // @flow weak
 import React from 'react';
 import PropTypes      from 'prop-types';
-import {Button, Icon, Upload } from 'antd';
+import {Button, Icon, Upload, Row, Col } from 'antd';
 import getLocationOrigin from '../../services/utils/getLocationOrigin';
 import {appConfig} from '../../config';
 
@@ -19,7 +19,8 @@ const MachineImport =({
     fileList
   };
   return (
-      <div style={{display: "inline" }}>
+      <Row >
+        <Col span={6} style={{marginRight: 130}}>
         <Upload {...props}>
           <Button
             disabled={fileList.length >= 1}
@@ -27,6 +28,8 @@ const MachineImport =({
             <Icon type="upload"/> Ajouter un fichier
           </Button>
         </Upload>
+        </Col>
+        <Col span={6}>
         <Button
           type="primary"
           onClick={handleUpload}
@@ -35,7 +38,8 @@ const MachineImport =({
         >
           {uploading ? 'Envoi' : 'Envoyer le fichier' }
         </Button>
-      </div>
+        </Col>
+      </Row>
   );
 };
 

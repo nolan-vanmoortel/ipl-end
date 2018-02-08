@@ -12,7 +12,7 @@ const MachineManual = ({
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col lg={5} xs={24} style = {{marginRight: 10}}>
+        <Col lg={5} md={23} xs={24} style = {{marginRight: 10}}>
           <FormItem>
             {getFieldDecorator('name', {
               rules: [{ required: true, message: 'Introduisez le nom de la machine'}]
@@ -21,7 +21,7 @@ const MachineManual = ({
             )}
           </FormItem>
         </Col>
-        <Col lg={4} xs={24} style = {{marginRight: 10}}>
+        <Col lg={4} md={11} xs={24} style = {{marginRight: 10}}>
           <FormItem>
             {getFieldDecorator('ip', {
               rules: [{ required: true, message: 'Introduisez l\'IP de la machine'}]
@@ -30,7 +30,7 @@ const MachineManual = ({
             )}
           </FormItem>
         </Col>
-        <Col lg={4} xs={24} style = {{marginRight: 10}}>
+        <Col lg={4} md={11} xs={24} style = {{marginRight: 10}}>
           <FormItem>
             {getFieldDecorator('mac', {
               rules: [{ required: true, message: 'Introduisez la MAC de la machine'}]
@@ -39,7 +39,7 @@ const MachineManual = ({
             )}
           </FormItem>
         </Col>
-        <Col lg={4} xs={24} style = {{marginRight: 10}}>
+        <Col lg={4} md={11} xs={24} style = {{marginRight: 10}}>
           <FormItem>
             {getFieldDecorator('location', {
               rules: [{ required: true, message: 'Introduisez la salle ou se situe la machine'}]
@@ -48,7 +48,7 @@ const MachineManual = ({
             )}
           </FormItem>
         </Col>
-        <Col lg={5} xs={24} style = {{marginRight: 10}}>
+        <Col lg={5} md={11} xs={24} style = {{marginRight: 10}}>
           <FormItem>
             {getFieldDecorator('comment', {
               rules: [{ required: true, message: 'Introduisez un commentaire pour la machine'}]
