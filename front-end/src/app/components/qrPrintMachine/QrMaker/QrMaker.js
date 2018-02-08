@@ -6,7 +6,7 @@ import React, {
 import PropTypes      from 'prop-types';
 import QRCode         from 'qrcode-react';
 
-class QrPrintMachine extends PureComponent {
+class QrMaker extends PureComponent {
 // eslint-disable-next-line no-undef
   static propTypes = {
     urlMachine: PropTypes.string.isRequired
@@ -24,4 +24,4 @@ class QrPrintMachine extends PureComponent {
 }
 
 
-export default QrPrintMachine;
+export default QrMaker;

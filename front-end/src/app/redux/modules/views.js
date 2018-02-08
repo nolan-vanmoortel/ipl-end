@@ -16,8 +16,6 @@ const ENTER_PAGENOTFOUND_VIEW  = 'ENTER_PAGENOTFOUND_VIEW';
 const LEAVE_PAGENOTFOUND_VIEW  = 'LEAVE_PAGENOTFOUND_VIEW';
 const ENTER_REPORTFORM_VIEW = 'ENTER_REPORTFORM_VIEW';
 const LEAVE_REPORTFORM_VIEW = 'LEAVE_REPORTFORM_VIEW';
-const ENTER_PRINTQR_VIEW      = 'ENTER_PRINTQR_VIEW';
-const LEAVE_PRINTQR_VIEW     = 'LEAVE_PRINTQR_VIEW';
 
 // /////////////////////
 // reducer
@@ -36,7 +34,6 @@ export default function (state = initialState, action) {
   case ENTER_PAGENOTFOUND_VIEW:
   case ENTER_LOGIN_VIEW:
   case ENTER_REPORTFORM_VIEW:
-  case ENTER_PRINTQR_VIEW:
   case ENTER_PROTECTED_VIEW:
     // on peux pas entrer sur une page où l on est déjà
     if (state.currentView !== action.currentView) {
@@ -54,7 +51,6 @@ export default function (state = initialState, action) {
   case LEAVE_PAGENOTFOUND_VIEW:
   case LEAVE_LOGIN_VIEW:
   case LEAVE_REPORTFORM_VIEW:
-  case LEAVE_PRINTQR_VIEW:
   case LEAVE_PROTECTED_VIEW:
     // on peut pas quitter une page où l on est pas déjà
     if (state.currentView === action.currentView) {
@@ -183,23 +179,3 @@ export function leaveReportForm(time = moment().format()) {
     leaveTime:    time
   };
 }
-
-
-export function enterPrintQr(time = moment().format()) {
-  return {
-    type:         ENTER_PRINTQR_VIEW,
-    currentView:  'PrintQr',
-    enterTime:    time,
-    leaveTime:    null
-  };
-}
-
-export function leavePrintQr(time = moment().format()) {
-  return {
-    type:         LEAVE_PRINTQR_VIEW,
-    currentView:  'PrintQr',
-    enterTime:    null,
-    leaveTime:    time
-  };
-}
-

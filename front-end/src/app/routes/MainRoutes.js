@@ -17,7 +17,6 @@ import Protected        from '../views/protected';
 import PageNotFound     from '../views/pageNotFound';
 import ReportForm       from '../views/reportForm';
 import Login            from '../views/login';
-import PrintQr          from '../views/printQr';
 import LogoutRoute      from '../components/logoutRoute/LogoutRoute';
 
 class MainRoutes extends Component {
@@ -34,7 +33,6 @@ class MainRoutes extends Component {
         <Route path="/report/:machineName" component={ReportForm} />
         <PrivateRoute checkUserIsConnected={checkUserIsConnected} path="/adminDashboard" component={AdminDashboard} />
         <Route exact path="/login" component={Login} />
-        <Route path="/qr/:machineName" component={PrintQr} />
         <PrivateRoute checkUserIsConnected={checkUserIsConnected} path="/protected" component={Protected} />
         <LogoutRoute path="/logout" disconnectUser={disconnectUser} />
         <Route component={PageNotFound} />

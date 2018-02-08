@@ -6,8 +6,7 @@ import React, {
 import PropTypes      from 'prop-types';
 import styles         from './machineTable.scss';
 import {Table, Icon, Button, Input, Switch} from 'antd';
-import {Link} from "react-router-dom";
-import machine from "../../redux/modules/machine";
+import QrPrinter      from '../qrPrintMachine/PrintQr';
 
 class MachineTable extends PureComponent {
 
@@ -29,6 +28,7 @@ class MachineTable extends PureComponent {
     filtered: false,
     selectedRowKeys: [],
 
+    toPrint: [],
     listOptionUser: []
   };
 
@@ -75,6 +75,14 @@ class MachineTable extends PureComponent {
       sortedInfo: sorter
     });
   };
+
+  onPrint = (selectedRowKeys) => {
+    console.log(selectedRowKeys);
+    this.setState({
+      toPrint: <QrPrinter machineUrlParam = {selectedRowKeys}/>
+    });
+  };
+
 
   onSearchName = () => {
     const { searchTextName, dataReadOnly } = this.state;
@@ -283,7 +291,7 @@ class MachineTable extends PureComponent {
       render: (text, record) => (
         <span style={{textAlign:'right'}}>
           <Switch style={{marginRight:'15px'}} defaultChecked={true} checkedChildren="Activer" unCheckedChildren="Desactiver" onChange={(value)=>{this.handleSwitchState(record,value)}} />
-          <Link to={'/qr/'+record.nom}><Button><Icon type="printer"/></Button></Link>
+          <QrPrinter style={{display: 'inline'}} machineUrlParam={record.nom}/>
     </span>
       )
     }];
@@ -294,8 +302,9 @@ class MachineTable extends PureComponent {
           ()=>{
             return(
               <span>
-                <Link to={/qr/+selectedRowKeys.join(';')}><Button type="primary" onClick={this.onHandlePrintSelected} disabled={!hasSelected}>Imprimer séléctionnée(s)</Button></Link>
-                <Link to={/qr/+data.map((item)=>item.nom).join(';')}><Button style={{float:'right'}} type="primary" onClick={this.onHandlePrintSelected} >Imprimer tout</Button></Link>
+                <Button type="primary" onClick={() => this.onPrint(selectedRowKeys)} disabled={!hasSelected}>Imprimer séléctionnée(s)</Button>
+                <Button style={{float:'right'}} type="primary" onClick={() => this.onPrint(data.map((item)=>item.nom).join(';'))} >Imprimer tout</Button>
+                {this.state.toPrint}
               </span>
             );
           }
