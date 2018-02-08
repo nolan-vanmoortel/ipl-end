@@ -62,7 +62,7 @@ class MachineTable extends PureComponent {
         nom: machine.name,
         ip: machine.ip,
         mac: machine.mac,
-        etat: machine.state?"Activer":"Desactiver"
+        etat: machine.state?"Activée":"Désactivée"
       });
     });
 
@@ -79,7 +79,7 @@ class MachineTable extends PureComponent {
 
     data.forEach((elem, index)=>{
       if(elem.key === record.key) {
-        _data[index].etat = value?'Activer':'Désactiver';
+        _data[index].etat = value?'Activée':'Désactivée';
         return true;
       }
       return false;
@@ -315,7 +315,7 @@ class MachineTable extends PureComponent {
       sorter: (a, b) => a.etat.localeCompare(b.etat),
       sortOrder: sortedInfo.columnKey === 'etat' && sortedInfo.order,
       render: (text, record) => (
-        <Switch style={{marginRight:'15px'}} defaultChecked={record.etat==='Activer'} checkedChildren="Activer" unCheckedChildren="Desactiver" onChange={(value)=>{this.handleSwitchState(record,value)}} />
+        <Switch style={{marginRight:'15px'}} defaultChecked={record.etat==='Activée'} checkedChildren="Activée" unCheckedChildren="Désactivée" onChange={(value)=>{this.handleSwitchState(record,value)}} />
       ),
       width: 150
     }, {
