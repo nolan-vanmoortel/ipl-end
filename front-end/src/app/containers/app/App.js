@@ -6,11 +6,12 @@ import React, {
 import PropTypes              from 'prop-types';
 import {
   NavigationBar,
-  BackToTop
+  Footer
 }                             from '../../components';
-import navigationModel        from '../../config/navigation.json';
 import MainRoutes             from '../../routes/MainRoutes';
-
+import {Affix, BackTop, Button, Layout} from 'antd';
+import styles                 from './app.scss';
+const { Content } = Layout;
 
 class App extends Component {
   static propTypes = {
@@ -18,42 +19,68 @@ class App extends Component {
     location: PropTypes.object.isRequired,
     history:  PropTypes.object.isRequired,
 
-    currentView: PropTypes.string
+    currentView: PropTypes.string,
+    machines: PropTypes.array.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
+    getMachines: PropTypes.func.isRequired,
+    updateMachines: PropTypes.func.isRequired,
 
+    disconnectUser: PropTypes.func.isRequired,
+    checkUserIsConnected: PropTypes.func.isRequired
   };
 
   state = {
-    navModel : navigationModel
+    collapsed: true
+  };
+
+  componentWillMount(){
+    this.getMachines();
+  }
+
+  getMachines = async () => {
+    const { updateMachines, getMachines } = this.props;
+    const response = await getMachines();
+    const allMachines = response.payload.data;
+    updateMachines(allMachines);
+  };
+
+  onCollapse = () => {
+    const { collapsed } = this.state;
+    const collapsedNew = !collapsed;
+
+    this.setState({ collapsed:collapsedNew });
+  };
+
+  goToReader = () =>{
+    const { history } = this.props;
+    this.onCollapse();
+    history.push('/');
+  };
+
+  goToForm = (machineName) =>{
+    const { history } = this.props;
+    this.onCollapse();
+    history.push('/report/'+machineName.props.item);
   };
 
   render() {
-    const { navModel } = this.state;
-
+    const { collapsed } = this.state;
+    const { machines, isAuthenticated, disconnectUser, checkUserIsConnected, currentView } = this.props;
     return (
       <div id="appContainer">
-        <NavigationBar
-          brand={navModel.brand}
-          navModel={navModel}
-          handleLeftNavItemClick={this.handleLeftNavItemClick}
-          handleRightNavItemClick={this.handleRightNavItemClick}
-        />
-        <div className="container-fluid">
-          <MainRoutes />
-        </div>
-        <BackToTop
-          minScrollY={40}
-          scrollTo={'appContainer'}
-        />
+        <Layout style={{ minHeight: '100vh' }}>
+          <NavigationBar itemList={machines} collapsedNav={collapsed} handleToForm={this.goToForm} handleReturn={this.goToReader}/>
+          <Layout>
+            <Content className={styles.backgroundApp}>
+              <MainRoutes disconnectUser={disconnectUser} checkUserIsConnected={checkUserIsConnected}/>
+            </Content>
+            <Footer isAuthenticated={isAuthenticated} currentView={currentView}/>
+            <Button className={styles.darkButton} style={{left:collapsed?0:200}} onClick={this.onCollapse} >{collapsed?'Afficher Menu':'Cacher Menu'}</Button>
+          </Layout>
+          <BackTop />
+        </Layout>
       </div>
     );
-  }
-
-  handleLeftNavItemClick = (event, viewName) => {
-    // ?
-  }
-
-  handleRightNavItemClick = (event, viewName) => {
-    // ?
   }
 }
 

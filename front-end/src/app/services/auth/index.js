@@ -8,6 +8,7 @@ import type {
 }                 from './type';
 import decode     from 'jwt-decode';
 import moment     from 'moment';
+import Cookies    from 'universal-cookie';
 
 
 const TOKEN_KEY = 'token';
@@ -56,7 +57,9 @@ export const auth = {
   ): ?string {
     if (!value || value.length <= 0) {
       return;
-    }
+    }const cookies = new Cookies();
+    cookies.set('token', value, {path:'/'});
+
     // localStorage:
     if (toStorage === APP_PERSIST_STORES_TYPES[0]) {
       if (localStorage) {
@@ -174,6 +177,8 @@ export const auth = {
     if (!value || value.length <= 0) {
       return;
     }
+    const cookies = new Cookies();
+    cookies.set('email', value, {path:'/'});
     // localStorage:
     if (toStorage === APP_PERSIST_STORES_TYPES[0]) {
       if (localStorage) {
@@ -212,6 +217,13 @@ export const auth = {
     }
     if (sessionStorage) {
       sessionStorage.clear();
+    }
+    const cookies = new Cookies();
+    if (cookies.get('token')) {
+      cookies.remove('token');
+    }
+    if (cookies.get('email')) {
+      cookies.remove('email');
     }
   }
 };

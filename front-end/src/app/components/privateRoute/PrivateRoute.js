@@ -18,7 +18,9 @@ class PrivateRoute extends Component {
     history:  PropTypes.object.isRequired,
 
     component:  PropTypes.any.isRequired,
-    path:       PropTypes.string
+    path:       PropTypes.string,
+
+    checkUserIsConnected: PropTypes.func.isRequired
   };
 
   render() {
@@ -29,14 +31,13 @@ class PrivateRoute extends Component {
     const { location } = this.props;
 
     const isUserAuthenticated = this.isAuthenticated();
-    const isTokenExpired      = this.isExpired();
 
     return (
       <Route
         {...rest}
         render={
           props => (
-            !isTokenExpired && isUserAuthenticated
+            isUserAuthenticated
               ? <InnerComponent {...props} />
               : <Redirect to={{ pathname: '/login', state: { from: location } }} />
           )
@@ -46,20 +47,14 @@ class PrivateRoute extends Component {
   }
 
   isAuthenticated() {
-    const checkUserHasId = user => user && user.id;
+    const checkUserHasId = user => user;
     const user            = auth.getUserInfo()
                             ? auth.getUserInfo()
                             : null;
-    const isAuthenticated = auth.getToken() && checkUserHasId(user)
-                            ? true
-                            : false;
+    const isAuthenticated = !!(auth.getToken() && checkUserHasId(user));
+    const { checkUserIsConnected } = this.props;
+    checkUserIsConnected();
     return isAuthenticated;
-  }
-
-  isExpired() {
-    //console.log('token expires: ', auth.getTokenExpirationDate(auth.getToken()));
-
-    return auth.isExpiredToken(auth.getToken());
   }
 }
 

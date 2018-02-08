@@ -4,12 +4,12 @@ import React, {
   PureComponent
 }                     from 'react';
 import PropTypes      from 'prop-types';
-import {
-  Row,
-  Col,
-  Button
-}                     from 'react-bootstrap';
 import auth           from '../../services/auth';
+import { Form, Icon, Input, Button, notification } from 'antd';
+
+import styles from './login.scss';
+const FormItem = Form.Item;
+
 
 type Props = {
   match: any,
@@ -27,11 +27,6 @@ type Props = {
   logUserIfNeeded: () => any
 };
 
-type State = {
-  email: string,
-  password: string
-}
-
 class Login extends PureComponent<Props, State> {
 
   static propTypes= {
@@ -47,27 +42,32 @@ class Login extends PureComponent<Props, State> {
     isFetching:      PropTypes.bool,
     isLogging:       PropTypes.bool,
     disconnectUser:  PropTypes.func.isRequired,
-    logUserIfNeeded: PropTypes.func.isRequired
+    logUserIfNeeded: PropTypes.func.isRequired,
+
+    getFieldDecorator: PropTypes.func,
+    getFieldsError: PropTypes.func,
+    isFieldTouched: PropTypes.func,
+    getFieldError: PropTypes.func
+
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: false
+    };
+  }
 
   static defaultProps = {
     isFetching:      false,
     isLogging:       false
-  }
-
-  state = {
-    email:          '',
-    password:       ''
   };
-
 
   componentDidMount() {
     const {
       enterLogin,
       disconnectUser
     } = this.props;
-
-    disconnectUser();
     enterLogin();
   }
 
@@ -76,192 +76,102 @@ class Login extends PureComponent<Props, State> {
     leaveLogin();
   }
 
+  openErrorNotification = (comment) => {
+    notification.error({
+      message: comment
+    });
+  };
+
+  openSuccessNotification = (comment) => {
+    notification.success({
+      message: comment
+    });
+  };
+
+  hasErrors(fieldsError) {
+    return Object.keys(fieldsError).some(field => fieldsError[field]);
+  }
+
   render() {
-    const {
-      email,
-      password
-    } = this.state;
 
-    const {
-      isLogging
-    } = this.props;
-
+// eslint-disable-next-line react/prop-types
+    const { getFieldDecorator, getFieldsError, isFieldTouched, getFieldError } = this.props.form;
+    const passwordError = isFieldTouched('password') && getFieldError('password');
+    const { loading } = this.state;
     return (
-      <div className="content">
-        <Row>
-          <Col
-            md={4}
-            mdOffset={4}
-            xs={10}
-            xsOffset={1}
-          >
-            <form
-              className="form-horizontal"
-              noValidate>
-              <fieldset>
-                <legend>
-                  Login
-                </legend>
-
-                <div className="form-group">
-                  <label
-                    htmlFor="inputEmail"
-                    className="col-lg-2 control-label">
-                    Email
-                  </label>
-                  <div className="col-lg-10">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="inputEmail"
-                      placeholder="Email"
-                      value={email}
-                      onChange={this.handlesOnEmailChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label
-                    htmlFor="inputPassword"
-                    className="col-lg-2 control-label">
-                    Password
-                  </label>
-                  <div className="col-lg-10">
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="inputPassword"
-                      placeholder="Password"
-                      value={password}
-                      onChange={this.handlesOnPasswordChange}
-                    />
-                  </div>
-                </div>
-                <div className="form-group">
-                  <Col
-                    lg={10}
-                    lgOffset={2}
-                  >
-                    <Button
-                      className="login-button btn-block"
-                      bsStyle="primary"
-                      disabled={isLogging}
-                      onClick={this.handlesOnLogin}>
-                      {
-                        isLogging
-                          ?
-                          <span>
-                            login in...
-                            &nbsp;
-                            <i
-                              className="fa fa-spinner fa-pulse fa-fw"
-                            />
-                          </span>
-                          :
-                          <span>
-                            Login
-                          </span>
-                      }
-                    </Button>
-                  </Col>
-                </div>
-              </fieldset>
-            </form>
-          </Col>
-        </Row>
-        <Row>
-          <Col
-            md={4}
-            mdOffset={4}
-            xs={10}
-            xsOffset={1}
-          >
-            <Button
-              bsStyle="primary"
-              onClick={this.goHome}
-            >
-              back to home
-            </Button>
-          </Col>
-        </Row>
+      <div style={{width:'100%', textAlign:'center'}}>
+        <div className={styles.login}>
+          <h1 className={styles.h1}>Connexion</h1>
+          <Form onSubmit={this.handleSubmit}>
+              <FormItem>
+                {getFieldDecorator('login', {
+                  rules: [{
+                    type: 'email', message: 'E-mail non-valide!',
+                  }, {
+                    required: true, message: 'Veuillez entrer votre e-mail !',
+                  }]
+                })(
+                  <Input prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="E-Mail" />
+                )}
+              </FormItem>
+              <FormItem
+                validateStatus={passwordError ? 'error' : ''}
+                help={passwordError || ''}
+              >
+                {getFieldDecorator('password', {
+                  rules: [{ required: true, message: 'Veuillew introduire votre mot de passe!' }],
+                })(
+                  <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+                )}
+              </FormItem>
+              <FormItem>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  disabled={this.hasErrors(getFieldsError())}
+                  loading={loading}
+                >
+                  Se connecter
+                </Button>
+              </FormItem>
+          </Form>
+        </div>
       </div>
     );
   }
 
-  handlesOnEmailChange = (
-    event: SyntheticEvent<>
-  ) => {
-    if (event) {
-      event.preventDefault();
-      this.setState({ email: event.target.value.trim() });
-    }
-  }
-
-  handlesOnPasswordChange = (
-    event: SyntheticEvent<>
-  ) => {
-    if (event) {
-      event.preventDefault();
-      this.setState({ password: event.target.value.trim() });
-    }
-  }
-
-  handlesOnLogin = async (
-    event: SyntheticEvent<>
-  ) => {
-    if (event) {
-      event.preventDefault();
-    }
-
+  handleSubmit = async (e) => {
+    e.preventDefault();
     const {
       history,
       logUserIfNeeded
     } = this.props;
-
-    const {
-      email,
-      password
-    } = this.state;
-
-    const userLogin = {
-      login:    email,
-      password: password
-    };
-
-    try {
-      const response = await logUserIfNeeded(userLogin);
-      const {
-        data: {
-          token,
-          user
+    this.props.form.validateFields(async (err, values) => {
+      if (!err) {
+        try {
+          this.setState({ loading: true });
+          const response = await logUserIfNeeded(values);
+          const {
+            data: {
+              token,
+              email
+            }
+          } = response.payload;
+          this.setState({ loading: false });
+          auth.setToken(token);
+          auth.setUserInfo(email);
+          this.openSuccessNotification('Connexion réussie');
+          history.push({pathname: '/adminDashboard'}); // back to Home
+        } catch (error) {
+          this.setState({ loading: false });
+          /* eslint-disable no-console */
+          console.log('login wrong..., error: ', error);
+          /* eslint-enable no-console */
+          this.openErrorNotification('Connexion échouée');
         }
-      } = response.payload;
-
-      auth.setToken(token);
-      auth.setUserInfo(user);
-
-      history.push({ pathname: '/' }); // back to Home
-    } catch (error) {
-      /* eslint-disable no-console */
-      console.log('login wrong..., error: ', error);
-      /* eslint-enable no-console */
-    }
-  }
-
-  goHome = (
-    event: SyntheticEvent<>
-  ) => {
-    if (event) {
-      event.preventDefault();
-    }
-
-    const {
-      history
-    } = this.props;
-
-    history.push({ pathname: '/' });
+      }
+    });
   }
 }
 
-export default Login;
+export default Form.create()(Login);

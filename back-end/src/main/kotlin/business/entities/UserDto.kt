@@ -6,8 +6,11 @@ package business.entities
  */
 interface UserDto {
 
-    val name: String
+    val id: String
 
-    val firstName: String
+    val email: String
 
+    val salt: String
+
+    val password: String
 }

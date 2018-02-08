@@ -1,75 +1,89 @@
 // @flow weak
 
-import React              from 'react';
+import React,
+{ PureComponent }       from 'react';
 import PropTypes          from 'prop-types';
-import Humburger          from './humburger/Humburger';
-import LeftNav            from './leftNav/LeftNav';
-import RightNav           from './rightNav/RightNav';
+import {Layout, Menu, Icon, Button} from 'antd';
+import styles from './NavigationBar.scss';
+const { Sider } = Layout;
+const SubMenu = Menu.SubMenu;
 
-const NavigationBar = ({
-  brand,
-  navModel,
-  handleLeftNavItemClick,
-  handleRightNavItemClick
-}) => {
-  return (
-    <nav className="navbar navbar-default">
-      <div className="containersCustom">
-        <div className="navbar-header">
-          {
-            <Humburger />
-          }
-          <a className="navbar-brand">
-            {brand}
-          </a>
+
+class NavigationBar extends PureComponent {
+  // eslint-disable-next-line no-undef
+  static propTypes = {
+    collapsedNav: PropTypes.bool.isRequired,
+    handleReturn: PropTypes.func.isRequired,
+    handleToForm: PropTypes.func.isRequired,
+
+    itemList: PropTypes.array,
+  };
+
+  // eslint-disable-next-line no-undef
+  handleClick = () => {
+    const { handleReturn } = this.props;
+    handleReturn();
+  };
+
+  handleClickMenu = (e) => {
+    const { handleToForm } = this.props;
+    handleToForm(e.item);
+  };
+
+  generateMenuItems = (location) => {
+    const {itemList} = this.props;
+    const toReturn = [];
+    itemList.filter(elem=>elem.state).map((machine, index) => {
+      if (machine.location === location){
+        toReturn.push( <Menu.Item item={machine.name} key={index+1} >
+          {machine.name}
+        </Menu.Item>);
+      }
+    });
+    return toReturn;
+  };
+
+  generateMenu = () => {
+    const {itemList} = this.props;
+    const toReturn = [];
+    const locationList = [];
+    itemList.map((m) => {
+      if (!locationList.includes(m.location)) {
+        locationList.push(m.location);
+      }
+    });
+
+    locationList.map((location, index) => {
+      const myItems = this.generateMenuItems(location);
+      toReturn.push(<SubMenu
+        key={index+1}
+        title={<span><Icon type="home" /><span>{location}</span></span>}
+      >
+        {myItems}
+      </SubMenu>);
+    });
+
+    return (<Menu onClick={this.handleClickMenu} theme="dark" mode="inline">
+        {toReturn}
+    </Menu>);
+  };
+
+
+  render() {
+    const { collapsedNav } = this.props;
+    const menu = this.generateMenu();
+    return (
+      <Sider style={{display:collapsedNav?'none':'block'}} >
+        <div className={styles.logo}>
+          <Button size="large" type="primary" style={{width:'100%'}} onClick={this.handleClick}>
+            <Icon type="left" />Scanner QR code
+          </Button>
         </div>
-        <div
-          className="collapse navbar-collapse"
-          id="bs-example-navbar-collapse-1">
-          <ul className="nav navbar-nav">
-            {
-              <LeftNav
-                leftLinks={navModel.leftLinks}
-                onLeftNavButtonClick={handleLeftNavItemClick}
-              />
-            }
-          </ul>
-          <ul className="nav navbar-nav navbar-right">
-            {
-              <RightNav
-                rightLinks={navModel.rightLinks}
-                onRightNavButtonClick={handleRightNavItemClick}
-              />
-            }
-          </ul>
-        </div>
-      </div>
-    </nav>
-  );
-};
-
-NavigationBar.propTypes = {
-  brand:                    PropTypes.string,
-  handleLeftNavItemClick:   PropTypes.func,
-  handleRightNavItemClick:  PropTypes.func,
-  navModel:                 PropTypes.shape({
-    leftLinks:  PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.string.isRequired,
-        link : PropTypes.string.isRequired
-      })
-    ).isRequired,
-    rightLinks:  PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.string.isRequired,
-        link : PropTypes.string.isRequired
-      })
-    ).isRequired
-  })
-};
-
-NavigationBar.defaultProps  = {
-  brand  : 'brand'
-};
+        {menu}
+      </Sider>
+    );
+  }
+}
 
 export default NavigationBar;
+

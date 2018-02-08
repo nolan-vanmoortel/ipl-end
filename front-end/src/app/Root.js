@@ -13,8 +13,6 @@ import configureStore           from './redux/store/configureStore';
 import { history }              from './redux/store/configureStore';
 import App                      from './containers/app';
 import ScrollTop                from './components/scrollToTop/ScrollToTop';
-import Login                    from './views/login';
-import LogoutRoute              from './components/logoutRoute/LogoutRoute';
 
 type Props = any;
 type State = any;
@@ -25,18 +23,16 @@ class Root extends Component<Props, State> {
   render() {
     return (
       <Provider store={store}>
-        <div>
-          <ConnectedRouter history={history}>
-            <ScrollTop>
-              <Switch>
-                <Route exact path="/login" component={Login} />
-                <App />
-                {/* logout: just redirects to login (App will take care of removing the token) */}
-                <LogoutRoute path="/logout" />
-              </Switch>
-            </ScrollTop>
-          </ConnectedRouter>
-        </div>
+          <div>
+            <ConnectedRouter history={history}>
+              <ScrollTop>
+                <Switch>
+                  <App />
+                  {/* logout: just redirects to login (App will take care of removing the token) */}
+                </Switch>
+              </ScrollTop>
+            </ConnectedRouter>
+          </div>
       </Provider>
     );
   }

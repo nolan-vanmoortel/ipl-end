@@ -1,0 +1,120 @@
+$form-bg: #13232f;
+$main: #1890ff;
+$main-light: lighten($main,5%);
+$main-dark: darken($main,5%);
+$gray-light: #a0b3b0;
+$gray: #ddd;
+$white: #ffffff;
+$thin: 300;
+$br: 4px;
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+.reportViewer{
+  background:rgba($form-bg,.9);
+  padding: 40px;
+  max-width:600px;
+  margin:40px auto;
+  border-radius:$br;
+  box-shadow:0 4px 10px 4px rgba($form-bg,.3);
+  font-family: 'Titillium Web', sans-serif;
+}
+
+a {
+  text-decoration:none;
+  color:$main;
+  transition:.5s ease;
+  &:hover {
+    cursor: default;
+   }
+}
+.tab-group {
+  list-style:none;
+  padding:0;
+  margin:0 0 40px 0;
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  li a {
+    display:block;
+    text-decoration:none;
+    padding:15px;
+    background:rgba($gray-light,.25);
+    color:$gray-light;
+    font-size:20px;
+    float:left;
+    width:50%;
+    text-align:center;
+    cursor:pointer;
+    transition:.5s ease;
+    &:hover {
+      cursor: default;
+    }
+  }
+  .active a {
+    background:$main;
+    color:$white;
+  }
+}
+
+.tab-content > div:last-child {
+  display:none;
+}
+
+
+h1 {
+  text-align:center;
+  color:$white;
+  font-weight:$thin;
+  margin:0 0 40px;
+  text-transform: uppercase;
+}
+
+.field-wrap {
+  position:relative;
+  margin-bottom:40px;
+}
+.label{
+  text-align:left;
+  color:rgba($white,.5);
+  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+  font-size:16px;
+  margin-bottom: 2px;
+}
+.area{
+  font-size:22px;
+  display:block;
+  width:100%;
+  height:100%;
+  padding:5px 10px;
+  background:none;
+  background-image:none;
+  border:2px solid $gray-light;
+  color:$white;
+  border-radius:0;
+  transition:border-color .25s ease, box-shadow .25s ease;
+}
+.sender{
+  text-align:right;
+  color:rgba($white,.5);
+  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+  font-size:16px;
+  margin-bottom: 2px;
+}
+.removeMarginBottom{
+  padding: 8px;
+  p{
+    margin-bottom: 0px;
+    width: 100%;
+    height: 100%;
+    img:hover{
+      transform:scale(5,5);
+      z-index: 999;
+      position:relative;
+    }
+  }
+}

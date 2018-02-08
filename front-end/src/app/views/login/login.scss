@@ -1,1 +1,34 @@
 /* nothing */
+$form-bg: #13232f;
+$main: #1890ff;
+$main-light: lighten($main,5%);
+$main-dark: darken($main,5%);
+$gray-light: #a0b3b0;
+$gray: #ddd;
+$white: #ffffff;
+$thin: 300;
+$br: 4px;
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+.login{
+  background:rgba($form-bg,.9);
+  padding: 40px 40px 10px;
+  max-width:450px;
+  margin: auto;
+  border-radius:$br;
+  box-shadow:0 4px 10px 4px rgba($form-bg,.3);
+  font-family: 'Titillium Web', sans-serif;
+}
+
+h1 {
+  text-align:center;
+  color:$white;
+  font-weight:$thin;
+  text-transform: uppercase;
+}
+
+button {
+  font-weight: bold;
+  text-transform: uppercase;
+}

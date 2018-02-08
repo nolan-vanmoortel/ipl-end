@@ -3,6 +3,7 @@
 import React, {
   PureComponent
 }                       from 'react';
+import { notification } from 'antd';
 import PropTypes        from 'prop-types';
 import {
   Route,
@@ -14,13 +15,25 @@ import auth             from '../../services/auth';
 class LogoutRoute extends PureComponent {
   static propTypes = {
     // react-router 4:
-    match:    PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history:  PropTypes.object.isRequired
+    match:          PropTypes.object.isRequired,
+    location:       PropTypes.object.isRequired,
+    history:        PropTypes.object.isRequired,
+
+    disconnectUser: PropTypes.func.isRequired
+  };
+
+  openNotification = () => {
+    notification.success({
+      message: 'Déconnexion réussie'
+    });
   };
 
   componentDidMount() {
     auth.clearAllAppStorage();
+    auth.clearToken();
+    const { disconnectUser } = this.props;
+    disconnectUser();
+    this.openNotification();
   }
 
   render() {

@@ -1,1 +1,20 @@
 /* nothing */
+.backgroundApp{
+  padding: 24px;
+  background: #fff;
+  min-height: 360px;
+  margin: 0px 16px;
+}
+.darkButton{
+  border-color: #001529;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+}
+.darkButton, .darkButton:focus{
+  background-color: #001529;
+  color: #ffffff;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  border-color: #001529;
+}
