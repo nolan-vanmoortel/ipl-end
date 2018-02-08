@@ -52,7 +52,7 @@ class MachineTable extends PureComponent {
     const reportTable = [];
 
 
-    if(!(machines.length !== 0 && data.length === 0))
+    if (!(machines.length !== 0 && data.length === 0))
       return;
 
     machines.map((machine)=>{
@@ -100,24 +100,6 @@ class MachineTable extends PureComponent {
 
   onPrint = (selectedRowKeys) => {
     generatePDF(selectedRowKeys);
-    /*const url = window.location.hostname+':'+window.location.port+'/report/'+selectedRowKeys.nom;
-    const pdf = new jspdf();
-
-    const qrCode = QRCode.toDataURL(url,{type:'image/jpeg'}, (err,url)=>{
-      pdf.addImage(url,'JPEG', 10, 0);
-      pdf.text("Signaler un problème !", 2, 45);
-      pdf.text(selectedRowKeys.nom, 17, 52);
-      pdf.addImage(url,'JPEG', 80, 0);
-      pdf.text("Signaler un problème !", 72, 45);
-      pdf.text(selectedRowKeys.nom, 87, 52);
-      pdf.addImage(url,'JPEG', 150, 0);
-      pdf.text("Signaler un problème !", 142, 45);
-      pdf.text(selectedRowKeys.nom, 157, 52);
-      pdf.addImage(url,'JPEG', 150, 62);
-      pdf.text("Signaler un problème !", 142, 107);
-      pdf.text(selectedRowKeys.nom, 157, 112);
-    });
-    pdf.save(selectedRowKeys.nom+'.pdf');*/
   };
 
 
