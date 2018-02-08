@@ -42,6 +42,7 @@ class AdminDashboard extends PureComponent {
 
     getUsers:             PropTypes.func.isRequired,
     users:                PropTypes.array.isRequired,
+    machines:                PropTypes.array.isRequired,
     setStateReport:       PropTypes.func.isRequired,
     setAdminReport:       PropTypes.func.isRequired
 

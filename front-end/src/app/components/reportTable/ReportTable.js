@@ -5,33 +5,23 @@ import React, {
 }                     from 'react';
 import PropTypes      from 'prop-types';
 import styles         from './reportTable.scss';
-import {Table, Icon, Switch, Radio, Form, Divider, Button, Input, Select} from 'antd';
-import ReportViewer from "./reportViewer/ReportViewer";
-const FormItem = Form.Item;
-
-const expandedRowRender = record => <p>{record.description}</p>;
-const showHeader = true;
-const footer = () => 'Here is footer';
-
+import {Table, Icon, Button, Input, Select} from 'antd';
+import ReportViewer from './reportViewer/ReportViewer';
 
 class ReportTable extends PureComponent {
 
-  componentDidUpdate(){
-    const { machines, users }  = this.props;
-    this.fillTable(machines);
-    this.updateListAdmin(users);
-
-  }
-  componentWillMount(){
-    const { machines, users }  = this.props;
-    this.fillTable(machines);
-    this.updateListAdmin(users);
-  }
+  static propTypes = {
+    users:                PropTypes.array.isRequired,
+    machines:                PropTypes.array.isRequired,
+    setStateReport:       PropTypes.func.isRequired,
+    setAdminReport:       PropTypes.func.isRequired
+  };
 
   state={
-    intToState:["TODO","DOING","DONE"],
-    intToSeverite:["Mineur","Majeur"],
-    intToType:["","Software","Hardware"],
+    intToState:['TODO', 'DOING', 'DONE'],
+    intToSeverite:['Mineur', 'Majeur'],
+    intToType:['', 'Software', 'Hardware'],
+
     data:[],
     dataReadOnly:[],
     sortedInfo:{},
@@ -39,89 +29,28 @@ class ReportTable extends PureComponent {
     searchText:'',
     filterDropdownVisible: false,
     filtered: false,
-    selectedRowKeys: [],
+
     listOptionUser: []
+  };
+
+  componentDidUpdate() {
+    const { machines, users }  = this.props;
+
+    this.fillTable(machines);
+    this.updateListAdmin(users);
   }
 
-  handleChange = (pagination, filters, sorter) => {
-    this.setState({
-      filteredInfo: filters,
-      sortedInfo: sorter
-    });
-  }
+  componentWillMount() {
+    const { machines, users }  = this.props;
 
-  handleChangeSelectState = (record, value) => {
-    const { setStateReport } = this.props;
-    const { data, intToState } = this.state;
-    const _data = data.slice(0);
-
-    data.map((elem,index)=>{
-      if(elem.key === record.key)
-        _data[index].etat=intToState[value];
-    });
-
-
-    setStateReport(record.key.split(';')[0], record.date, value).then(()=>{
-      this.setState({data:_data});
-    });
-  }
-
-  handleChangeSelectAdmin = (record, value) => {
-    console.log(record, value);
-    const { setAdminReport } = this.props;
-    const { data, intToState } = this.state;
-    const _data = data.slice(0);
-
-    data.map((elem,index)=>{
-      if(elem.key === record.key)
-        _data[index].admin=value.split('@')[0].replace('.', ' ');
-    });
-
-
-    setAdminReport(record.key.split(';')[0], record.date, value).then(()=>{
-      this.setState({data:_data});
-      console.log(_data);
-    });
-  }
-
-  onInputChange = (e) => {
-    this.setState({ searchText: e.target.value });
-  }
-
-  onSearch = () => {
-    const { searchText, data, dataReadOnly } = this.state;
-    const reg = new RegExp(searchText, 'gi');
-    this.setState({
-      filterDropdownVisible: false,
-      filtered: !!searchText,
-      data: dataReadOnly.map((record) => {
-        const match = record.nom.match(reg);
-        if (!match) {
-          return null;
-        }
-        return {
-          ...record,
-          nom: (
-            <span>
-              {record.nom.split(reg).map((text, i) => (
-                i > 0 ? [<span className={styles.highlight}>{match[0]}</span>, text] : text
-              ))}
-            </span>
-          )
-        };
-      }).filter(record => !!record)
-    });
-  }
-
-
-
-  onSelectChange = (selectedRowKeys) => {
-    console.log('selectedRowKeys changed: ', selectedRowKeys);
-    this.setState({ selectedRowKeys });
-  }
+    this.fillTable(machines);
+    this.updateListAdmin(users);
+  };
 
   fillTable = (machines) =>{
-    const { data }  = this.state;
+    const { data, intToSeverite, intToState, intToType }  = this.state;
+    const reportTable = [];
+
     let haveReport = false;
     machines.forEach((elem)=>{
       if(elem.reports.length > 0) {
@@ -130,12 +59,9 @@ class ReportTable extends PureComponent {
       }
       return false;
     });
+
     if(!(machines.length !== 0 && data.length === 0 && haveReport))
       return;
-    const reportTable = [];
-    const { intToSeverite, intToState, intToType } = this.state;
-
-    console.log(machines);
 
     machines.map((machine)=>{
       machine.reports.map((report)=>{
@@ -148,28 +74,113 @@ class ReportTable extends PureComponent {
           local: machine.location,
           nom: machine.name,
           admin: report.emailAdmin.split('@')[0].replace('.', ' '),
-        commentaire: <ReportViewer name={machine.name} mac={machine.mac} commentMachine={machine.comment} commentReport={report.comment} email={report.email} ip={machine.ip}/>
+          commentaire: <ReportViewer name={machine.name} mac={machine.mac} commentMachine={machine.comment} commentReport={report.comment} email={report.email} ip={machine.ip}/>
         });
       });
     });
+
     this.setState({data:reportTable.slice(0), dataReadOnly:reportTable.slice(0)});
-  }
+  };
 
   updateListAdmin = (users)=>{
     const {listOptionUser} = this.state;
+    const listUsers = [];
+
     if(!(users.length !== 0 && listOptionUser.length === 0))
       return;
-    const listUsers = [];
+
     users.map((user)=>{
       listUsers.push(<Select.Option key={'option'+user.email} value={user.email}>{user.email.split('@')[0].replace('.', ' ')}</Select.Option>);
     });
+
     this.setState({listOptionUser:listUsers});
-  }
+  };
 
+  /*
+    *HANDLE CHANGE
+   */
+  handleChange = (pagination, filters, sorter) => {
+    this.setState({
+      filteredInfo: filters,
+      sortedInfo: sorter
+    });
+  };
+
+  handleChangeSelectState = (record, value) => {
+    const { setStateReport } = this.props;
+    const { data, intToState } = this.state;
+    const _data = data.slice(0);
+
+    data.forEach((elem, index)=>{
+      if(elem.key === record.key) {
+        _data[index].etat = intToState[value];
+        return true;
+      }
+      return false;
+    });
+
+    setStateReport(record.key.split(';')[0], record.date, value)
+      .then(()=>{
+        this.setState({data:_data});
+      });
+  };
+
+  handleChangeSelectAdmin = (record, value) => {
+    const { setAdminReport } = this.props;
+    const { data} = this.state;
+    const _data = data.slice(0);
+
+    data.forEach((elem, index)=>{
+      if(elem.key === record.key) {
+        _data[index].admin = value.split('@')[0].replace('.', ' ');
+        return true;
+      }
+      return false;
+    });
+
+    setAdminReport(record.key.split(';')[0], record.date, value)
+      .then(()=>{
+        this.setState({data:_data});
+      });
+  };
+
+  onInputChange = (e) => {
+    this.setState({ searchText: e.target.value });
+  };
+
+  onSearch = () => {
+    const { searchText, dataReadOnly } = this.state;
+    const reg = new RegExp(searchText, 'gi');
+
+    this.setState({
+      filterDropdownVisible: false,
+      filtered: !!searchText,
+      data: dataReadOnly.map((record) => {
+        const match = record.nom.match(reg);
+
+        if (!match)
+          return null;
+
+        return {
+          ...record,
+          nom: (
+            <span>
+              {record.nom.split(reg).map((text, i) => (
+                i > 0 ? [<span className={styles.highlight}>{match[0]}</span>, text] : text
+              ))}
+            </span>
+          )
+        };
+      }).filter(record => !!record)
+    });
+  };
+
+  /*
+    * RENDER
+   */
   render() {
-    const { sortedInfo, filteredInfo, data, selectedRowKeys, listOptionUser } = this.state;
+    const { sortedInfo, filteredInfo, data, listOptionUser } = this.state;
 
-    const hasSelected = selectedRowKeys.length > 0;
     const columns = [ {
       title: 'Local',
       dataIndex: 'local',
@@ -186,7 +197,7 @@ class ReportTable extends PureComponent {
       sorter: (a, b) => a.local.localeCompare(b.local),
       sortOrder: sortedInfo.columnKey === 'local' && sortedInfo.order,
       width: 100
-    },{
+    }, {
       title: 'Date',
       dataIndex: 'date',
       key: 'date',
@@ -255,7 +266,7 @@ class ReportTable extends PureComponent {
       filterDropdownVisible: this.state.filterDropdownVisible,
       onFilterDropdownVisibleChange: (visible) => {
         this.setState({
-          filterDropdownVisible: visible,
+          filterDropdownVisible: visible
         }, () => this.searchInput && this.searchInput.focus());
       },
       width: 250
@@ -270,7 +281,7 @@ class ReportTable extends PureComponent {
       title: 'Action',
       key: 'action',
       width: 350,
-      render: (text,record) => (
+      render: (text, record) => (
         <span>
           <Select placeholder="Etat" style={{ width: 120, marginRight:5 }} onChange={(value)=>{this.handleChangeSelectState(record,value)}}>
             <Select.Option value="0">TODO</Select.Option>
@@ -289,9 +300,10 @@ class ReportTable extends PureComponent {
     </span>
       )
     }];
+
     return (
       <div>
-        <Table footer={()=><Button type="primary" onClick={this.onHandlePrintSelected} disabled={!hasSelected}>Imprimer séléctionnée(s)</Button>} scroll={{ x: 1300 }} rowSelection={{selectedRowKeys, onChange: this.onSelectChange}} columns={columns} dataSource={data} expandedRowRender={record => <p style={{ margin: 0 }}>{record.commentaire}</p>} onChange={this.handleChange}/>
+        <Table scroll={{ x: 1300 }} columns={columns} dataSource={data} expandedRowRender={record => <p style={{ margin: 0 }}>{record.commentaire}</p>} onChange={this.handleChange}/>
       </div>
     );
   }
