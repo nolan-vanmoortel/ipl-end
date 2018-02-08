@@ -5,11 +5,13 @@ import React, {
   PureComponent
 }                     from 'react';
 import PropTypes      from 'prop-types';
-import {Col, Divider, Row, Form, notification} from 'antd';
+import {Col, Divider, Row, Form, notification, Tabs, Icon } from 'antd';
 import {MachineImport} from '../../components';
 import ReportTable from '../../components/reportTable/ReportTable';
 import MachineTable from '../../components/machineTable/MachineTable';
 import MachineManual from '../../components/machineImport/MachineManual';
+
+const TabPane = Tabs.TabPane;
 
 class AdminDashboard extends PureComponent {
   constructor(props) {
@@ -162,36 +164,43 @@ class AdminDashboard extends PureComponent {
 
     return(
       <div>
-        <Row>
-          <Col span={6}  />
-          <Col xs={{span:12}} md={{span:6, offset:3}} style={{textAlign:'center'}}>
-            <MachineImport
-              onRemove={this.onRemove}
-              beforeUpload={this.beforeUpload}
-              handleUpload={this.handleUpload}
-              fileList={fileList}
-              uploading={uploading}/>
-          </Col>
-        </Row>
-        <Divider />
-        <Row>
-          <h3>Soumission d'une nouvelle machine</h3>
-          <Col>
-            <MachineManual getFieldDecorator={getFieldDecorator} handleSubmit={this.handleSubmit} />
-          </Col>
-        </Row>
-        <Divider />
-        <Row>
-          <Col span={24} >
-            <MachineTable machines={machines}/>
-          </Col>
-        </Row>
-        <Divider />
-        <Row>
-        <Col span={24} >
-          <ReportTable setAdminReport={setAdminReport} users={users} setStateReport={setStateReport} machines={machines}/>
-        </Col>
-        </Row>
+        <Tabs defaultActiveKey="addMachines">
+          <TabPane tab={<span><Icon type="plus" />Ajouter une machine</span>} key="addMachines">
+            <Row>
+              <h3>Soumission d'une nouvelle machine</h3>
+              <Col>
+                <MachineManual getFieldDecorator={getFieldDecorator} handleSubmit={this.handleSubmit} />
+              </Col>
+            </Row>
+            <Divider />
+            <Row>
+              <h3>Soumission de machines à partir d'un fichier</h3>
+              <Col span={6}  />
+              <Col xs={{span:12}} md={{span:6, offset:3}} style={{textAlign:'center'}}>
+                <MachineImport
+                  onRemove={this.onRemove}
+                  beforeUpload={this.beforeUpload}
+                  handleUpload={this.handleUpload}
+                  fileList={fileList}
+                  uploading={uploading}/>
+              </Col>
+            </Row>
+          </TabPane>
+          <TabPane tab={<span><Icon type="laptop" />Machines</span>} key="machines">
+            <Row>
+              <Col span={24} >
+                <MachineTable machines={machines}/>
+              </Col>
+            </Row>
+          </TabPane>
+          <TabPane tab={<span><Icon type="form" />Rapports</span>} key="reports" >
+            <Row>
+              <Col span={24} >
+                <ReportTable setAdminReport={setAdminReport} users={users} setStateReport={setStateReport} machines={machines}/>
+              </Col>
+            </Row>
+          </TabPane>
+        </Tabs>
       </div>
     );
   }
