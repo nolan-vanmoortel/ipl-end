@@ -151,10 +151,10 @@ class AdminDashboard extends PureComponent {
     }
     if(uploadSuccess) {
       this.getMachines();
-      if(this.state.file === null){
+      if(this.state.fileList.length === 0){
         this.openSuccessNotification('La machine a bien été enregistrée');
       }else{
-        this.openSuccessNotification('Le fichier a bien ete envoyé');
+        this.openSuccessNotification('Le fichier a bien été envoyé');
       }
       toggleUploadSuccess();
       this.setState({ uploading: false });
