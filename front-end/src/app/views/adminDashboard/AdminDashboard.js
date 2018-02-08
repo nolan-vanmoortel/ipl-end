@@ -14,15 +14,13 @@ import MachineManual from '../../components/machineImport/MachineManual';
 const TabPane = Tabs.TabPane;
 
 class AdminDashboard extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      file: null,
-      location: '',
-      fileList: [],
-      uploading: false
-    };
-  }
+  state = {
+    file: null,
+    location: '',
+    fileList: [],
+    uploading: false,
+    needToRefresh:true
+  };
 
   static propTypes = {
     match:                  PropTypes.object.isRequired,
@@ -153,6 +151,7 @@ class AdminDashboard extends PureComponent {
       toggleSetReportStateSuccess, toggleSetReportStateError,
       toggleSetReportAdminSuccess, toggleSetReportAdminError
     } = this.props;
+    const { needToRefresh } = this.state;
     if(uploadError) {
       this.openErrorNotification('Une erreur est survenue');
       toggleUploadError();
@@ -165,7 +164,9 @@ class AdminDashboard extends PureComponent {
         this.openSuccessNotification('Le fichier a bien ete envoyé');
       }
       toggleUploadSuccess();
-      this.setState({ uploading: false });
+      this.getMachines().then(()=>{
+        this.setState({ uploading: false, needToRefresh:true });
+      });
     }
     if (setStateSuccess) {
       toggleSetStateSuccess();
@@ -193,18 +194,30 @@ class AdminDashboard extends PureComponent {
     }
   }
 
+  getMachines = async () => {
+    const { updateMachines, getMachines } = this.props;
+    const response = await getMachines();
+    const allMachines = response.payload.data;
+    updateMachines(allMachines);
+  };
+
+  refreshed = ()=>{
+    this.setState({ needToRefresh:false });
+  }
+
   render() {
     const {
       machines,
       setStateReport,
       users,
       setAdminReport,
-      setStateMachine
+      setStateMachine,
+      getMachines
     } = this.props;
 
     const { getFieldDecorator } = this.props.form;
 
-    const { fileList, uploading } = this.state;
+    const { fileList, uploading, needToRefresh } = this.state;
 
     return(
       <div>
@@ -233,7 +246,7 @@ class AdminDashboard extends PureComponent {
           <TabPane tab={<span><Icon type="laptop" />Machines</span>} key="machines">
             <Row>
               <Col span={24} >
-                <MachineTable setStateMachine={setStateMachine} machines={machines}/>
+                <MachineTable getMachines={getMachines} needToRefresh={needToRefresh} refreshed={this.refreshed} setStateMachine={setStateMachine} machines={machines}/>
               </Col>
             </Row>
           </TabPane>

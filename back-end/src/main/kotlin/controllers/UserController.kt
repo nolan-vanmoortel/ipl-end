@@ -23,21 +23,6 @@ fun UserController(userDao: UserDao, userFactory: UserFactory){
                 ObjectMapper().writeValueAsString(Message("Pas d'utilisateur connu pour cet Id"))
             }
         }
-        post("/create"){
-            val salt = getSalt()
-            try {
-                val map = ObjectMapper().readValue<Map<String, String>>(request.body(),object: TypeReference<Map<String, String>>() {})
-                if(map["email"] == null || map["password"] == null)
-                    throw NoFatalException("Requête Incorrecte")
-                val user = userFactory.getUser(
-                        email = map["email"]!!,
-                        password = hashPassword(salt, map["password"]!!),
-                        salt = salt)
-                ObjectMapper().writeValueAsString(Message(userDao.save(user).id))
-            }catch (e: Exception){
-                ObjectMapper().writeValueAsString(Message(""+e.message))
-            }
-        }
     }
 }
 fun Request.qp(key: String): String = this.queryParams(key)

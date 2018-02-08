@@ -120,6 +120,22 @@ fun AuthController(userDao: UserDao,
                 ObjectMapper().writeValueAsString(Message("An error occured"))
             }
         }
+        post("/create"){
+            checkCookie(request, userDao)
+            val salt = getSalt()
+            try {
+                val map = ObjectMapper().readValue<Map<String, String>>(request.body(),object: TypeReference<Map<String, String>>() {})
+                if(map["email"] == null || map["password"] == null)
+                    throw NoFatalException("Requête Incorrecte")
+                val user = userFactory.getUser(
+                        email = map["email"]!!,
+                        password = hashPassword(salt, map["password"]!!),
+                        salt = salt)
+                ObjectMapper().writeValueAsString(Message(userDao.save(user).id))
+            }catch (e: Exception){
+                ObjectMapper().writeValueAsString(Message(""+e.message))
+            }
+        }
     }
 }
 

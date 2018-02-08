@@ -14,7 +14,9 @@ class MachineTable extends PureComponent {
 
   static propTypes = {
     machines:                 PropTypes.array.isRequired,
-    setStateMachine:            PropTypes.func.isRequired
+    setStateMachine:            PropTypes.func.isRequired,
+    refreshed:            PropTypes.func.isRequired,
+    needToRefresh:              PropTypes.bool.isRequired
   };
 
   state={
@@ -39,22 +41,25 @@ class MachineTable extends PureComponent {
     const { machines}  = this.props;
 
     this.fillTable(machines);
+    console.log("didUpdate");
   }
 
   componentWillMount() {
     const { machines}  = this.props;
 
     this.fillTable(machines);
+    console.log("willMount");
   }
 
   fillTable = (machines) =>{
     const { data }  = this.state;
+    const { needToRefresh, refreshed }  = this.props;
     const reportTable = [];
 
-
-    if (!(machines.length !== 0 && data.length === 0))
+    if (!(machines.length !== 0 && (data.length === 0 || needToRefresh)))
       return;
 
+    console.log(machines);
     machines.map((machine)=>{
       reportTable.push({
         key: machine.name,
@@ -65,8 +70,11 @@ class MachineTable extends PureComponent {
         etat: machine.state?"Activée":"Désactivée"
       });
     });
+    refreshed();
 
     this.setState({data:reportTable.slice(0), dataReadOnly:reportTable.slice(0)});
+
+
   };
 
   /*
@@ -193,7 +201,7 @@ class MachineTable extends PureComponent {
     * RENDER
    */
   render() {
-    const { sortedInfo, filteredInfo, data, selectedRowKeys} = this.state;
+    const { sortedInfo, filteredInfo, data, selectedRowKeys } = this.state;
     const hasSelected = selectedRowKeys.length > 0;
 
     const columns = [ {
