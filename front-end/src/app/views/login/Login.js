@@ -119,7 +119,7 @@ class Login extends PureComponent<Props, State> {
                 help={passwordError || ''}
               >
                 {getFieldDecorator('password', {
-                  rules: [{ required: true, message: 'Please input your Password!' }],
+                  rules: [{ required: true, message: 'Veuillew introduire votre mot de passe!' }],
                 })(
                   <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
                 )}
