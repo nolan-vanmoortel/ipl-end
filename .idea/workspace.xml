@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dc183b59-1437-4f96-84cb-a336534cf540" name="Default" comment="BACKEND - Auth Controller: machine state switch fun">
+    <list default="true" id="dc183b59-1437-4f96-84cb-a336534cf540" name="Default" comment="FRONT END - admindashboard: fix file description for desktop">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/components/machineImport/MachineImport.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/machineImport/MachineImport.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/reportTable/ReportTable.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/reportTable/ReportTable.js" />
       <change beforePath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js" afterPath="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -56,11 +55,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="525">
-      <file leaf-file-name="MachineImport.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MachineImport.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-end/src/app/components/machineImport/MachineImport.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-451">
-              <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+            <state relative-caret-position="709">
+              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding>
                 <element signature="e#14#40#0" expanded="true" />
               </folding>
@@ -68,23 +67,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AdminDashboard.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-end/src/app/containers/app/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="200" column="53" lean-forward="true" selection-start-line="200" selection-start-column="53" selection-end-line="200" selection-end-column="53" />
+            <state relative-caret-position="277">
+              <caret line="74" column="36" lean-forward="false" selection-start-line="74" selection-start-column="36" selection-end-line="74" selection-end-column="36" />
+              <folding>
+                <element signature="e#15#86#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NavigationBar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/front-end/src/app/components/navigation/NavigationBar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="709">
+              <caret line="85" column="1" lean-forward="true" selection-start-line="85" selection-start-column="1" selection-end-line="85" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReportTable.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/front-end/src/app/components/reportTable/ReportTable.js">
+      <file leaf-file-name="AdminDashboard.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1111">
-              <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+            <state relative-caret-position="406">
+              <caret line="191" column="50" lean-forward="true" selection-start-line="191" selection-start-column="50" selection-end-line="191" selection-end-column="50" />
               <folding>
-                <element signature="e#14#81#0" expanded="true" />
+                <marker date="1518122623513" expanded="true" signature="5733:5735" ph="&lt;MachineImport/&gt;" />
               </folding>
             </state>
           </provider>
@@ -103,9 +114,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>machine.id</find>
-      <find>fillTable</find>
-      <find>name</find>
       <find>componentDIdUpdate</find>
       <find>loading: false</find>
       <find>loading: true</find>
@@ -133,6 +141,9 @@
       <find>getmachinebyid</find>
       <find>opene</find>
       <find>open</find>
+      <find>cacher</find>
+      <find>scanner QR code</find>
+      <find>scanner</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -553,7 +564,6 @@
         <option value="$PROJECT_DIR$/front-end/src/app/redux/modules/scanQr.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/containers/app/index.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/redux/modules/userAuth.js" />
-        <option value="$PROJECT_DIR$/front-end/src/app/containers/app/App.js" />
         <option value="$PROJECT_DIR$/front-end/package.json" />
         <option value="$PROJECT_DIR$/front-end/src/app/services/auth/index.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/config/index.js" />
@@ -583,8 +593,9 @@
         <option value="$PROJECT_DIR$/back-end/src/test/kotlin/tests/FactoryTest.kt" />
         <option value="$PROJECT_DIR$/front-end/src/app/views/login/Login.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/components/reportTable/ReportTable.js" />
-        <option value="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js" />
+        <option value="$PROJECT_DIR$/front-end/src/app/containers/app/App.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/components/machineImport/MachineImport.js" />
+        <option value="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js" />
       </list>
     </option>
   </component>
@@ -697,6 +708,21 @@
               <item name="front-end" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ipl-end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="containers" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ipl-end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -782,20 +808,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/package-lock.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/components/index.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/components/logoutRoute/LogoutRoute.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/components/machineImport/MachineManual.js</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/components/privateRoute/PrivateRoute.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/config/index.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/containers/app/App.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/redux/modules/machine.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/redux/modules/views.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/routes/MainRoutes.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/services/auth/index.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -803,9 +816,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/components/qrPrintMachine/PrintQr.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/components/qrPrintMachine/QrMaker/QrMaker.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/components/qrPrintMachine/printQr.scss</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -813,13 +823,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/components/qrPrintMachine/QrPrintMachine.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/views/printQr/PrintQr.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/views/printQr/index.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/views/printQr/printQr.scss</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/views/protected/Protected.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/views/protected/index.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/front-end/src/app/views/protected/protected.scss</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -1150,7 +1153,7 @@
       <workItem from="1518008279134" duration="12664000" />
       <workItem from="1518021234772" duration="10719000" />
       <workItem from="1518034802340" duration="3439000" />
-      <workItem from="1518077527401" duration="25766000" />
+      <workItem from="1518077527401" duration="30275000" />
     </task>
     <task id="LOCAL-00001" summary="MAC C EST DE LA MERDE">
       <created>1518008573715</created>
@@ -1271,7 +1274,28 @@
       <option name="project" value="LOCAL" />
       <updated>1518104807554</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="FRONT END - admindashboard: fix file description for desktop">
+      <created>1518106413914</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1518106413914</updated>
+    </task>
+    <task id="LOCAL-00019" summary="FRONT END - admindashboard: fix file description for desktop">
+      <created>1518106520609</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1518106520609</updated>
+    </task>
+    <task id="LOCAL-00020" summary="FRONT END - admindashboard: fix file description for desktop">
+      <created>1518122578079</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1518122578079</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1307,7 +1331,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79366000" />
+    <option name="totallyTimeSpent" value="83875000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-12" y="-12" width="2184" height="1394" extended-state="6" />
@@ -1330,7 +1354,7 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277592" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32748538" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29239765" sideWeight="0.49841017" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283208" sideWeight="0.49814814" order="10" side_tool="false" content_ui="tabs" />
@@ -1399,7 +1423,8 @@
     <MESSAGE value="FRONT END - Admindashboard:" />
     <MESSAGE value="BACKEND - Auth Controller: machine state switch fun" />
     <MESSAGE value="BACKEND - Tests + cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="BACKEND - Tests + cleanup" />
+    <MESSAGE value="FRONT END - admindashboard: fix file description for desktop" />
+    <option name="LAST_COMMIT_MESSAGE" value="FRONT END - admindashboard: fix file description for desktop" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1408,22 +1433,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/impl/UserImpl.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="8" column="11" lean-forward="false" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/factory/impl/ReportFactoryImpl.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="12" column="6" lean-forward="false" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/back-end/src/main/kotlin/business/entities/impl/ReportImpl.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -1772,20 +1781,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front-end/src/app/views/login/Login.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1522">
-          <caret line="92" column="3" lean-forward="true" selection-start-line="92" selection-start-column="3" selection-end-line="92" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/views/reportForm/ReportForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1726">
           <caret line="172" column="21" lean-forward="true" selection-start-line="172" selection-start-column="21" selection-end-line="172" selection-end-column="21" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1798,30 +1799,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="200" column="53" lean-forward="true" selection-start-line="200" selection-start-column="53" selection-end-line="200" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/components/reportTable/ReportTable.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1111">
-          <caret line="52" column="23" lean-forward="true" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
+        <state relative-caret-position="1595">
+          <caret line="55" column="4" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
           <folding>
             <element signature="e#14#81#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/app/views/login/Login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="169" column="32" lean-forward="false" selection-start-line="169" selection-start-column="32" selection-end-line="169" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/app/containers/app/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="74" column="36" lean-forward="false" selection-start-line="74" selection-start-column="36" selection-end-line="74" selection-end-column="36" />
+          <folding>
+            <element signature="e#15#86#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/app/components/navigation/NavigationBar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="709">
+          <caret line="85" column="1" lean-forward="true" selection-start-line="85" selection-start-column="1" selection-end-line="85" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/components/machineImport/MachineImport.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-451">
-          <caret line="19" column="4" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
+        <state relative-caret-position="709">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <element signature="e#14#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/app/views/adminDashboard/AdminDashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="191" column="50" lean-forward="true" selection-start-line="191" selection-start-column="50" selection-end-line="191" selection-end-column="50" />
+          <folding>
+            <marker date="1518122623513" expanded="true" signature="5733:5735" ph="&lt;MachineImport/&gt;" />
           </folding>
         </state>
       </provider>

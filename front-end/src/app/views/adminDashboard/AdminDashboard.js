@@ -185,7 +185,7 @@ class AdminDashboard extends PureComponent {
             <Row>
               <h3>Soumission de machines à partir d'un fichier</h3>
               <Col span={6}  />
-              <Col xs={{span:12}} md={{span:6, offset:3}} style={{textAlign:'center'}}>
+              <Col xs={{span:12}} md={{span:6, offset:3}}  style={{textAlign:'center'}}>
                 <MachineImport
                   onRemove={this.onRemove}
                   beforeUpload={this.beforeUpload}
