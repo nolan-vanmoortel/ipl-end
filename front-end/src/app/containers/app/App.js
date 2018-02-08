@@ -75,9 +75,7 @@ class App extends Component {
               <MainRoutes disconnectUser={disconnectUser} checkUserIsConnected={checkUserIsConnected}/>
             </Content>
             <Footer isAuthenticated={isAuthenticated} currentView={currentView}/>
-            <Affix offsetTop={0} offsetBottom={0} onChange={affixed => console.log(affixed)}>
-              <Button className={styles.darkButton} onClick={this.onCollapse} >{collapsed?'Afficher Menu':'Cacher Menu'}</Button>
-            </Affix>
+            <Button className={styles.darkButton} style={{left:collapsed?0:200}} onClick={this.onCollapse} >{collapsed?'Afficher Menu':'Cacher Menu'}</Button>
           </Layout>
           <BackTop />
         </Layout>
