@@ -18,6 +18,7 @@ const MachineImport =({
     beforeUpload,
     fileList
   };
+
   return (
       <Row >
         <Col span={10} style={{marginRight: 80}}>
