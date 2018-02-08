@@ -43,7 +43,6 @@ class AdminDashboard extends PureComponent {
 
     getUsers:             PropTypes.func.isRequired,
     users:                PropTypes.array.isRequired,
-    machines:                PropTypes.array.isRequired,
     setStateReport:       PropTypes.func.isRequired,
     setAdminReport:       PropTypes.func.isRequired
 
@@ -173,6 +172,7 @@ class AdminDashboard extends PureComponent {
         </Row>
         <Divider />
         <Row>
+          <h3>Soumission d'une nouvelle machine</h3>
           <Col>
             <MachineManual getFieldDecorator={getFieldDecorator} handleSubmit={this.handleSubmit} />
           </Col>
