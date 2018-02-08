@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="dc183b59-1437-4f96-84cb-a336534cf540" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/containers/app/App.js" afterPath="$PROJECT_DIR$/front-end/src/app/containers/app/App.js" />
-      <change beforePath="$PROJECT_DIR$/front-end/src/app/containers/app/app.scss" afterPath="$PROJECT_DIR$/front-end/src/app/containers/app/app.scss" />
+      <change beforePath="$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js" afterPath="$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/back-end/.gradle/" />
@@ -73,7 +72,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-end/src/app/containers/app/App.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="339">
@@ -86,9 +85,21 @@
       <file leaf-file-name="app.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/front-end/src/app/containers/app/app.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+            <state relative-caret-position="255">
+              <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MachineTable.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="166">
+              <caret line="317" column="94" lean-forward="false" selection-start-line="317" selection-start-column="94" selection-end-line="317" selection-end-column="94" />
+              <folding>
+                <element signature="e#14#81#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -571,12 +582,12 @@
         <option value="$PROJECT_DIR$/front-end/package.json" />
         <option value="$PROJECT_DIR$/front-end/src/app/components/qrPrintMachine/PrintQr.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/components/index.js" />
-        <option value="$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/services/utils/generatePDF.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/components/footer/Footer.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/views/adminDashboard/index.js" />
         <option value="$PROJECT_DIR$/front-end/src/app/containers/app/app.scss" />
         <option value="$PROJECT_DIR$/front-end/src/app/containers/app/App.js" />
+        <option value="$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js" />
       </list>
     </option>
   </component>
@@ -2144,11 +2155,18 @@
       <option name="project" value="LOCAL" />
       <updated>1518117952026</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="FRONT-END | BUTTON NAVBAR FIXED DONE!">
+      <created>1518119966932</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1518119966932</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63751000" />
+    <option name="totallyTimeSpent" value="64395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
@@ -2301,7 +2319,8 @@
     <MESSAGE value="FRONT-END | ADMIN DESIGN DONE" />
     <MESSAGE value="FRONT-END | QR CODE FUCKING DONE!" />
     <MESSAGE value="FRONT-END | FOOTER FIXED DONE!" />
-    <option name="LAST_COMMIT_MESSAGE" value="FRONT-END | FOOTER FIXED DONE!" />
+    <MESSAGE value="FRONT-END | BUTTON NAVBAR FIXED DONE!" />
+    <option name="LAST_COMMIT_MESSAGE" value="FRONT-END | BUTTON NAVBAR FIXED DONE!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2619,16 +2638,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="115" column="34" lean-forward="true" selection-start-line="101" selection-start-column="33" selection-end-line="115" selection-end-column="34" />
-          <folding>
-            <element signature="e#14#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/components/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -2701,8 +2710,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/front-end/src/app/containers/app/app.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        <state relative-caret-position="255">
+          <caret line="15" column="17" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -2712,6 +2721,16 @@
         <state relative-caret-position="339">
           <caret line="77" column="74" lean-forward="false" selection-start-line="77" selection-start-column="74" selection-end-line="77" selection-end-column="74" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/front-end/src/app/components/machineTable/MachineTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="317" column="94" lean-forward="false" selection-start-line="317" selection-start-column="94" selection-end-line="317" selection-end-column="94" />
+          <folding>
+            <element signature="e#14#81#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
