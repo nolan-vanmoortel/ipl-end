@@ -12,14 +12,20 @@ import AdminDashboard from './AdminDashboard';
 const mapStateToProps = (state) => {
   return {
     // views
-    currentView:  state.views.currentView,
+    currentView:            state.views.currentView,
 
-    file:         state.machine.file,
+    file:                   state.machine.file,
 
-    machines:     state.machine.machines,
-    users:        state.user.users,
-    uploadError:  state.machine.uploadError,
-    uploadSuccess:state.machine.uploadSuccess
+    machines:               state.machine.machines,
+    users:                  state.user.users,
+    uploadError:            state.machine.uploadError,
+    uploadSuccess:          state.machine.uploadSuccess,
+    setStateSuccess:        state.machine.setStateSuccess,
+    setStateError:          state.machine.setStateError,
+    setReportAdminError:    state.report.setReportAdminError,
+    setReportAdminSuccess:  state.report.setReportAdminSuccess,
+    setReportStateError:    state.report.setReportStateError,
+    setReportStateSuccess:  state.report.setReportStateSuccess
   };
 };
 

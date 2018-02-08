@@ -14,6 +14,11 @@ const ERROR_CREATE_REPORT:    string = 'ERROR_CREATE_REPORT';
 const TOGGLE_REQUEST_ERROR:   string = 'TOGGLE_REQUEST_ERROR';
 const TOGGLE_REQUEST_SUCCESS: string = 'TOGGLE_REQUEST_SUCCESS';
 
+const TOGGLE_SET_REPORT_STATE_SUCCESS:           string = 'TOGGLE_SET_REPORT_STATE_SUCCESS';
+const TOGGLE_SET_REPORT_STATE_ERROR:             string = 'TOGGLE_SET_REPORT_STATE_ERROR';
+
+const TOGGLE_SET_REPORT_ADMIN_SUCCESS:           string = 'TOGGLE_SET_REPORT_ADMIN_SUCCESS';
+const TOGGLE_SET_REPORT_ADMIN_ERROR:             string = 'TOGGLE_SET_REPORT_ADMIN_ERROR';
 
 const REQUEST_SET_STATE_REPORT:  string = 'REQUEST_SET_STATE_REPORT';
 const RECEIVED_SET_STATE_REPORT: string = 'RECEIVED_SET_STATE_REPORT';
@@ -29,7 +34,13 @@ const ERROR_SET_ADMIN_REPORT:    string = 'ERROR_SET_ADMIN_REPORT';
 const initialState = {
   isCreating: false,
   requestError: false,
-  requestSuccess: false
+  requestSuccess: false,
+
+  setReportStateSuccess:false,
+  setReportStateError:  false,
+
+  setReportAdminSuccess:false,
+  setReportAdminError:  false
 };
 
 export default function (
@@ -42,34 +53,46 @@ export default function (
   case REQUEST_SET_STATE_REPORT:
     return {
       ...state,
-      actionTime: currentTime
+      actionTime: currentTime,
+      setReportStateSuccess:false,
+      setReportStateError:  false
     };
-    case RECEIVED_SET_STATE_REPORT:
+  case RECEIVED_SET_STATE_REPORT:
     return {
       ...state,
-      actionTime: currentTime
+      actionTime: currentTime,
+      setReportStateSuccess: true,
+      setReportStateError:  false
     };
-    case ERROR_SET_STATE_REPORT:
+  case ERROR_SET_STATE_REPORT:
     return {
       ...state,
-      actionTime: currentTime
+      actionTime: currentTime,
+      setReportStateSuccess:false,
+      setReportStateError:  true
     };
   case REQUEST_SET_ADMIN_REPORT:
     return {
       ...state,
-      actionTime: currentTime
+      actionTime: currentTime,
+      setReportAdminSuccess:false,
+      setReportAdminError:  false
     };
-    case RECEIVED_SET_ADMIN_REPORT:
+  case RECEIVED_SET_ADMIN_REPORT:
     return {
       ...state,
-      actionTime: currentTime
+      actionTime: currentTime,
+      setReportAdminSuccess: true,
+      setReportAdminError:  false
     };
-    case ERROR_SET_ADMIN_REPORT:
+  case ERROR_SET_ADMIN_REPORT:
     return {
       ...state,
-      actionTime: currentTime
+      actionTime: currentTime,
+      setReportAdminSuccess: false,
+      setReportAdminError:  true
     };
-    case REQUEST_CREATE_REPORT:
+  case REQUEST_CREATE_REPORT:
     return {
       ...state,
       actionTime: currentTime,
@@ -102,6 +125,26 @@ export default function (
     return {
       ...state,
       requestSuccess: !state.requestSuccess
+    };
+  case TOGGLE_SET_REPORT_ADMIN_SUCCESS:
+    return {
+      ...state,
+      setReportAdminSuccess: !state.setReportAdminSuccess
+    };
+  case TOGGLE_SET_REPORT_ADMIN_ERROR:
+    return {
+      ...state,
+      setReportAdminError: !state.setReportAdminError
+    };
+  case TOGGLE_SET_REPORT_STATE_SUCCESS:
+    return {
+      ...state,
+      setReportStateSuccess: !state.setReportStateSuccess
+    };
+  case TOGGLE_SET_REPORT_STATE_ERROR:
+    return {
+      ...state,
+      setReportStateError: !state.setReportStateError
     };
   default:
     return state;
@@ -152,7 +195,7 @@ export function setStateReport(id, date, state) {
     const method = 'get';
     const headers = {};
     const options = {
-      credentials: 'same-origin',
+      credentials: 'same-origin'
     };
     return dispatch({
       type: 'FETCH_MIDDLEWARE',
@@ -178,7 +221,7 @@ export function setAdminReport(id, date, admin) {
     const method = 'get';
     const headers = {};
     const options = {
-      credentials: 'same-origin',
+      credentials: 'same-origin'
     };
     return dispatch({
       type: 'FETCH_MIDDLEWARE',
@@ -207,5 +250,29 @@ export function toggleRequestError() {
 export function toggleRequestSuccess() {
   return {
     type: TOGGLE_REQUEST_SUCCESS
+  };
+}
+
+export function toggleSetReportStateSuccess() {
+  return {
+    type: TOGGLE_SET_REPORT_STATE_SUCCESS
+  };
+}
+
+export function toggleSetReportStateError() {
+  return {
+    type: TOGGLE_SET_REPORT_STATE_ERROR
+  };
+}
+
+export function toggleSetReportAdminSuccess() {
+  return {
+    type: TOGGLE_SET_REPORT_ADMIN_SUCCESS
+  };
+}
+
+export function toggleSetReportAdminError() {
+  return {
+    type: TOGGLE_SET_REPORT_ADMIN_ERROR
   };
 }

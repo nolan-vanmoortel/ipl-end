@@ -25,30 +25,34 @@ class AdminDashboard extends PureComponent {
   }
 
   static propTypes = {
-    match:    PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired,
-    history:  PropTypes.object.isRequired,
+    match:                  PropTypes.object.isRequired,
+    location:               PropTypes.object.isRequired,
+    history:                PropTypes.object.isRequired,
 
-    currentView:  PropTypes.string.isRequired,
+    currentView:            PropTypes.string.isRequired,
     enterAdminDashboard:    PropTypes.func.isRequired,
     leaveAdminDashboard:    PropTypes.func.isRequired,
 
-    uploadFile:         PropTypes.func.isRequired,
-    machines:           PropTypes.array.isRequired,
-    form:               PropTypes.object.isRequired,
-    manual:             PropTypes.func.isRequired,
+    uploadFile:             PropTypes.func.isRequired,
+    machines:               PropTypes.array.isRequired,
+    form:                   PropTypes.object.isRequired,
+    manual:                 PropTypes.func.isRequired,
 
-    toggleUploadError:    PropTypes.func.isRequired,
-    uploadError:          PropTypes.bool.isRequired,
-    toggleUploadSuccess:  PropTypes.func.isRequired,
-    uploadSuccess:        PropTypes.bool.isRequired,
+    toggleUploadError:      PropTypes.func.isRequired,
+    uploadError:            PropTypes.bool.isRequired,
+    toggleUploadSuccess:    PropTypes.func.isRequired,
+    uploadSuccess:          PropTypes.bool.isRequired,
 
-    getUsers:             PropTypes.func.isRequired,
-    users:                PropTypes.array.isRequired,
-    setStateReport:       PropTypes.func.isRequired,
-    setStateMachine:       PropTypes.func.isRequired,
-    setAdminReport:       PropTypes.func.isRequired
+    getUsers:               PropTypes.func.isRequired,
+    users:                  PropTypes.array.isRequired,
+    setStateReport:         PropTypes.func.isRequired,
+    setStateMachine:        PropTypes.func.isRequired,
+    setAdminReport:         PropTypes.func.isRequired,
+    getMachines:            PropTypes.func.isRequired,
+    updateMachines:         PropTypes.func.isRequired,
 
+    setStateError:          PropTypes.bool.isRequired,
+    setStateSuccess:        PropTypes.bool.isRequired
   };
 
   componentDidMount() {
@@ -141,7 +145,14 @@ class AdminDashboard extends PureComponent {
 
   componentDidUpdate() {
     const { uploadError, toggleUploadError,
-      uploadSuccess, toggleUploadSuccess} = this.props;
+      uploadSuccess, toggleUploadSuccess,
+      setStateSuccess, setStateError,
+      setReportStateSuccess, setReportStateError,
+      setReportAdminSuccess, setReportAdminError,
+      toggleSetStateSuccess, toggleSetStateError,
+      toggleSetReportStateSuccess, toggleSetReportStateError,
+      toggleSetReportAdminSuccess, toggleSetReportAdminError
+    } = this.props;
     if(uploadError) {
       this.openErrorNotification('Une erreur est survenue');
       toggleUploadError();
@@ -155,6 +166,30 @@ class AdminDashboard extends PureComponent {
       }
       toggleUploadSuccess();
       this.setState({ uploading: false });
+    }
+    if (setStateSuccess) {
+      toggleSetStateSuccess();
+      this.openSuccessNotification('État changé avec succès');
+    }
+    if (setStateError) {
+      toggleSetStateError();
+      this.openErrorNotification('Erreur lors du changement d\'état');
+    }
+    if (setReportStateSuccess) {
+      toggleSetReportStateSuccess();
+      this.openSuccessNotification('État changé avec succès');
+    }
+    if (setReportStateError) {
+      toggleSetReportStateError();
+      this.openErrorNotification('Erreur lors du changement d\'état');
+    }
+    if (setReportAdminSuccess) {
+      toggleSetReportAdminSuccess();
+      this.openSuccessNotification('Admin modifié avec succès');
+    }
+    if (setReportAdminError) {
+      toggleSetReportAdminError();
+      this.openErrorNotification('Erreur lors de la modification de l\'admin');
     }
   }
 
