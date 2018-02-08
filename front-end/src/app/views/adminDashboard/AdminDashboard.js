@@ -5,9 +5,10 @@ import React, {
   PureComponent
 }                     from 'react';
 import PropTypes      from 'prop-types';
-import {Col, Divider, Row, Table, Icon, Switch, Radio, Form, notification} from 'antd';
+import {Col, Divider, Row, Form, notification} from 'antd';
 import {MachineImport} from '../../components';
 import ReportTable from '../../components/reportTable/ReportTable';
+import MachineTable from '../../components/machineTable/MachineTable';
 import MachineManual from '../../components/machineImport/MachineManual';
 
 class AdminDashboard extends PureComponent {
@@ -174,6 +175,12 @@ class AdminDashboard extends PureComponent {
         <Row>
           <Col>
             <MachineManual getFieldDecorator={getFieldDecorator} handleSubmit={this.handleSubmit} />
+          </Col>
+        </Row>
+        <Divider />
+        <Row>
+          <Col span={24} >
+            <MachineTable machines={machines}/>
           </Col>
         </Row>
         <Divider />
