@@ -30,7 +30,7 @@ class ReportViewer extends PureComponent{
     } = this.props;
 
     return(
-      <div style={{width:'100%', textAlign:'center'}}>
+      <div style={{width:'100%'}}>
         <div className={styles.reportViewer}>
           <Row>
             <Col>
