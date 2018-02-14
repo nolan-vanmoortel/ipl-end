@@ -313,7 +313,7 @@ class MachineTable extends PureComponent {
       key: 'action',
       width: 150,
       render: (text, record) => (
-        <Button style={{display: 'inline'}} onClick={()=>{this.onPrint([record.nom])}}><Icon type="printer"/></Button>
+        <Button style={{display: 'inline'}} onClick={()=>{this.onPrint([record.key])}}><Icon type="printer"/></Button>
       )
     }];
 
@@ -324,7 +324,7 @@ class MachineTable extends PureComponent {
             return(
               <span>
                 <Button type="primary" onClick={() => this.onPrint(selectedRowKeys)} disabled={!hasSelected}>Imprimer séléctionnée(s)</Button>
-                <Button style={{float:'right'}} type="primary" onClick={() => this.onPrint(data.map((item)=>item.nom))} >Imprimer tout</Button>
+                <Button style={{float:'right'}} type="primary" onClick={() => this.onPrint(data.map((item)=>item.key))} >Imprimer tout</Button>
                 {this.state.toPrint}
               </span>
             );

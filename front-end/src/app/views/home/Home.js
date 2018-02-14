@@ -62,7 +62,7 @@ class Home extends PureComponent {
       <Row>
         <Col span={6} ></Col>
           <Col xs={{span:12}} md={{span:6, offset:3}} style={{textAlign:"center"}}>
-            <h1>Scannez le QR code</h1>
+            <h1 style={{color:'black'}}>Scannez le QR code</h1>
               <div style={{maxHeight:300}}>
               <QrReaderMachine delay={delay} handleError={handleError} handleScan={handleScan} scanClick={scanClick} showQr={showQr}/>
             </div>
